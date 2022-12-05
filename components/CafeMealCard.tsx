@@ -18,6 +18,7 @@ import ThreeDotsMenu from "./ThreeDotsMenu";
 import { useState } from "react";
 import DoneButton from "./DoneButton";
 import DishCard from "./DishCard";
+import { supabaseClient } from '../utils/supabaseClient'
 
 export function formatDate(dateString) {
   return new Date(`${dateString}T00:00:00Z`).toLocaleDateString('en-US', {
@@ -33,6 +34,20 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
   var { session } = useSession()
   const [mealVisible, setMealVisible] = useState(true)
   const [isDone, setIsDone] = useState(false);
+
+
+
+  async function markDone() {
+    setIsDone(true)
+    setEatenDishesCount(eatenDishesCount + 1)
+    const supabase_client = await supabaseClient(session)
+
+
+    var response = await supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index + 1 }).match({ id: meal.id });
+    console.log("response")
+    console.log(response)
+  }
+  
   try {
     var content = JSON.parse(meal.content)
     content.blocks = content.blocks.filter((block) => block.type == 'paragraph')
@@ -58,7 +73,7 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
 
         <Swipeable
 
-          onAfterSwipe={()=>setIsDone(true)}
+          onAfterSwipe={()=>markDone()}
         >
           <div className='my-3 '>
             {/* <Link href={"/meal/"+meal.id  } className=" sm:flex py-8 " key={meal.id} > */}
@@ -100,7 +115,7 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
 
                   <div className='flex-grow'></div>
                   {meal.status != 'draft' &&
-                    <DoneButton meal={meal} setIsDone={setIsDone} isDone={isDone} eatenDishesCount={eatenDishesCount} setEatenDishesCount={setEatenDishesCount} />
+                    <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenDishesCount={eatenDishesCount} setEatenDishesCount={setEatenDishesCount} />
                   }
                 </div>
               </div>
