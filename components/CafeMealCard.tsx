@@ -12,6 +12,7 @@ import ShareButton from './ShareButton';
 import {
   PencilSquareIcon,
   DocumentIcon,
+  Square2StackIcon,
   LinkIcon
 } from '@heroicons/react/24/outline'
 import ThreeDotsMenu from "./ThreeDotsMenu";
@@ -83,10 +84,14 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
               <div className="p-3 pl-5">
 
                 <Link className="" href={"/meal/" + meal.id + "/edit"}>
-                  <div className="flex">
+                  <div className="">
+                    {meal.num_of_dishes>1 &&
+
+                      <span className="float-right inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
+                      <Square2StackIcon className='h-5 w-5 text-gray-400'/>{meal.num_of_dishes} 
+                      </span>
+                    }
                     <h5 className="cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
-                    <div className=" mr-1 text-gray-400 ml-2 py-1 px-2 inline-block float-right border rounded ">x{meal.num_of_dishes}
-                    </div>
                   </div>
 
                 </Link>
