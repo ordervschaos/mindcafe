@@ -65,7 +65,7 @@ export default function WeeklySchedulePicker({ meal }) {
 
       {weeksDays.map((day, index) => {
         return (
-          <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+          <li key={day.value} className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
           <div className="flex items-center p-3">
             <div className="flex h-5 items-center">
               <input

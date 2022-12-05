@@ -127,7 +127,7 @@ export default function EditMeal({ meal, user }) {
                 <div className="mt-6 max-w-3xl flow-root">
                   <ul role="list" className="px-5">
                     {dishesList && dishesList.map((dish) => (
-                      <DishCard key={dish.id} dish={dish} />
+                      <DishCard key={dish.id} dish={dish} isPartOfMeal={false}/>
                     ))}
                   </ul>
                 </div>

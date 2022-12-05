@@ -77,7 +77,9 @@ export default function Editor({ meal,dishesList, setDishesList }) {
   return (
     <div >
       <div className="border p-2 border-round mb-3">
-        <ReactEditorJS defaultValue={{}} onInitialize={handleInitialize} autofocus={false} tools={EDITOR_JS_TOOLS} placeholder="Create a new dish...." />
+        <ReactEditorJS  defaultValue={{
+          blocks:[]
+        }} onInitialize={handleInitialize} autofocus={false} tools={EDITOR_JS_TOOLS} placeholder="Create a new dish...." />
       </div>
 
       <div className="flex justify-end">

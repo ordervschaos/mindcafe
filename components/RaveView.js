@@ -8,7 +8,7 @@ import {
   PencilSquareIcon,
   LinkIcon,
 } from '@heroicons/react/24/outline'
-import BoookmarkButton from './BookmarkButton';
+
 import LikeButton from './LikeButton';
 import ShareButton from './ShareButton';
 
@@ -114,9 +114,7 @@ export default function RaveView({ post }) {
           <LikeButton post_id={post.id} />
         </div>
         <div className='flex-grow'></div>
-        <div className=''>
-          <BoookmarkButton post_id={post.id} />
-        </div>
+        
 
       </div>
       {/* full width divider */}

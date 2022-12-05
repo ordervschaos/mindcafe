@@ -3,7 +3,7 @@ import Blocks from 'editorjs-blocks-react-renderer';
 import Link from 'next/link'
 import Image from 'next/image'
 import { Card } from './Card'
-import BookmarkButton from './BookmarkButton';
+
 import AuNorButton from './AuhtorButton'
 import LikeButton from './DoneButton';
 import ShareButton from './ShareButton';

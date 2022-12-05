@@ -30,7 +30,7 @@ Edit.getLayout = function getLayout(page) {
 
 export async function getServerSideProps({ params }) {
   // Call an external API endpoint to get meals
-  var meal = await supabase.from("meal").select(`
+  var meal:any = await supabase.from("meal").select(`
   id, owner_id, name,schedule,next_dish_index,timing,expiresIn,weeklySchedule,
   dish(content, id, meal_id, owner_id, created_at)
   `).eq('id', params.id);
