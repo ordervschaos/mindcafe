@@ -47,11 +47,11 @@ export async function getServerSideProps({ params }) {
   var meals = meals_res.data
   var meals_view_data=[]
 
-  meals = meals.sort( function(o) { 
-    console.log("o",o.timing)
-    // console.log("value",_.get(o,"timing",24) )
-    return o.timing
-  })
+  // meals = meals.sort( function(o) { 
+  //   console.log("o",o.timing)
+  //   // console.log("value",_.get(o,"timing",24) )
+  //   return o.timing
+  // })
 
   
   for(var i=0;i<meals.length;i++){
