@@ -22,6 +22,13 @@ export function formatDate(dateString) {
 export default function DishCard({ dish,isPartOfMeal }) {
   var { session } = useSession()
   const [dishVisible, setDishVisible] = useState(true)
+  dish.content=JSON.parse(dish.content)
+  // convert all embed to 100% width
+  dish.content.blocks.forEach((block)=>{
+    if(block.type=='embed')
+      block.data.width="100%"
+  })
+
  
   return (
     <div>
@@ -68,7 +75,7 @@ export default function DishCard({ dish,isPartOfMeal }) {
                       className: "list-inside list-decimal ml-2	"
                     },
                   
-                  }} data={JSON.parse(dish.content)} />
+                  }} data={dish.content} />
                 </p>
 
             </div>
