@@ -3,6 +3,7 @@ import Blocks from 'editorjs-blocks-react-renderer';
 import Link from 'next/link'
 import Image from 'next/image'
 import { Card } from './Card'
+import Swipeable from "react-swipy"
 
 import AuNorButton from './AuhtorButton'
 import LikeButton from './DoneButton';
@@ -52,6 +53,7 @@ export default function MealCard({ meal }) {
   return (
     <div>
       {mealVisible && !isDone &&
+      
         <div className='my-3 '>
           {/* <Link href={"/meal/"+meal.id  } className=" sm:flex py-8 " key={meal.id} > */}
           <div className=" bg-white-100 rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
