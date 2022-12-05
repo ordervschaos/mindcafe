@@ -4,7 +4,7 @@ import moment from 'moment';
 import { useSession } from "@clerk/nextjs";
 import Layout from '../components/Layout'
 import { createClient } from "@supabase/supabase-js";
-import MealCard from '../components/MealCard';
+import CafeMealCard from '../components/CafeMealCard';
 import _ from 'lodash'
 import FilterMenu from '../components/FilterMenu';
 import TabMenu from '../components/TabMenu';
@@ -30,7 +30,7 @@ export default function Home({user,meals}) {
         <EatenDishesCount eatenDishesCount={eatenDishesCount}/>
         <ul role="list" className="lg:px-5">
           {mealsList && mealsList.map((meal) => (
-            <MealCard key={meal.id} meal={meal} setEatenDishesCount={setEatenDishesCount} eatenDishesCount={eatenDishesCount}/>
+            <CafeMealCard key={meal.id} meal={meal} setEatenDishesCount={setEatenDishesCount} eatenDishesCount={eatenDishesCount}/>
           ))}
         </ul>
       </div>

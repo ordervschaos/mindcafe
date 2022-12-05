@@ -27,7 +27,7 @@ export function formatDate(dateString) {
 }
 
 
-export default function MealCard({ meal }) {
+export default function CafeMealCard({ meal,setEatenDishesCount,eatenDishesCount }) {
   var { session } = useSession()
   const [mealVisible, setMealVisible] = useState(true)
   const [isDone, setIsDone] = useState(false);
@@ -77,8 +77,25 @@ export default function MealCard({ meal }) {
 
               }
             </div>
-       
             
+            <div className="">
+              {meal.next_dish && 
+              
+                <DishCard dish={meal.next_dish} isPartOfMeal={true} />
+              
+              }
+
+            </div>
+            <div className="p-3 pl-5">
+              <div className="flex w-full items-center space-x-1 pt-1  px-3">
+              
+
+                <div className='flex-grow'></div>
+                {meal.status != 'draft' &&
+                  <DoneButton meal={meal} setIsDone={setIsDone} isDone={isDone} eatenDishesCount={eatenDishesCount} setEatenDishesCount={setEatenDishesCount} />
+                }
+              </div>
+            </div>
 
             </div>
 
