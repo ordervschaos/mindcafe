@@ -116,3 +116,8 @@ Make the schedule editable
 5th Dec 2022
 - deploy to vercel
   - push to github
+
+
+
+hide eaten cards
+- create a toast for displaying number of finished meals

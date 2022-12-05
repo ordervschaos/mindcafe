@@ -22,7 +22,12 @@ export function formatDate(dateString) {
 export default function DishCard({ dish,isPartOfMeal }) {
   var { session } = useSession()
   const [dishVisible, setDishVisible] = useState(true)
-  dish.content=JSON.parse(dish.content)
+  if(!dish.content)
+    dish.content={
+      blocks:[]
+    }
+  if(typeof dish.content == "string")
+    dish.content=dish.content?JSON.parse(dish.content):{blocks:[]}
   // convert all embed to 100% width
   dish.content.blocks.forEach((block)=>{
     if(block.type=='embed')

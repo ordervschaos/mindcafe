@@ -13,12 +13,13 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
 import {isMealToBeShownNow} from '../utils/mealHelpers'
+import EatenDishesCount from '../components/EatenDishesCount';
 
 export default function Home({user,meals}) {
  
   const [selectedTags, setSelectedTags] = useState([]);
   const [mealsList, setPostsList] = useState(meals);
-
+  const [eatenDishesCount,setEatenDishesCount]=useState(0)
 
   
 
@@ -26,10 +27,10 @@ export default function Home({user,meals}) {
     <Layout user={user}>
       <div className="mt-6 max-w-3xl flow-root">
       <TabMenu selectedTab={""}/>
-
-        <ul role="list" className="px-5">
+        <EatenDishesCount eatenDishesCount={eatenDishesCount}/>
+        <ul role="list" className="lg:px-5">
           {mealsList && mealsList.map((meal) => (
-            <MealCard key={meal.id} meal={meal} />
+            <MealCard key={meal.id} meal={meal} setEatenDishesCount={setEatenDishesCount} eatenDishesCount={eatenDishesCount}/>
           ))}
         </ul>
       </div>

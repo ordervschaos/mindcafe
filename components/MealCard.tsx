@@ -27,7 +27,7 @@ export function formatDate(dateString) {
 }
 
 
-export default function MealCard({ meal }) {
+export default function MealCard({ meal,setEatenDishesCount,eatenDishesCount }) {
   var { session } = useSession()
   const [mealVisible, setMealVisible] = useState(true)
   const [isDone, setIsDone] = useState(false);
@@ -51,23 +51,21 @@ export default function MealCard({ meal }) {
   }
   return (
     <div>
-      {mealVisible &&
+      {mealVisible && !isDone &&
         <div className='my-3 '>
           {/* <Link href={"/meal/"+meal.id  } className=" sm:flex py-8 " key={meal.id} > */}
           <div className=" bg-white-100 rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
 
 
             <div className="p-3 pl-5">
-              <div className="flex items-center space-x-2">
-                <div className='flex-grow'></div>
-                <div className="flex flex-wrap -m-1">
-                  <DocumentIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                  <span className="mr-1 text-gray-400">{meal.next_dish_index%meal.num_of_dishes+1}/{meal.num_of_dishes} 
-                  </span>
-                </div>
-              </div>
+              
               <Link className="" href={"/meal/" + meal.id+"/edit"}>
-                <h5 className="cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
+                <div className="flex">
+                  <h5 className="cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
+                  <div className=" mr-1 text-gray-400 ml-2 py-1 px-2 inline-block float-right border rounded ">x{meal.num_of_dishes} 
+                  </div>
+                </div>
+                
               </Link>
               {meal.link &&
                 <div className='mb-6  overflow-hidden	'>
@@ -79,8 +77,9 @@ export default function MealCard({ meal }) {
 
               }
             </div>
+            
             <div className="">
-              {meal.next_dish && !isDone &&
+              {meal.next_dish && 
               
                 <DishCard dish={meal.next_dish} isPartOfMeal={true} />
               
@@ -89,14 +88,11 @@ export default function MealCard({ meal }) {
             </div>
             <div className="p-3 pl-5">
               <div className="flex w-full items-center space-x-1 pt-1  px-3">
-              <div className="flex flex-wrap -m-1">
-                  {/* expires in {meal.schedule.perishesIn} minutes */}
-                </div>
-           
+              
 
                 <div className='flex-grow'></div>
                 {meal.status != 'draft' &&
-                  <DoneButton meal={meal} setIsDone={setIsDone} isDone={isDone} />
+                  <DoneButton meal={meal} setIsDone={setIsDone} isDone={isDone} eatenDishesCount={eatenDishesCount} setEatenDishesCount={setEatenDishesCount} />
                 }
               </div>
             </div>

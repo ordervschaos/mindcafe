@@ -12,13 +12,14 @@ import { useEffect, useState } from 'react';
 
 
 
-export default function DoneButton({meal,isDone,setIsDone}) {
+export default function DoneButton({meal,isDone,setIsDone,eatenDishesCount,setEatenDishesCount}) {
   const { session } = useSession();
   
   
   
   async function markDone(){
     setIsDone(true)
+    setEatenDishesCount(eatenDishesCount+1)
     const supabase_client= await supabaseClient(session) 
 
 
