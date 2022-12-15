@@ -1,4 +1,6 @@
 import { WithUser, WithUserProp } from "@clerk/clerk-react";
+import { SignIn } from "@clerk/nextjs";
+
 
 // type UserStripProps = {
 //   user_name: string;
@@ -73,7 +75,7 @@ function MyApp({ Component, pageProps }) {
             </WithUser>
           </SignedIn>
           <SignedOut>
-            <Component {...pageProps} user={null}/>  
+            <RedirectToSignIn />
           </SignedOut>
         </>
       )}
