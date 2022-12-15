@@ -24,9 +24,9 @@ export default function TabMenu({selectedTab}) {
   tabs.forEach(tab => {
 
     if(user_id){
-      tab.href="/raves/u/"+user_id+"/"+tab.value
+      tab.href="/cafe/u/"+user_id+"/"+tab.value
     }else{
-      tab.href='/raves/'+tab.value
+      tab.href='/cafe/'+tab.value
     }
     
     if(selectedTab==tab.value){

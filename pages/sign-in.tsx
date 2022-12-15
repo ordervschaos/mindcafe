@@ -86,7 +86,7 @@ export const getServerSideProps = withServerSideAuth(async ({ req, resolvedUrl }
   if(req.auth.userId){
    return {
       redirect:{
-        destination:'/raves',
+        destination:'/cafe',
         permanent:false
       }
    }

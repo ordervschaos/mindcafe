@@ -2,18 +2,16 @@ import { useEffect, useState } from 'react'
 import moment from 'moment';
 
 import { useSession } from "@clerk/nextjs";
-import Layout from '../components/Layout'
+import Layout from '../../../components/Layout'
 import { createClient } from "@supabase/supabase-js";
-import CafeMealCard from '../components/CafeMealCard';
 import _ from 'lodash'
-import FilterMenu from '../components/FilterMenu';
-import TabMenu from '../components/TabMenu';
+
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
-import {isMealToBeShownNow} from '../utils/mealHelpers'
-import EatenDishesCount from '../components/EatenDishesCount';
+import {isMealToBeShownNow} from '../../../utils/mealHelpers'
+import CafeMealView from '../../../components/CafeMealView';
 
 export default function Home({user,meals}) {
  
@@ -26,13 +24,10 @@ export default function Home({user,meals}) {
   return (
     <Layout user={user}>
       <div className="mt-6 max-w-3xl flow-root">
-      <TabMenu selectedTab={""}/>
-        <EatenDishesCount eatenDishesCount={eatenDishesCount}/>
-        <ul role="list" className="lg:px-5">
+
           {mealsList && mealsList.map((meal) => (
-            <CafeMealCard key={meal.id} meal={meal} setEatenDishesCount={setEatenDishesCount} eatenDishesCount={eatenDishesCount}/>
+            <CafeMealView key={meal.id} meal={meal} setEatenDishesCount={setEatenDishesCount} eatenDishesCount={eatenDishesCount}/>
           ))}
-        </ul>
       </div>
     </Layout>
   )
@@ -44,7 +39,7 @@ export async function getServerSideProps({ params }) {
   var meals_res = await supabase.from("meal").select(`
   id, owner_id, name,schedule,next_dish_index,timing,expiresIn,weeklySchedule,
   dish(content, id, meal_id, owner_id, created_at)
-  `).order('created_at', { ascending: false });
+  `).order('created_at', { ascending: false }).eq("id",params.id);
   var meals = meals_res.data
   var meals_view_data=[]
 
@@ -83,7 +78,6 @@ export async function getServerSideProps({ params }) {
         next_dish:meal.dish[next_dish_index],
         num_of_dishes:meal.dish.length
       }
-      delete meal.dish
       meals_view_data.push(meal)
     }
 

@@ -120,4 +120,23 @@ Make the schedule editable
 
 
 hide eaten cards
-- create a toast for displaying number of finished meals
+- create a toast for displaying number of finished meals - done
+
+
+10th Dec 22
+- Create a way to view multiple of dishes 
+  - /cafe/meal/:id
+  - have the latest card
+    - [Show Next] button
+      - marks the current one as done
+      - loads the next dish in line 
+
+
+- next: order stuff by time
+  - Persistent
+  - Timed
+  - Weekly special
+  - Monthly special
+
+
+

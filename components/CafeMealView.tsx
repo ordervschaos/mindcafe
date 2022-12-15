@@ -37,8 +37,7 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
   const [mealVisible, setMealVisible] = useState(true)
   const [isDone, setIsDone] = useState(false);
 
-
-
+  const [dishDisplayed,setDishDisplayed]=useState(meal.next_dish)
 
   async function markDone() {
     setIsDone(true)
@@ -50,7 +49,6 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
     console.log("response")
     console.log(response)
   }
-  
   async function showNextDish() {
     setEatenDishesCount(eatenDishesCount + 1)
     const supabase_client = await supabaseClient(session)
@@ -65,6 +63,7 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
 
 
   }
+  
   try {
     var content = JSON.parse(meal.content)
     content.blocks = content.blocks.filter((block) => block.type == 'paragraph')
@@ -83,9 +82,6 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
       ],
     })
   }
-
-  const [dishDisplayed,setDishDisplayed]=useState(meal.next_dish)
-
   return (
     <div>
       {mealVisible && !isDone &&
@@ -102,7 +98,7 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
 
               <div className="p-3 pl-5">
 
-                <Link className="" href={"/cafe/meal/" + meal.id}>
+                <Link className="" href={"/meal/" + meal.id + "/edit"}>
                   <div className="">
                     {meal.num_of_dishes>1 &&
 
@@ -133,7 +129,12 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
                 }
 
               </div>
-              <div className="p-3 pl-5">
+              
+
+            </div>
+
+          </div>
+          <div className="p-3 pl-5">
                 <div className="flex w-full items-center space-x-1 pt-1  px-3">
 
 
@@ -141,17 +142,13 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
                   {meal.status != 'draft' &&
                     <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenDishesCount={eatenDishesCount} setEatenDishesCount={setEatenDishesCount} />
                   }
-                   {meal.dish.length>1 &&
+                  {meal.status != 'draft' &&
                     <ShowNextDishButton   showNextDish={showNextDish}  />
                   }
                 </div>
               </div>
-
-            </div>
-
-          </div>
         </Swipeable>
-
+        
       }
     </div>
   )
