@@ -27,10 +27,10 @@ export default function DoneButton({  showNextDish }) {
 
 
     <div>
-      <button className="flex items-center justify-center cursor-pointer w-12 h-12 rounded-full content-center	 justify-center items-center
+      <button onClick={showNextDish} className="flex items-center justify-center cursor-pointer w-12 h-12 rounded-full content-center	 justify-center items-center
                   bg-white border border-gray-400 hover:bg-red-500 text-white">
 
-          <ArrowRightIcon onClick={showNextDish} className="p-2 text-gray-400" aria-hidden="true" />
+          <ArrowRightIcon  className="p-2 text-gray-400" aria-hidden="true" />
 
       </button>
     </div>
