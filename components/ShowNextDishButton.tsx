@@ -27,7 +27,7 @@ export default function DoneButton({  showNextDish }) {
 
 
     <div>
-      <button className="cursor-pointer w-12 h-12 rounded-full 
+      <button className="cursor-pointer w-12 h-12 rounded-full justify-center items-center
                   bg-white border border-gray-400 hover:bg-red-500 text-white">
         <span>
           <ArrowRightIcon onClick={showNextDish} className="p-2 text-gray-400" aria-hidden="true" />
