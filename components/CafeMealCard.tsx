@@ -45,10 +45,16 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
     setEatenDishesCount(eatenDishesCount + 1)
     const supabase_client = await supabaseClient(session)
 
+    var eaten_meal={
+      eater_id:session.user.id,
+      meal_id:meal.id,
+      dish_id:meal.next_dish.id,
 
-    var response = await supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index + 1 }).match({ id: meal.id });
-    console.log("response")
-    console.log(response)
+    }
+    supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index + 1 }).match({ id: meal.id });
+    var response=await supabase_client.from("eaten_meal").insert([eaten_meal])
+    console.log("response---",response)
+    
   }
   
   async function showNextDish() {

@@ -132,7 +132,42 @@ hide eaten cards
       - loads the next dish in line 
 
 
-- next: order stuff by time
+- next: 
+
+- Unread first
+  - so....everytime I see a card and mark it as eaten, I don't need to see it for a while
+  - this "while" is a question mark. What is this while?
+  - If it's one day, i don;t want to see it till next day
+  - When do I wanna see it next?
+    -  Somethings you do daily
+    - Something weekly
+      So, does that mean, each of these meals haev a frewuncy
+       - Of course, all Meals have frequency
+       - So, each me yeahal needs to have a default frequncy of a day and they persist till end of day Yeah yeah you can say that once Hai four XN hour time yes X what is that actually work in real life real life
+       Could be based on schedule
+       Aaho it be based on kya Aap
+       what do I want here?
+i think Yeah frequency approach please more stable
+- So if I tick something off at 11pm. Next I wanna see it only by 12 AM
+- Which Men's dad local time the god stick that they are the factors if it has been taken the same day don't short call Josh guard
+- 
+
+ implementation
+ - Create a table for recording ethan dishes [x]
+ - create an entry every time a meal is ticked off 
+ - Don't show me has been consumed that day
+ - 
+
+
+
+
+
+
+
+
+
+  - 
+- order stuff by time 
   - Persistent
   - Timed
   - Weekly special
