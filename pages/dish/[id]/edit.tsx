@@ -1,7 +1,6 @@
 
 import EditDish from '../../../components/EditDish'
 import FocusLayout from '../../../components/FocusLayout'
-import { useRouter } from 'next/router'
 
 import { createClient } from "@supabase/supabase-js";
 const supabase = createClient(
@@ -13,16 +12,12 @@ const supabase = createClient(
 
 
 export default function Edit({dish,user}) {
-  const router = useRouter()
+
+  
   return (
     <>
       <EditDish user={user} dish={dish}/>
-      <button onClick={()=>{router.back()}}
-        type="button"
-        className=" inline-flex items-center rounded border border-transparent bg-gray-900 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-      >
-        Save and go back
-      </button>
+      
     </>
   )
 }
