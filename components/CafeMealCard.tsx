@@ -93,11 +93,12 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
   const [dishDisplayed,setDishDisplayed]=useState(meal.next_dish)
 
   return (
-    <div>
+    <div className="overflow-x-clip	">
       {mealVisible && !isDone &&
 
 
-        <Swipeable
+        <Swipeable 
+        limit={100}
 
           onAfterSwipe={()=>markDone()}
         >
