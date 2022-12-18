@@ -27,7 +27,7 @@ export default function DoneButton({ meal, isDone, setIsDone, eatenDishesCount, 
 
 
     <div>
-      <button className="cursor-pointer w-12 h-12 rounded-full justify-center items-center
+      <button className="cursor-pointer w-12 h-12 rounded-full content-center	justify-center items-center
                   bg-white border border-gray-400 hover:bg-red-500 text-white">
         <span>
           <CheckIcon onClick={markDone} className={`p-2 ${isDone ? "text-pink-400" : "text-gray-400 hover:text-white"}`} aria-hidden="true" />
