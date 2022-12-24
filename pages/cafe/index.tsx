@@ -68,11 +68,20 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
 
 
 
-  // meals = meals.sort( function(o) { 
-  //   console.log("o",o.timing)
-  //   // console.log("value",_.get(o,"timing",24) )
-  //   return o.timing
-  // })
+  meals = _.sortBy(meals, function(o) { 
+    console.log("o",o.timing)
+    // console.log("value",_.get(o,"timing",24) )
+    var value=_.get(o,"timing","24:0")
+    
+    if(value==null)
+      value="24:0"
+
+    var hour=value.split(":")[0]
+    var minute=value.split(":")[1]
+    return parseInt(hour)*60+parseInt(minute)
+  })
+
+  console.log("meals+++",'\n',meals.map(function(o) { return o.timing; }))
 
   
   for(var i=0;i<meals.length;i++){
