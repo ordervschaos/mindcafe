@@ -143,7 +143,11 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
               <div className="p-3 pl-5">
                 <div className="flex w-full items-center space-x-1 pt-1  px-3">
 
-
+                  <div>
+                  {meal&&
+                  <div className="text-gray-300">  {meal.timing?'🕛'+' '+meal.timing:''}</div>
+                  }
+                  </div>
                   <div className='flex-grow'></div>
                   {meal.status != 'draft' &&
                     <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenDishesCount={eatenDishesCount} setEatenDishesCount={setEatenDishesCount} />

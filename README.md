@@ -175,3 +175,12 @@ i think Yeah frequency approach please more stable
 
 
 
+
+
+- What are the pain points
+  - the order of meals should be by time
+  - time should be displayed
+  - no time meals should be at last
+  - 
+
+

@@ -66,22 +66,9 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   var meals = meals_res.data
   var meals_view_data=[]
 
+  
 
 
-  meals = _.sortBy(meals, function(o) { 
-    console.log("o",o.timing)
-    // console.log("value",_.get(o,"timing",24) )
-    var value=_.get(o,"timing","24:0")
-    
-    if(value==null)
-      value="24:0"
-
-    var hour=value.split(":")[0]
-    var minute=value.split(":")[1]
-    return parseInt(hour)*60+parseInt(minute)
-  })
-
-  console.log("meals+++",'\n',meals.map(function(o) { return o.timing; }))
 
   
   for(var i=0;i<meals.length;i++){
@@ -98,6 +85,19 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     }
 
     processMealForDisplay:{
+      //pricess timing 
+      var timing=_.get(meal,"timing","24:0")
+      if(timing!=null)
+        meal.timing=`${timing.split(":")[0]}:${Number(timing.split(":")[1]).toLocaleString('en-US', {
+          minimumIntegerDigits: 2,
+          useGrouping: false
+        })}`
+
+
+    
+     
+
+    // next dish
       var next_dish_index=meal.next_dish_index%meal.dish.length
       var meal={
         ...meal,
@@ -110,8 +110,16 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
 
     
   }
-  //sort by schedule timing hour
   
+  //sort by schedule timing hour
+  meals_view_data = _.sortBy(meals_view_data, function(o) { 
+    if(!o.timing)
+      return 24*60
+
+    return o.timing.split(":")[0]*60 + Number(o.timing.split(":")[1])      
+    })
+  
+  console.log("meals",meals.map(function(o) { return o.timing; }))
   
 
 
