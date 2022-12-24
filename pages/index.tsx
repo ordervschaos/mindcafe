@@ -11,13 +11,13 @@ export default function Home() {
       <NextSeo
         title="Home: nine4"
         description="Welcome to nine4 homepage."
-        canonical="https://www.ravve.app/"
+        canonical="https://www.mind-cafe.com/"
         openGraph={{
-          url: "https://www.ravve.app/",
+          url: "https://www.mind-cafe.com/",
         }}
       />
       <Head>
-        <title>RAVVE</title>
+        <title>MindCafe</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
