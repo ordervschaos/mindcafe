@@ -121,7 +121,7 @@ export default function EditMeal({ meal, user }) {
 
                 {/* Dishes title*/}
                 <div className="mt-24">
-                  <h2 className="text-2xl text-center font-bold">Dishes Queue</h2>
+                  <h2 className="text-2xl text-center font-bold">Rotating Dishes Queue</h2>
                 </div>
 
                 <div className="mt-6 max-w-3xl flow-root">
