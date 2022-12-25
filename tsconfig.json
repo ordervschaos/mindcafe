@@ -16,13 +16,18 @@
     "module": "esnext",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "moduleResolution": "node"
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "pages/_app.js", "components/RaveView.js", "components/PublishModal.js", "components/CreateRave.js"  ],
+    "**/*.tsx",
+    "pages/_app.js",
+    "components/RaveView.js",
+    "components/PublishModal.js",
+    "components/CreateRave.js"
+  ],
   "exclude": [
     "node_modules"
   ]

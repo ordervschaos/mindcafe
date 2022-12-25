@@ -8,3 +8,5 @@ export default withClerkMiddleware((req: NextRequest) => {
 
 // Stop Middleware running on static files
 export const config = { matcher: '/((?!.*\\.).*)' }
+// middleware.ts
+
