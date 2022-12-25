@@ -33,7 +33,7 @@ export default function Comments({comments,setComments}) {
           <div key={comment.id} className="border rounded-md p-4">
              <div className="text-base font-medium">
                 <div className="inline-block h-5 w-5 rounded-full">
-                  <Image src={comment.author.profile_image_url}  width={40} height={40} className="rounded-full" />
+                  <Image alt="comment" src={comment.author.profile_image_url}  width={40} height={40} className="rounded-full" />
                 </div>
 
                 <span className="text-gray-800 font-light text-xs ml-2">{comment.author.first_name} {comment.author.last_name}</span>
