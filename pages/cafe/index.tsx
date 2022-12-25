@@ -1,7 +1,9 @@
+import { withServerSideAuth } from "@clerk/nextjs/ssr";
+
+
 import { useEffect, useState } from 'react'
 
-import { clerkClient, getAuth, buildClerkProps } from "@clerk/nextjs/server";
-import type{ AuthData } from '@clerk/nextjs/dist/server/types'
+
 import { GetServerSideProps } from 'next'
 
 
@@ -17,6 +19,7 @@ const supabase = createClient(
 );
 import {isMealToBeShownNow} from '../../utils/mealHelpers'
 import EatenDishesCount from '../../components/EatenDishesCount';
+
 
 
 
@@ -43,16 +46,11 @@ export default function Home({user,meals}) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ctx => {
-  const { userId }: AuthData = getAuth(ctx.req)
-  const user = userId ? await clerkClient.users.getUser(userId) : null;
+export const getServerSideProps: GetServerSideProps = withServerSideAuth(async ({ req }) => {
+  const { userId } = req.auth;
+  // fetch data
 
-  // Call an external API endpoint to get meals
-  // var meal = await supabase.from("rave").select().eq('id', params.id);
-
-  
-
-  var meals_eaten_today_res=await supabase.from("eaten_meal").select(`meal_id`).eq('eater_id',user.id).eq('for_date',new Date().toISOString().split('T')[0])
+  var meals_eaten_today_res=await supabase.from("eaten_meal").select(`meal_id`).eq('eater_id',userId).eq('for_date',new Date().toISOString().split('T')[0])
   console.log("meals_eaten_today_res",meals_eaten_today_res)
   var meals_eaten_today=meals_eaten_today_res.data
   var meals_eaten_today_ids=meals_eaten_today.map(function(o) { return o.meal_id; })
@@ -62,7 +60,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   var meals_res = await supabase.from("meal").select(`
   id, owner_id, name,schedule,next_dish_index,timing,expiresIn,weeklySchedule,
   dish(content, id, meal_id, owner_id, created_at)
-  `).eq('owner_id',user.id).order('created_at', { ascending: false });
+  `).eq('owner_id',userId).order('created_at', { ascending: false });
   var meals = meals_res.data
   var meals_view_data=[]
 
@@ -117,22 +115,26 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
       return 24*60
 
     return o.timing.split(":")[0]*60 + Number(o.timing.split(":")[1])      
-    })
-  
-  console.log("meals",meals.map(function(o) { return o.timing; }))
-  
+  })
 
-
-  
-
-
-
-  // By returning { props: { meals } }, the Blog component
-  // will receive `meals` as a prop at build time
   return {
     props: {
       meals:meals_view_data,
-      ...buildClerkProps(ctx.req)
     },
   }
-}
+},
+{ loadUser: true }
+);
+  // Call an external API endpoint to get meals
+  // var meal = await supabase.from("rave").select().eq('id', params.id);
+
+  
+
+  
+  
+
+  
+
+
+  
+
