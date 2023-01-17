@@ -7,11 +7,12 @@ import { createClient } from "@supabase/supabase-js";
 import MealCard from '../components/MealCard';
 import _ from 'lodash'
 import FilterMenu from '../components/FilterMenu';
-import TabMenu from '../components/TabMenu';
+
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
+import { withServerSideAuth } from "@clerk/nextjs/ssr";
 import {isMealToBeShownNow} from '../utils/mealHelpers'
 
 export default function Home({user,meals}) {
@@ -25,7 +26,7 @@ export default function Home({user,meals}) {
   return (
     <Layout user={user}>
       <div className="mt-6 max-w-3xl flow-root">
-      <TabMenu selectedTab={""}/>
+
 
         <ul role="list" className="px-5">
           {mealsList && mealsList.map((meal) => (
@@ -37,13 +38,13 @@ export default function Home({user,meals}) {
   )
 }
 
-export async function getServerSideProps({ params }) {
+export const getServerSideProps: GetServerSideProps = withServerSideAuth(async ({ req }) => {  const { userId } = req.auth;
   // Call an external API endpoint to get meals
   // var meal = await supabase.from("rave").select().eq('id', params.id);
   var meals_res = await supabase.from("meal").select(`
   id, owner_id, name,schedule,next_dish_index,
   dish(content, id, meal_id, owner_id, created_at)
-  `).order('created_at', { ascending: false });
+  `).eq('owner_id',userId).order('created_at', { ascending: false });
   var meals = meals_res.data
   var meals_view_data=[]
   for(var i=0;i<meals.length;i++){
@@ -90,4 +91,6 @@ export async function getServerSideProps({ params }) {
       meals:meals_view_data
     },
   }
-}
+},
+{ loadUser: true }
+);
