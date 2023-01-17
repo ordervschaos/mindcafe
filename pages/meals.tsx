@@ -7,6 +7,7 @@ import { createClient } from "@supabase/supabase-js";
 import MealCard from '../components/MealCard';
 import _ from 'lodash'
 import FilterMenu from '../components/FilterMenu';
+import { GetServerSideProps } from 'next'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
