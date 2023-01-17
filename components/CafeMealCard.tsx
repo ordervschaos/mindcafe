@@ -1,4 +1,4 @@
-import Swipeable from "react-swipy"
+// import Swipeable from "react-swipy"
 
 import { useSession } from "@clerk/nextjs";
 import Blocks from 'editorjs-blocks-react-renderer';
@@ -97,11 +97,11 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
       {mealVisible && !isDone &&
 
 
-        <Swipeable 
-        limit={100}
+        // <Swipeable 
+        // limit={100}
 
-          onAfterSwipe={()=>markDone()}
-        >
+        //   onAfterSwipe={()=>markDone()}
+        // >
           <div className='my-3 '>
             {/* <Link href={"/meal/"+meal.id  } className=" sm:flex py-8 " key={meal.id} > */}
             <div className=" bg-white-100 rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
@@ -161,7 +161,7 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
             </div>
 
           </div>
-        </Swipeable>
+        // </Swipeable>
 
       }
     </div>
