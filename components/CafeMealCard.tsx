@@ -21,6 +21,7 @@ import DoneButton from "./DoneButton";
 import DishCard from "./DishCard";
 import { supabaseClient } from '../utils/supabaseClient'
 import ShowNextDishButton from "./ShowNextDishButton";
+import ShowPrevDishButton from "./ShowPrevDishButton";
 
 export function formatDate(dateString) {
   return new Date(`${dateString}T00:00:00Z`).toLocaleDateString('en-US', {
@@ -71,6 +72,20 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
 
 
   }
+  async function showPrevDish() {
+    setEatenDishesCount(eatenDishesCount + 1)
+    const supabase_client = await supabaseClient(session)
+
+    meal.next_dish_index-=1
+    console.log("meal.next_dish_index",meal.next_dish_index)
+    var next_dish_index=meal.next_dish_index%meal.dish.length
+
+    console.log("meal.dish[next_dish_index ]",meal.dish[next_dish_index ])
+    setDishDisplayed(meal.dish[next_dish_index ])
+    supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index }).match({ id: meal.id });
+
+
+  }
   try {
     var content = JSON.parse(meal.content)
     content.blocks = content.blocks.filter((block) => block.type == 'paragraph')
@@ -111,12 +126,6 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
 
                 <Link className="" href={"/cafe/meal/" + meal.id}>
                   <div className="">
-                    {meal.num_of_dishes>1 &&
-
-                      <span className="float-right inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
-                      <Square2StackIcon className='h-5 w-5 text-gray-400'/>{meal.num_of_dishes} 
-                      </span>
-                    }
                     <h5 className="cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
                   </div>
 
@@ -149,12 +158,25 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
                   }
                   </div>
                   <div className='flex-grow'></div>
+                  {meal.dish.length>1 &&
+                    <div className="flex  items-center space-x-1 pt-1  ">
+                      {meal.next_dish_index!=0 &&
+                      <ShowPrevDishButton   showPrevDish={showPrevDish}  />
+                      }
+                      {meal.num_of_dishes>1 &&
+
+                      <span className="float-right h-12 inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
+                      {meal.next_dish_index+1}/{meal.num_of_dishes} 
+                      </span>
+                      }
+                      <ShowNextDishButton   showNextDish={showNextDish}  />
+                    </div>
+                  }
+                  <div className='flex-grow'></div>
                   {meal.status != 'draft' &&
                     <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenDishesCount={eatenDishesCount} setEatenDishesCount={setEatenDishesCount} />
                   }
-                   {meal.dish.length>1 &&
-                    <ShowNextDishButton   showNextDish={showNextDish}  />
-                  }
+                  
                 </div>
               </div>
 
