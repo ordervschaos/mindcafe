@@ -30,7 +30,7 @@ export default function DoneButton({ meal, isDone, setIsDone, eatenDishesCount, 
       <button onClick={markDone} className="flex items-center justify-center cursor-pointer w-12 h-12 rounded-full
                   bg-white border border-gray-400 hover:bg-red-500 text-white">
 
-          <CheckIcon  className={`p-2 ${isDone ? "text-pink-400" : "text-gray-400 hover:text-white"}`} aria-hidden="true" />
+          <CheckIcon  className={`p-2 h-15 w-15  ${isDone ? "text-pink-400" : "text-gray-400 hover:text-white"}`} aria-hidden="true" />
 
       </button>
     </div>
