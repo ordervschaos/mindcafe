@@ -12,7 +12,7 @@ import Layout from '../../components/Layout'
 import { createClient } from "@supabase/supabase-js";
 import CafeMealCard from '../../components/CafeMealCard';
 import _ from 'lodash'
-import TabMenu from '../../components/TabMenu';
+
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
@@ -23,18 +23,18 @@ import EatenDishesCount from '../../components/EatenDishesCount';
 
 
 
-export default function Home({user,meals}) {
+export default function Home({user,meals,count_meals_eaten_today}) {
  
   const [selectedTags, setSelectedTags] = useState([]);
   const [mealsList, setPostsList] = useState(meals);
-  const [eatenDishesCount,setEatenDishesCount]=useState(0)
+  const [eatenDishesCount,setEatenDishesCount]=useState(count_meals_eaten_today)
 
   
 
   return (
     <Layout user={user}>
       <div className="mt-6 max-w-3xl flow-root">
-      <TabMenu selectedTab={""}/>
+
         <EatenDishesCount eatenDishesCount={eatenDishesCount}/>
         <ul role="list" className="lg:px-5">
           {mealsList && mealsList.map((meal) => (
@@ -120,6 +120,7 @@ export const getServerSideProps: GetServerSideProps = withServerSideAuth(async (
   return {
     props: {
       meals:meals_view_data,
+      count_meals_eaten_today:meals_eaten_today?meals_eaten_today.length:0
     },
   }
 },
