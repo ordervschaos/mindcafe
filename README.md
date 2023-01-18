@@ -184,3 +184,4 @@ i think Yeah frequency approach please more stable
   - 
 
 
+- Ability to disable a meal
