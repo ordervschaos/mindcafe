@@ -5,10 +5,11 @@ import { useSession } from "@clerk/nextjs";
 
 import { useEffect, useState } from 'react';
 
-import { HiCheck }from "react-icons/hi";
 
 
 
+
+import { FiCheck } from "@react-icons/all-files/fi/FiCheck";
 
 
 
@@ -30,7 +31,9 @@ export default function DoneButton({ meal, isDone, setIsDone, eatenDishesCount, 
       <button onClick={markDone} className="flex items-center justify-center cursor-pointer w-12 h-12 rounded-full
                   bg-white border border-gray-400 hover:bg-red-500 text-white">
 
-          <HiCheck  className={`p-2 h-15 w-15  ${isDone ? "text-pink-400" : "text-gray-400 hover:text-white"}`} aria-hidden="true" />
+
+          <FiCheck  className={` h-15 w-15  ${isDone ? "text-pink-400" : "text-gray-400 hover:text-white"}`} />
+
 
       </button>
     </div>
