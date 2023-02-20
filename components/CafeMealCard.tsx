@@ -33,7 +33,7 @@ export function formatDate(dateString) {
 }
 
 
-export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCount }) {
+export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCount,handleMealClick }) {
   var { session } = useSession()
   const [mealVisible, setMealVisible] = useState(true)
   const [isDone, setIsDone] = useState(false);
@@ -117,19 +117,19 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
 
         //   onAfterSwipe={()=>markDone()}
         // >
-          <div className='my-3 '>
+          <div className='my-3 ' onClick={()=>handleMealClick(meal.id)}>
             {/* <Link href={"/meal/"+meal.id  } className=" sm:flex py-8 " key={meal.id} > */}
             <div className=" bg-white-100 rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
 
 
               <div className="p-3 pl-5">
 
-                <Link className="" href={"/cafe/meal/" + meal.id}>
+
                   <div className="">
                     <h5 className="cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
                   </div>
 
-                </Link>
+
                 {meal.link &&
                   <div className='mb-6  overflow-hidden	'>
                     <a href={meal.link} target='_blank' rel='noreferrer' className='flex items-center space-x-2'>

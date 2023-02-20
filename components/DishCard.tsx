@@ -7,7 +7,7 @@ import {
   LinkIcon
 } from '@heroicons/react/24/outline'
 import ThreeDotsMenu from "./ThreeDotsMenu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function formatDate(dateString) {
   return new Date(`${dateString}T00:00:00Z`).toLocaleDateString('en-US', {
@@ -22,6 +22,10 @@ export function formatDate(dateString) {
 export default function DishCard({ dish,isPartOfMeal }) {
   var { session } = useSession()
   const [dishVisible, setDishVisible] = useState(true)
+
+  useEffect(() => {
+    setDishVisible(true)
+  }, [dish])
   if(!dish.content)
     dish.content={
       blocks:[]

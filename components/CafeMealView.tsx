@@ -37,7 +37,7 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
   const [mealVisible, setMealVisible] = useState(true)
   const [isDone, setIsDone] = useState(false);
 
-  const [dishDisplayed,setDishDisplayed]=useState(meal.next_dish)
+  const [dishDisplayed, setDishDisplayed] = useState(meal.next_dish)
 
   async function markDone() {
     setIsDone(true)
@@ -53,17 +53,16 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
     setEatenDishesCount(eatenDishesCount + 1)
     const supabase_client = await supabaseClient(session)
 
-    meal.next_dish_index+=1
-    console.log("meal.next_dish_index",meal.next_dish_index)
-    var next_dish_index=meal.next_dish_index%meal.dish.length
+    meal.next_dish_index += 1
 
-    console.log("meal.dish[next_dish_index ]",meal.dish[next_dish_index ])
-    setDishDisplayed(meal.dish[next_dish_index ])
+    var next_dish_index = meal.next_dish_index % meal.dish.length
+
+    setDishDisplayed(meal.dish[next_dish_index])
     supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index }).match({ id: meal.id });
 
 
   }
-  
+
   try {
     var content = JSON.parse(meal.content)
     content.blocks = content.blocks.filter((block) => block.type == 'paragraph')
@@ -86,27 +85,24 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
     <div>
       {mealVisible && !isDone &&
 
-
-        <Swipeable
-
-          onAfterSwipe={()=>markDone()}
-        >
-          <div className='my-3 '>
+        <div>
+          <div className='flex flex-col h-screen -mt-60 pt-60'>
             {/* <Link href={"/meal/"+meal.id  } className=" sm:flex py-8 " key={meal.id} > */}
-            <div className=" bg-white-100 rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+
+            <div className=" bg-white-100 rounded-lg">
 
 
               <div className="p-3 pl-5">
 
                 <Link className="" href={"/meal/" + meal.id + "/edit"}>
                   <div className="">
-                    {meal.num_of_dishes>1 &&
+                    {meal.num_of_dishes > 1 &&
 
                       <span className="float-right inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
-                      <Square2StackIcon className='h-5 w-5 text-gray-400'/>{meal.num_of_dishes} 
+                        <Square2StackIcon className='h-5 w-5 text-gray-400' />{meal.num_of_dishes}
                       </span>
                     }
-                    <h5 className="cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
+                    <h5 className="h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
                   </div>
 
                 </Link>
@@ -121,7 +117,7 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
                 }
               </div>
 
-              <div className="">
+              <div className="mb-auto h-10">
                 {dishDisplayed &&
 
                   <DishCard dish={dishDisplayed} isPartOfMeal={true} />
@@ -129,26 +125,26 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
                 }
 
               </div>
-              
+
 
             </div>
 
           </div>
-          <div className="p-3 pl-5">
-                <div className="flex w-full items-center space-x-1 pt-1  px-3">
+          <div className="p-3 h-10  pl-5">
+            <div className="flex w-full items-center space-x-1 pt-1  px-3">
 
 
-                  <div className='flex-grow'></div>
-                  {meal.status != 'draft' &&
-                    <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenDishesCount={eatenDishesCount} setEatenDishesCount={setEatenDishesCount} />
-                  }
-                  {meal.status != 'draft' &&
-                    <ShowNextDishButton   showNextDish={showNextDish}  />
-                  }
-                </div>
-              </div>
-        </Swipeable>
-        
+              <div className='flex-grow'></div>
+              {meal.status != 'draft' &&
+                <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenDishesCount={eatenDishesCount} setEatenDishesCount={setEatenDishesCount} />
+              }
+              {meal.status != 'draft' &&
+                <ShowNextDishButton showNextDish={showNextDish} />
+              }
+            </div>
+          </div>
+        </div>
+
       }
     </div>
   )

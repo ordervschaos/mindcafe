@@ -2,7 +2,6 @@ import { createClient } from "@supabase/supabase-js";
 import Layout from '../../../components/Layout'
 import RaveView from '../../../components/RaveView';
 import _ from 'lodash'
-
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
@@ -58,10 +57,7 @@ export async function getServerSideProps({ params }) {
   console.log("users")
   console.log(users)
   users = await users.json()
-  comments = comments.map((comment)=>{
-    comment.author=_.pick(users.find((user)=>user.id==comment.user_id),['id','first_name','last_name','profile_image_url','username'])
-    return comment
-  })
+ 
   
 
   post.comments=comments
