@@ -39,13 +39,13 @@ export default function Home({ user, meals, count_meals_eaten_today }) {
 
   return (
     <Layout user={user}>
-      <div className="mt-6 max-w-3xl flow-root">
+      <div className="mt-6 ma  x-w-3xl flow-root">
 
         <EatenDishesCount eatenDishesCount={eatenDishesCount} />
         <ul role="list" className="lg:px-5">
-          <CafeModal mealIndex={mealIndex} setMealIndex={setMealIndex} openModal={openModal} setOpenModal={setOpenModal} mealsList={mealsList} meal_index={0} setEatenDishesCount={setEatenDishesCount} eatenDishesCount={eatenDishesCount} />
+          <CafeModal mealIndex={mealIndex} setMealIndex={setMealIndex} openModal={openModal} setOpenModal={setOpenModal} mealsList={mealsList} setEatenDishesCount={setEatenDishesCount} eatenDishesCount={eatenDishesCount} />
           {mealsList && mealsList.map((meal) => (
-            <div>
+            <div key={meal.id}>
 
               <CafeMealCard key={meal.id} meal={meal} handleMealClick={handleMealClick} setEatenDishesCount={setEatenDishesCount} eatenDishesCount={eatenDishesCount} />
             </div>

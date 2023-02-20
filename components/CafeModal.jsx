@@ -16,7 +16,7 @@ import ShowPrevMealButton from "./ShowPrevMealButton";
 
 import { supabaseClient } from '../utils/supabaseClient'
 
-export default function CafeModal({ openModal, setOpenModal, mealsList, mealIndex, setMealIndex, session, eatenDishesCount, setEatenDishesCount }) {
+export default function CafeModal({ openModal, setOpenModal, mealsList, mealIndex, setMealIndex, eatenDishesCount, setEatenDishesCount }) {
 
   useEffect(() => {
     setMeal(mealsList[mealIndex])
