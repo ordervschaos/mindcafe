@@ -1,5 +1,7 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { Link } from 'next/link'
+import { useSession } from "@clerk/nextjs";
+
 import { Dialog, Transition } from '@headlessui/react'
 import {
   PencilSquareIcon,
@@ -17,7 +19,7 @@ import ShowPrevMealButton from "./ShowPrevMealButton";
 import { supabaseClient } from '../utils/supabaseClient'
 
 export default function CafeModal({ openModal, setOpenModal, mealsList, mealIndex, setMealIndex, eatenDishesCount, setEatenDishesCount }) {
-
+  var { session } = useSession()
   useEffect(() => {
     setMeal(mealsList[mealIndex])
   }, [mealsList, mealIndex])
@@ -107,7 +109,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                   leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                   leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
-                  <Dialog.Panel className="flex  flex-col h-screen relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all w-full">
+                  <Dialog.Panel className="flex h-screen flex-col relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all w-full">
                     <div className="flow-root">
 
                       <button
@@ -118,7 +120,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                         x
                       </button>
                     </div>
-                    <div className="h-10 mb-auto bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div className=" overflow-y-scroll h-full  bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                       <div className=" bg-white-100 rounded-lg">
 
 
@@ -161,7 +163,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                     </div>
 
 
-                    <div className="bottom_controls  h-30  ">
+                    <div className="bottom_controls  mt-auto  sticky bottom-0">
                       <div className="meal_controls flex w-full items-center space-x-1 pt-1  px-3 pb-2">
                         <ShowPrevDishButton showPrevDish={showPrevDish} />
                         <div className='flex-grow'></div>

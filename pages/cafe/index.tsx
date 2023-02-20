@@ -43,7 +43,9 @@ export default function Home({ user, meals, count_meals_eaten_today }) {
 
         <EatenDishesCount eatenDishesCount={eatenDishesCount} />
         <ul role="list" className="lg:px-5">
+          {mealsList && mealsList.length > 0 && 
           <CafeModal mealIndex={mealIndex} setMealIndex={setMealIndex} openModal={openModal} setOpenModal={setOpenModal} mealsList={mealsList} setEatenDishesCount={setEatenDishesCount} eatenDishesCount={eatenDishesCount} />
+          }
           {mealsList && mealsList.map((meal) => (
             <div key={meal.id}>
 
@@ -59,7 +61,6 @@ export default function Home({ user, meals, count_meals_eaten_today }) {
 export const getServerSideProps: GetServerSideProps = withServerSideAuth(async ({ req }) => {
   var { userId } = req.auth;
   // fetch data
-
   var meals_eaten_today_res = await supabase.from("eaten_meal").select(`meal_id`).eq('eater_id', userId).eq('for_date', new Date().toISOString().split('T')[0])
   var meals_eaten_today = meals_eaten_today_res.data
   var meals_eaten_today_ids = meals_eaten_today.map(function (o) { return o.meal_id; })
