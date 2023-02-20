@@ -153,9 +153,13 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                           {dishDisplayed &&
 
                             <DishCard dish={dishDisplayed} isPartOfMeal={true} />
+                            
 
                           }
-
+                          <br></br>
+                          <br></br>
+                          <br></br>
+                          <br></br>
                         </div>
 
 
@@ -163,7 +167,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                     </div>
 
 
-                    <div className="bottom_controls              fixed bottom-0 w-full ">
+                    <div className="bottom_controls  sticky fixed bottom-20">
                       <div className="meal_controls flex w-full items-center space-x-1 pt-1  px-3 pb-2">
                         <ShowPrevDishButton showPrevDish={showPrevDish} />
                         <div className='flex-grow'></div>
