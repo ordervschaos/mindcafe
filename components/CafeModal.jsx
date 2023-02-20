@@ -163,7 +163,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                     </div>
 
 
-                    <div className="bottom_controls  mt-auto  sticky bottom-0">
+                    <div className="bottom_controls              fixed bottom-0 w-full ">
                       <div className="meal_controls flex w-full items-center space-x-1 pt-1  px-3 pb-2">
                         <ShowPrevDishButton showPrevDish={showPrevDish} />
                         <div className='flex-grow'></div>
