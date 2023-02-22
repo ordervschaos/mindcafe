@@ -110,79 +110,82 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                   leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
                   <Dialog.Panel className="flex h-[100vh] flex-col relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all w-full">
-                    <div className="flow-root">
+                    <div className='h-screen'>
 
-                      <button
-                        type="button"
-                        className="m-1 p-1 h-7 w-7 float-right inline-flex w-10 justify-center  rounded-4xl border border-gray-300 bg-white  text-xs	 font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none  focus:ring-blue-500 focus:ring-offset-2 "
-                        onClick={() => setOpenModal(false)}
-                        ref={cancelButtonRef}>
-                        x
-                      </button>
-                    </div>
-                    <div className=" overflow-y-scroll h-full  bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                      <div className=" bg-white-100 rounded-lg">
+                      <div className="flow-root">
+
+                        <button
+                          type="button"
+                          className="m-1 p-1 h-7 w-7 float-right inline-flex w-10 justify-center  rounded-4xl border border-gray-300 bg-white  text-xs	 font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none  focus:ring-blue-500 focus:ring-offset-2 "
+                          onClick={() => setOpenModal(false)}
+                          ref={cancelButtonRef}>
+                          x
+                        </button>
+                      </div>
+                      <div className=" overflow-y-scroll h-full pb-20  bg-white px-4 pt-5  sm:p-6 sm:pb-4">
+                        <div className=" bg-white-100 rounded-lg">
 
 
-                        <div className="p-3 pl-5">
+                          <div className="p-3 pl-5">
 
 
-                          <div className="">
-                            {meal.num_of_dishes > 1 &&
+                            <div className="">
+                              {meal.num_of_dishes > 1 &&
 
-                              <span className="float-right inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
-                                <Square2StackIcon className='h-5 w-5 text-gray-400' />{meal.num_of_dishes}
-                              </span>
+                                <span className="float-right inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
+                                  <Square2StackIcon className='h-5 w-5 text-gray-400' />{meal.num_of_dishes}
+                                </span>
+                              }
+                              <h5 className="h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
+                            </div>
+
+
+                            {meal.link &&
+                              <div className='mb-6  overflow-hidden	'>
+                                <a href={meal.link} target='_blank' rel='noreferrer' className='flex items-center space-x-2'>
+                                  <LinkIcon className='h-5 w-5 text-gray-400' />
+                                  <span className='text-gray-400 font-light'>{meal.link}</span>
+                                </a>
+                              </div>
+
                             }
-                            <h5 className="h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
+                          </div>
+
+                          <div className="mb-auto h-10">
+                            {dishDisplayed &&
+
+                              <DishCard dish={dishDisplayed} isPartOfMeal={true} />
+                              
+
+                            }
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
                           </div>
 
 
-                          {meal.link &&
-                            <div className='mb-6  overflow-hidden	'>
-                              <a href={meal.link} target='_blank' rel='noreferrer' className='flex items-center space-x-2'>
-                                <LinkIcon className='h-5 w-5 text-gray-400' />
-                                <span className='text-gray-400 font-light'>{meal.link}</span>
-                              </a>
-                            </div>
-
-                          }
                         </div>
+                      </div>
 
-                        <div className="mb-auto h-10">
-                          {dishDisplayed &&
-
-                            <DishCard dish={dishDisplayed} isPartOfMeal={true} />
-                            
-
-                          }
-                          <br></br>
-                          <br></br>
-                          <br></br>
-                          <br></br>
+                        
+                      <div className="bottom_controls fixed w-full bottom-0">
+                        <div className="meal_controls flex w-full items-center space-x-1 pt-1  px-3 pb-2">
+                          <ShowPrevDishButton showPrevDish={showPrevDish} />
+                          <div className='flex-grow'></div>
+                          <ShowNextDishButton showNextDish={showNextDish} />
                         </div>
+                        <div className="meal_controls flex w-full items-center space-x-1 p-3   px-3 bg-gray-100">
+
+                          <ShowPrevMealButton showPrevMeal={showPrevMeal} />
+                          <div className='flex-grow'></div>
+                          <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenDishesCount={eatenDishesCount} setEatenDishesCount={setEatenDishesCount} />
+                          <div className='flex-grow'></div>
 
 
-                      </div>
-                    </div>
+                          <ShowNextMealButton showNextMeal={showNextMeal} />
 
-
-                    <div className="bottom_controls fixed w-full bottom-0">
-                      <div className="meal_controls flex w-full items-center space-x-1 pt-1  px-3 pb-2">
-                        <ShowPrevDishButton showPrevDish={showPrevDish} />
-                        <div className='flex-grow'></div>
-                        <ShowNextDishButton showNextDish={showNextDish} />
-                      </div>
-                      <div className="meal_controls flex w-full items-center space-x-1 p-3   px-3 bg-gray-100">
-
-                        <ShowPrevMealButton showPrevMeal={showPrevMeal} />
-                        <div className='flex-grow'></div>
-                        <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenDishesCount={eatenDishesCount} setEatenDishesCount={setEatenDishesCount} />
-                        <div className='flex-grow'></div>
-
-
-                        <ShowNextMealButton showNextMeal={showNextMeal} />
-
+                        </div>
                       </div>
                     </div>
                   </Dialog.Panel>
