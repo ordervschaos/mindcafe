@@ -109,7 +109,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                   leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                   leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
-                  <Dialog.Panel className="flex  flex-col relative transform  rounded-lg bg-white text-left shadow-xl transition-all w-full">
+                  <Dialog.Panel className="flex  flex-col relative transform   bg-white text-left shadow-xl transition-all w-full">
                     <div className=''>
 
                       <div className="flow-root">
@@ -123,7 +123,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                         </button>
                       </div>
                       <div className=" pb-20  bg-white px-4 pt-5  sm:p-6 sm:pb-4">
-                        <div className=" bg-white-100 rounded-lg">
+                        <div className=" bg-white-100 ">
 
 
                           <div className="p-3 pl-5">
