@@ -109,8 +109,8 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                   leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                   leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
-                  <Dialog.Panel className="flex h-[100vh] flex-col relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all w-full">
-                    <div className='h-full'>
+                  <Dialog.Panel className="flex  flex-col relative transform  rounded-lg bg-white text-left shadow-xl transition-all w-full">
+                    <div className=''>
 
                       <div className="flow-root">
 
@@ -122,7 +122,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                           x
                         </button>
                       </div>
-                      <div className=" overflow-y-scroll h-full pb-20  bg-white px-4 pt-5  sm:p-6 sm:pb-4">
+                      <div className=" pb-20  bg-white px-4 pt-5  sm:p-6 sm:pb-4">
                         <div className=" bg-white-100 rounded-lg">
 
 
@@ -151,17 +151,14 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                             }
                           </div>
 
-                          <div className="mb-auto h-10">
+                          <div className="mb-auto ">
                             {dishDisplayed &&
 
                               <DishCard dish={dishDisplayed} isPartOfMeal={true} />
                               
 
                             }
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
+                            
                           </div>
 
 
@@ -169,7 +166,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                       </div>
 
                         
-                      <div className="bottom_controls fixed w-full bottom-0">
+                      <div className="bottom_controls  w-full bottom-0">
                         <div className="meal_controls flex w-full items-center space-x-1 pt-1  px-3 pb-2">
                           <ShowPrevDishButton showPrevDish={showPrevDish} />
                           <div className='flex-grow'></div>
