@@ -85,7 +85,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
     <div>
       {meal && meal.dish && meal.dish.length > 0 &&
         <Transition.Root show={openModal} as={Fragment}>
-          <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpenModal}>
+          <Dialog as="div" className="fixed z-10" initialFocus={cancelButtonRef} onClose={setOpenModal}>
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
