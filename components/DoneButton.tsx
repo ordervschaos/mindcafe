@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 
 
 
-import { FiCheck } from "@react-icons/all-files/fi/FiCheck";
+import { FiCheck } from "react-icons/fi";
 
 
 

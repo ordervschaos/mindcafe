@@ -4,7 +4,7 @@ import { createClient } from "@supabase/supabase-js";
 import { useSession } from "@clerk/nextjs";
 
 import { useEffect, useState } from 'react';
-
+import { FiArrowRight } from "react-icons/fi";
 
 
 
@@ -30,7 +30,7 @@ export default function DoneButton({  showNextDish }) {
       <button onClick={showNextDish} className="flex items-center justify-center cursor-pointer w-12 h-12 rounded-full content-center	 justify-center items-center
                   bg-white border border-gray-400 hover:bg-red-500 text-white">
 
-          <ArrowRightIcon  className="p-2 h-15 w-15 text-gray-400" aria-hidden="true" />
+          <FiArrowRight  className="h-15 w-15 text-gray-400" aria-hidden="true" />
 
       </button>
     </div>
