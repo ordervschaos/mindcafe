@@ -110,7 +110,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                   leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
                   <Dialog.Panel className="flex h-[100vh] flex-col relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all w-full">
-                    <div className='h-screen'>
+                    <div className='h-full'>
 
                       <div className="flow-root">
 
