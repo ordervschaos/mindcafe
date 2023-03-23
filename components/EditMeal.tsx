@@ -1,7 +1,7 @@
 import { useSession } from "@clerk/nextjs";
 import { useState } from 'react'
 
-import { Cog6ToothIcon,ChevronUpIcon,ChevronDownIcon } from '@heroicons/react/24/outline'
+import { Cog6ToothIcon,ExclamationTriangleIcon,ChevronUpIcon,ChevronDownIcon } from '@heroicons/react/24/outline'
 
 
 
@@ -29,10 +29,14 @@ export default function EditMeal({ meal, user }) {
   const [dishesList, setDishesList] = useState(meal.dishes)
 
   const [isMealSettingsOpen, setIsMealSettingsOpen] = useState(false);
+  const [isDangerousSettingsOpen, setIsDangerousSettingsOpen] = useState(false);
 
 
   const toggleMealSettingsVisibility = () => {
     setIsMealSettingsOpen(!isMealSettingsOpen);
+  };
+  const toggleDangerousSettingsVisibility = () => {
+    setIsDangerousSettingsOpen(!isDangerousSettingsOpen);
   };
 
   //function to save title
@@ -46,6 +50,14 @@ export default function EditMeal({ meal, user }) {
       .from("meal")
       .update({ name: e.target.value }).match({ id: meal.id, owner_id: session.user.id });
 
+  }
+
+  var deleteAllDishes = async (meal_id) => {
+    const supabase_client= await supabaseClient(session) 
+    
+    var delete_res=await supabase_client.from("dish").delete().match({ meal_id: meal_id,owner_id: session.user.id });
+
+    setDishesList([])
   }
 
 
@@ -90,14 +102,46 @@ export default function EditMeal({ meal, user }) {
                   </div>
                   {isMealSettingsOpen&&
                     <div className="grid grid-cols-6 gap-6 mt-2">
-                      <div className="col-span-6 sm:col-span-3">
-                        <TimeDropDown  meal={meal}/>
+                      <div className="row col-span-6">
+
+                        <div className="col-span-6 sm:col-span-3">
+                          <TimeDropDown  meal={meal}/>
+                        </div>
+                        <div className="col-span-6 sm:col-span-3">
+                          <InputAndDropDown meal={meal}/>
+                        </div>
+                        <div className="col-span-6 sm:col-span-3">
+                          <WeeklySchedulePicker meal={meal}/>
+                        </div>
                       </div>
-                      <div className="col-span-6 sm:col-span-3">
-                        <InputAndDropDown meal={meal}/>
+                      <div className="row col-span-4"></div>
+                      <div className="row col-span-2">
+
+                        <div className="text-gray-400 cursor-pointer" onClick={toggleDangerousSettingsVisibility}>
+                          <ExclamationTriangleIcon className="w-5 h-5 inline-block"/> 
+                          <span className="ml-2 mr-1" >Dangerous Settings</span>
+                          {isDangerousSettingsOpen&&
+                          <ChevronUpIcon className="w-5 h-5 inline-block"/> 
+                          }
+                          {!isDangerousSettingsOpen&&
+                            <ChevronDownIcon className="w-5 h-5 inline-block"/> 
+                          }
+                          
+                        </div>
                       </div>
-                    
-                      <WeeklySchedulePicker meal={meal}/>
+                      {isDangerousSettingsOpen&&
+
+                      <div className="col-span-6 sm:col-span-3">
+                        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                          onClick={() => {
+                            deleteAllDishes(meal.id)
+                          }}
+
+                        >
+                          Delete all dishes
+                        </button>
+                      </div>
+                      }
                     </div>
                   }
                 </div>
