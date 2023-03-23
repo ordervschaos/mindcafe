@@ -1,10 +1,9 @@
 import { useSession } from "@clerk/nextjs";
-import { createClient } from "@supabase/supabase-js";
-import { useCallback, useEffect, useId, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { EDITOR_JS_TOOLS } from './Editor/tools'
 import { supabaseClient } from '../utils/supabaseClient'
 import { createReactEditorJS } from 'react-editor-js'// documentation at: https://github.com/Jungwoo-An/react-editor-js
-import React from 'react';
+import {useRef,useCallback} from 'react';
 const ReactEditorJS = createReactEditorJS()
 
 
@@ -12,7 +11,7 @@ const ReactEditorJS = createReactEditorJS()
 export default function Editor({ meal,dishesList, setDishesList }) {
   var dishesListTemp = [...dishesList]
   const { session } = useSession();
-  const editorCore = React.useRef(null)
+  const editorCore = useRef(null)
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
  
   const handleKeyPress = (event) => {
@@ -20,7 +19,6 @@ export default function Editor({ meal,dishesList, setDishesList }) {
       event.preventDefault()
       saveReview()
     }
-
   };
 
   useEffect(() => {
@@ -34,11 +32,11 @@ export default function Editor({ meal,dishesList, setDishesList }) {
   }, [handleKeyPress]);
 
   
-  const handleInitialize = React.useCallback((instance) => {
+  const handleInitialize = useCallback((instance) => {
     editorCore.current = instance
   }, [])
 
-  const saveReview = React.useCallback(async () => {
+  const saveReview = useCallback(async () => {
     const savedData = await editorCore.current.save();
     if (savedData.blocks.length == 0) {
       return

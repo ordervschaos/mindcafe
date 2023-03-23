@@ -167,6 +167,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
 
                         
                       <div className="bottom_controls  w-full bottom-0">
+                        
                         <div className="meal_controls flex w-full items-center space-x-1 pt-1  px-3 pb-2">
                           <ShowPrevDishButton showPrevDish={showPrevDish} />
                           <div className='flex-grow'></div>

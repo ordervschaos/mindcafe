@@ -6,28 +6,21 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Card } from './Card'
 
-import AuNorButton from './AuhtorButton'
-import LikeButton from './DoneButton';
-import ShareButton from './ShareButton';
+import ViewButton from 'components/meal/ViewButton'
 import {
-  PencilSquareIcon,
-  DocumentIcon,
-  Square2StackIcon,
   LinkIcon
 } from '@heroicons/react/24/outline'
-import ThreeDotsMenu from "./ThreeDotsMenu";
+
 import { useState } from "react";
 import DoneButton from "./DoneButton";
 import DishCard from "./DishCard";
 import { supabaseClient } from '../utils/supabaseClient'
-import ShowNextDishButton from "./ShowNextDishButton";
-import ShowPrevDishButton from "./ShowPrevDishButton";
+
 
 export function formatDate(dateString) {
   return new Date(`${dateString}T00:00:00Z`).toLocaleDateString('en-US', {
     day: 'numeric',
     month: 'short',
-    // year: 'numeric',
     timeZone: 'UTC',
   })
 }
@@ -112,12 +105,7 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
       {mealVisible && !isDone &&
 
 
-        // <Swipeable 
-        // limit={100}
-
-        //   onAfterSwipe={()=>markDone()}
-        // >
-          <div className='my-3 ' onClick={()=>handleMealClick(meal.id)}>
+          <div className='my-3 ' >
             {/* <Link href={"/meal/"+meal.id  } className=" sm:flex py-8 " key={meal.id} > */}
             <div className=" bg-white-100 rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
 
@@ -160,16 +148,9 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
                   <div className='flex-grow'></div>
                   {meal.dish.length>1 &&
                     <div className="flex  items-center space-x-1 pt-1  ">
-                      {meal.next_dish_index!=0 &&
-                      <ShowPrevDishButton   showPrevDish={showPrevDish}  />
-                      }
-                      {meal.num_of_dishes>1 &&
-
-                      <span className="float-right h-12 inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
-                      {meal.next_dish_index+1}/{meal.num_of_dishes} 
-                      </span>
-                      }
-                      <ShowNextDishButton   showNextDish={showNextDish}  />
+                      <div onClick={()=>handleMealClick(meal.id)} className="cursor-pointer">
+                        <ViewButton />
+                      </div>
                     </div>
                   }
                   <div className='flex-grow'></div>
@@ -183,7 +164,6 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
             </div>
 
           </div>
-        // </Swipeable>
 
       }
     </div>

@@ -32,7 +32,7 @@ export default function Home({ user, meals, count_meals_eaten_today }) {
   const [openModal, setOpenModal] = useState(true)
   const [mealIndex, setMealIndex] = useState(0)
 
-  function handleMealClick  (meal_id) {
+  function handleMealClick(meal_id) {
     setMealIndex(mealsList.findIndex((m) => m.id === meal_id))
     setOpenModal(true)
   }
@@ -43,8 +43,8 @@ export default function Home({ user, meals, count_meals_eaten_today }) {
 
         <EatenDishesCount eatenDishesCount={eatenDishesCount} />
         <ul role="list" className="lg:px-5">
-          {mealsList && mealsList.length > 0 && 
-          <CafeModal mealIndex={mealIndex} setMealIndex={setMealIndex} openModal={openModal} setOpenModal={setOpenModal} mealsList={mealsList} setEatenDishesCount={setEatenDishesCount} eatenDishesCount={eatenDishesCount} />
+          {mealsList && mealsList.length > 0 &&
+            <CafeModal mealIndex={mealIndex} setMealIndex={setMealIndex} openModal={openModal} setOpenModal={setOpenModal} mealsList={mealsList} setEatenDishesCount={setEatenDishesCount} eatenDishesCount={eatenDishesCount} />
           }
           {mealsList && mealsList.map((meal) => (
             <div key={meal.id}>

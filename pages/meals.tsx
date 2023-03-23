@@ -14,12 +14,10 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
 import { withServerSideAuth } from "@clerk/nextjs/ssr";
-import {isMealToBeShownNow} from '../utils/mealHelpers'
 
 export default function Home({user,meals}) {
  
-  const [selectedTags, setSelectedTags] = useState([]);
-  const [mealsList, setPostsList] = useState(meals);
+  const [mealsList, setMealsList] = useState(meals);
 
 
   

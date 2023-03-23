@@ -1,8 +1,5 @@
 import { withServerSideAuth } from "@clerk/nextjs/ssr";
-import { createClient } from "@supabase/supabase-js";
-
 import { supabaseServerSide } from "../utils/supabaseClient";
-import { ClerkProvider, SignedIn, SignedOut, RedirectToSignIn, UserButton } from '@clerk/nextjs';
 
 
 export const getServerSideProps = withServerSideAuth(async ({ req, resolvedUrl }) => {
