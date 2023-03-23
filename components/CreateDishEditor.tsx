@@ -42,25 +42,44 @@ export default function Editor({ meal,dishesList, setDishesList }) {
       return
     } else {
       //update the data in supabase
+      var newDishes = []
+      var first_index=0
+      savedData.blocks.forEach((block, index) => {
+       if(block.data.text.includes('highlight | Location') || index==savedData.blocks.length-1)
+        {
+          var last_index=index
+          if(index==savedData.blocks.length-1)
+          {
+            last_index=index+1
+          }
+          var blocks_of_dish = savedData.blocks.slice(first_index,last_index)
+          newDishes.push({content: JSON.stringify({
+            blocks:blocks_of_dish,
+            time: savedData.time,
+            version: savedData.version
+          }), owner_id: session.user.id, meal_id: meal.id})
+          first_index=index+1
+        }
+      })
       const supabase_client = await supabaseClient(session)
-      var newDish:any={content: JSON.stringify(savedData), owner_id: session.user.id, meal_id: meal.id}
+      // var newDish:any={content: JSON.stringify(savedData), owner_id: session.user.id, meal_id: meal.id}
       var dishResponse=await supabase_client
         .from("dish")
-        .insert([newDish]);
-        newDish=dishResponse.data[0]
-      
+        .insert(newDishes);
+      newDishes=dishResponse.data
+       
 
       editorCore.current.clear()
 
 
-      dishesListTemp.push(newDish)
+
+      dishesListTemp=[...newDishes,...dishesListTemp]
       setShowSuccessMessage(true)
 
       setTimeout(() => {
         setShowSuccessMessage(false)
       }, 2000);
       await setDishesList([...dishesListTemp])
-      //todo: show a success message
 
     }
 
