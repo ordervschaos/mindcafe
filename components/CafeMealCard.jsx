@@ -13,12 +13,16 @@ import DishCard from "./DishCard";
 import { supabaseClient } from '../utils/supabaseClient'
 
 
-export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCount,handleMealPreviewClick }) {
+export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCount,showMealPreview }) {
   var { session } = useSession()
   const [isDone, setIsDone] = useState(false);
 
+  const [dishDisplayed,setDishDisplayed]=useState(meal.next_dish)
 
-
+  const handleMealPreviewClick = async () => {
+    await showMealPreview(meal.id)
+    setDishDisplayed(meal.next_dish)
+  }
 
   async function markDone() {
     setIsDone(true)
@@ -57,7 +61,7 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
     })
   }
 
-  const [dishDisplayed,setDishDisplayed]=useState(meal.next_dish)
+  
 
   return (
     <div className="overflow-x-clip	">
@@ -108,7 +112,7 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
                   </div>
                   <div className='flex-grow'></div>
                   <div className="flex  items-center space-x-1 pt-1  ">
-                    <div onClick={()=>handleMealPreviewClick(meal.id)} className="cursor-pointer">
+                    <div onClick={handleMealPreviewClick} className="cursor-pointer">
                       <ViewButton />
                     </div>
                   </div>

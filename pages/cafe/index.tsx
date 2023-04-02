@@ -32,7 +32,7 @@ export default function Home({ user, meals, count_meals_eaten_today }) {
   const [openModal, setOpenModal] = useState(true)
   const [mealIndex, setMealIndex] = useState(0)
 
-  function handleMealPreviewClick(meal_id) {
+  function showMealPreview(meal_id) {
     setMealIndex(mealsList.findIndex((m) => m.id === meal_id))
     setOpenModal(true)
   }
@@ -48,8 +48,7 @@ export default function Home({ user, meals, count_meals_eaten_today }) {
           }
           {mealsList && mealsList.map((meal) => (
             <div key={meal.id}>
-
-              <CafeMealCard key={meal.id} meal={meal} handleMealPreviewClick={handleMealPreviewClick} setEatenDishesCount={setEatenDishesCount} eatenDishesCount={eatenDishesCount} />
+              <CafeMealCard key={meal.id} meal={meal} showMealPreview={showMealPreview} setEatenDishesCount={setEatenDishesCount} eatenDishesCount={eatenDishesCount} />
             </div>
           ))}
         </ul>
@@ -61,7 +60,6 @@ export default function Home({ user, meals, count_meals_eaten_today }) {
 export const getServerSideProps: GetServerSideProps = withServerSideAuth(async ({ req }) => {
   var { userId } = req.auth;
   // fetch data
-  // userId = "user_2J4It0IJYwKWpqmLyw9ArLiJvAr"
   var meals_eaten_today_res = await supabase.from("eaten_meal").select(`meal_id`).eq('eater_id', userId).eq('for_date', new Date().toISOString().split('T')[0])
   var meals_eaten_today = meals_eaten_today_res.data
   var meals_eaten_today_ids = meals_eaten_today.map(function (o) { return o.meal_id; })
@@ -88,7 +86,6 @@ export const getServerSideProps: GetServerSideProps = withServerSideAuth(async (
       continue
 
     if (meal.timing || meal.weeklySchedule) {
-      // console.log("timing",meal.timing)
       if (!isMealToBeShownNow(meal.timing, meal.expiresIn, meal.weeklySchedule))
         continue
     }
@@ -101,10 +98,6 @@ export const getServerSideProps: GetServerSideProps = withServerSideAuth(async (
           minimumIntegerDigits: 2,
           useGrouping: false
         })}`
-
-
-
-
 
       // next dish
       var next_dish_index = meal.next_dish_index % meal.dish.length

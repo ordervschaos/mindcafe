@@ -22,10 +22,15 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
   var { session } = useSession()
   useEffect(() => {
     setMeal(mealsList[mealIndex])
+    setDishDisplayed(mealsList[mealIndex].next_dish)
   }, [mealsList, mealIndex])
+
+
 
   const default_meal = mealsList[mealIndex]
   const [meal, setMeal] = useState(default_meal)
+
+ 
 
   const [dishDisplayed, setDishDisplayed] = useState(default_meal.next_dish)
   const [isDone, setIsDone] = useState(false);
