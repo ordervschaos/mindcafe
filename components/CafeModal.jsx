@@ -10,11 +10,11 @@ import {
   LinkIcon
 } from '@heroicons/react/24/outline'
 import DishCard from './DishCard'
-import DoneButton from "./modal/DoneButton";
-import ShowNextDishButton from "./modal/ShowNextDishButton";
-import ShowPrevDishButton from "./modal/ShowPrevDishButton";
-import ShowNextMealButton from "./ShowNextMealButton";
-import ShowPrevMealButton from "./ShowPrevMealButton";
+import DoneButton from "./cafe/modal/DoneButton";
+import ShowNextDishButton from "./cafe/modal/ShowNextDishButton";
+import ShowPrevDishButton from "./cafe/modal/ShowPrevDishButton";
+import ShowNextMealButton from "./meal/ShowNextMealButton";
+import ShowPrevMealButton from "./meal/ShowPrevMealButton";
 
 import { supabaseClient } from '../utils/supabaseClient'
 
@@ -64,9 +64,6 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
   }
 
   function showNextMeal() {
-    console.log("indsx", mealIndex)
-    console.log("list", mealsList)
-    console.log("showNextMeal", mealsList[(mealIndex + 1) % mealsList.length])
     setMealIndex(mealIndex + 1)
 
     var next_meal = mealsList[(mealsList.length + mealIndex + 1) % mealsList.length]
@@ -136,7 +133,9 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                                   <Square2StackIcon className='h-5 w-5 text-gray-400' />{meal.num_of_dishes}
                                 </span>
                               }
-                              <h5 className="h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
+
+                                <h5 className="h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
+
                             </div>
 
 

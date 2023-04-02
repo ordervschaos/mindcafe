@@ -1,8 +1,8 @@
-import Link from "../node_modules/next/link"
+import Link from "next/link"
 
 
 
-export default  function RaveLogo() {
+export default  function MindCafeLogo() {
   return (
     <div className="flex flex-shrink-0 items-center px-4">
       <div className=" cursor-pointer text-lg font-bold rounded-lg tracking-widest focus:outline-none focus:shadow-outline">

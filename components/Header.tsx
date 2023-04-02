@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "../node_modules/next/link";
-import RaveLogo from "./RaveLogo";
+import MindCafeLogo from "./MindCafeLogo";
 
 export default function Header() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
@@ -9,7 +9,7 @@ export default function Header() {
     <div className="fixed top-0 w-full z-30 clearNav md:bg-opacity-90 transition duration-300 ease-in-out">
       <div className="flex bg-white  max-w-6xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
         <div className="items-center justify-between p-4">
-          <RaveLogo />
+          <MindCafeLogo />
           {/* <button
             className="text-white cursor-pointer leading-none px-3 py-1 md:hidden outline-none focus:outline-none "
             type="button"

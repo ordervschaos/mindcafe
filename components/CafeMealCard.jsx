@@ -1,11 +1,7 @@
 // import Swipeable from "react-swipy"
 
 import { useSession } from "@clerk/nextjs";
-import Blocks from 'editorjs-blocks-react-renderer';
 import Link from 'next/link'
-import Image from 'next/image'
-import { Card } from './Card'
-
 import ViewButton from 'components/meal/ViewButton'
 import {
   LinkIcon
@@ -17,18 +13,8 @@ import DishCard from "./DishCard";
 import { supabaseClient } from '../utils/supabaseClient'
 
 
-export function formatDate(dateString) {
-  return new Date(`${dateString}T00:00:00Z`).toLocaleDateString('en-US', {
-    day: 'numeric',
-    month: 'short',
-    timeZone: 'UTC',
-  })
-}
-
-
-export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCount,handleMealClick }) {
+export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCount,handleMealPreviewClick }) {
   var { session } = useSession()
-  const [mealVisible, setMealVisible] = useState(true)
   const [isDone, setIsDone] = useState(false);
 
 
@@ -47,38 +33,11 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
     }
     await supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index + 1 }).match({ id: meal.id });
     var response=await supabase_client.from("eaten_meal").insert([eaten_meal])
-    // console.log("response---",response)
     
   }
   
-  async function showNextDish() {
-    setEatenDishesCount(eatenDishesCount + 1)
-    const supabase_client = await supabaseClient(session)
-
-    meal.next_dish_index+=1
-    console.log("meal.next_dish_index",meal.next_dish_index)
-    var next_dish_index=meal.next_dish_index%meal.dish.length
-
-    console.log("meal.dish[next_dish_index ]",meal.dish[next_dish_index ])
-    setDishDisplayed(meal.dish[next_dish_index ])
-    supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index }).match({ id: meal.id });
 
 
-  }
-  async function showPrevDish() {
-    setEatenDishesCount(eatenDishesCount + 1)
-    const supabase_client = await supabaseClient(session)
-
-    meal.next_dish_index-=1
-    console.log("meal.next_dish_index",meal.next_dish_index)
-    var next_dish_index=meal.next_dish_index%meal.dish.length
-
-    console.log("meal.dish[next_dish_index ]",meal.dish[next_dish_index ])
-    setDishDisplayed(meal.dish[next_dish_index ])
-    supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index }).match({ id: meal.id });
-
-
-  }
   try {
     var content = JSON.parse(meal.content)
     content.blocks = content.blocks.filter((block) => block.type == 'paragraph')
@@ -102,11 +61,11 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
 
   return (
     <div className="overflow-x-clip	">
-      {mealVisible && !isDone &&
+      {!isDone &&
 
 
           <div className='my-3 ' >
-            {/* <Link href={"/meal/"+meal.id  } className=" sm:flex py-8 " key={meal.id} > */}
+            
             <div className=" bg-white-100 rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
 
 
@@ -114,7 +73,9 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
 
 
                   <div className="">
-                    <h5 className="cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
+                    <Link href={"/meal/"+meal.id + "/edit"  } className=" sm:flex py-8 " key={meal.id} >
+                      <h5 className="cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
+                    </Link>
                   </div>
 
 
@@ -142,21 +103,17 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
 
                   <div>
                   {meal&&
-                  <div className="text-gray-300">  {meal.timing?'🕛'+' '+meal.timing:''}</div>
+                    <div className="text-gray-300">  {meal.timing?'🕛'+' '+meal.timing:''}</div>
                   }
                   </div>
                   <div className='flex-grow'></div>
-                  {meal.dish.length>1 &&
-                    <div className="flex  items-center space-x-1 pt-1  ">
-                      <div onClick={()=>handleMealClick(meal.id)} className="cursor-pointer">
-                        <ViewButton />
-                      </div>
+                  <div className="flex  items-center space-x-1 pt-1  ">
+                    <div onClick={()=>handleMealPreviewClick(meal.id)} className="cursor-pointer">
+                      <ViewButton />
                     </div>
-                  }
+                  </div>
                   <div className='flex-grow'></div>
-                  {meal.status != 'draft' &&
-                    <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenDishesCount={eatenDishesCount} setEatenDishesCount={setEatenDishesCount} />
-                  }
+                  <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenDishesCount={eatenDishesCount} setEatenDishesCount={setEatenDishesCount} />
                   
                 </div>
               </div>

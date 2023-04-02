@@ -11,7 +11,7 @@ import {
   XMarkIcon,
   BookmarkIcon
 } from '@heroicons/react/24/outline'
-import RaveLogo from './RaveLogo'
+import MindCafeLogo from './MindCafeLogo'
 
 
 
@@ -92,7 +92,7 @@ export default function Layout({children,user}) {
                     </div>
                   </Transition.Child>
                   <div className="h-0 flex-1 overflow-y-auto pt-5 pb-4">
-                    <RaveLogo />
+                    <MindCafeLogo />
                     <nav className="mt-5 space-y-1 pl-2">
                       {navigation.map((item) => (
                         <a
@@ -141,7 +141,7 @@ export default function Layout({children,user}) {
           <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white">
             <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4 ">
               <div className="flex flex-shrink-0 items-center px-4">
-                <RaveLogo />
+                <MindCafeLogo />
               </div>
               <nav className="mt-5 flex-1 space-y-3 bg-white  ">
                 {navigation.map((item) => (
@@ -190,7 +190,7 @@ export default function Layout({children,user}) {
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
           <div className='inline-flex mt-2 mb-2'>
-          <RaveLogo />
+          <MindCafeLogo />
           </div>
           </div>
           

@@ -12,7 +12,7 @@ import {
   BookmarkIcon
 } from '@heroicons/react/24/outline'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import RaveLogo from './RaveLogo'
+import MindCafeLogo from './MindCafeLogo'
 
 
 function classNames(...classes) {
@@ -81,7 +81,7 @@ export default function FocusMenu({user}) {
                     </div>
                   </Transition.Child>
                   <div className="h-0 flex-1 overflow-y-auto pt-5 pb-4">
-                    <RaveLogo />
+                    <MindCafeLogo />
                     <nav className="mt-5 space-y-1 px-2">
                       {navigation.map((item) => (
                         <a
