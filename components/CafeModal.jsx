@@ -146,6 +146,9 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                                   <LinkIcon className='h-5 w-5 text-gray-400' />
                                   <span className='text-gray-400 font-light'>{meal.link}</span>
                                 </a>
+                                <div className="float-right">
+                                  <ThreeDotsMealsMenu  meal={meal} />
+                                </div>
                               </div>
 
                             }

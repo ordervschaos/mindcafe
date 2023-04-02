@@ -65,17 +65,17 @@ export const getServerSideProps: GetServerSideProps = withServerSideAuth(async (
   var meals_eaten_today = meals_eaten_today_res.data
   var meals_eaten_today_ids = meals_eaten_today.map(function (o) { return o.meal_id; })
 
-  console.log("meals_eaten_today_ids", meals_eaten_today_ids)
 
   var meals_res = await supabase.from("meal").select(`
   id, owner_id, name,schedule,next_dish_index,timing,expiresIn,weeklySchedule,
   dish(content, id, meal_id, owner_id, created_at)
-  `).eq('owner_id', userId).order('created_at', { ascending: false });
+  `).eq('owner_id', userId ).neq('archived',true).order('created_at', { ascending: false });
   var meals = meals_res.data
   var meals_view_data = []
 
 
-
+  if(!meals)
+    meals = []
 
 
 
@@ -113,7 +113,8 @@ export const getServerSideProps: GetServerSideProps = withServerSideAuth(async (
         num_of_dishes: meal.dish.length
       }
       // delete meal.dish
-      meals_view_data.push(meal)
+      if(meal.next_dish)
+        meals_view_data.push(meal)
     }
 
 

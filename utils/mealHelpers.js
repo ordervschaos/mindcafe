@@ -70,9 +70,6 @@ function pickMealsForNow(meals) {
     var repeatDate = new Date(now.getFullYear(), repeat.month?repeat.month-1:now.getMonth(), repeat.dayOfMonth?repeat.dayOfMonth:now.getDate(), repeat.hour, repeat.min, 0, 0);
     
     var perishDate = new Date(repeatDate.getTime() + perishesIn * 60000);
-    console.log(repeatDate);
-    console.log(now);
-    console.log(perishDate);
     return repeatDate <= now && now <= perishDate;
   });
   return pickedMeals;

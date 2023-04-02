@@ -70,6 +70,10 @@ export const getServerSideProps: GetServerSideProps = withServerSideAuth(async (
         num_of_dishes:meal.dish.length
       }
       delete meal.dish
+      if(!meal.next_dish)
+        meal.next_dish={content:""}
+
+
       meals_view_data.push(meal)
     }
     
