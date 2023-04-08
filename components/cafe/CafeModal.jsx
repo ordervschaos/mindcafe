@@ -4,6 +4,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { printCurrentDishIndex, getNextDishIndex } from 'components/meal/utils'
 import { getNextMealIndex } from 'components/cafe/utils'
 import MealCompletionStatusSteps from 'components/cafe/MealCompletionStatusSteps'
+import ThreeDotsMealsMenu from 'components/meal/ThreeDotsMealsMenu'
 import {
   Square2StackIcon,
   LinkIcon

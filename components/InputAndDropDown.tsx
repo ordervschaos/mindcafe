@@ -38,7 +38,7 @@ export default function ExpiryDropDown({ meal }) {
 
   useEffect(() => {
     setTimeout(updateExpiry, 1000)
-  }, [expiryUnit,expiryValue])
+  }, [expiryUnit,expiryValue,updateExpiry])
   return (
     <div>
       <label htmlFor="price" className="block text-sm font-medium text-gray-700">

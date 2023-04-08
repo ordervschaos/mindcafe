@@ -7,9 +7,9 @@ import {
 
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { supabaseClient } from '../utils/supabaseClient';
+import { supabaseClient } from '../../utils/supabaseClient';
 import { useSession } from "@clerk/nextjs";
-import Link from '../node_modules/next/link';
+import Link from 'next/link';
 
 
 
