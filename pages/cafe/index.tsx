@@ -10,7 +10,7 @@ import { GetServerSideProps } from 'next'
 
 import Layout from '../../components/Layout'
 import { createClient } from "@supabase/supabase-js";
-import CafeMealCard from '../../components/CafeMealCard';
+import CafeMealCard from '../../components/cafe/CafeMealCard';
 import _ from 'lodash'
 
 const supabase = createClient(
@@ -18,9 +18,9 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
 import { isMealToBeShownNow } from '../../utils/mealHelpers'
-import EatenDishesCount from '../../components/EatenDishesCount';
+import EatenDishesCount from '../../components/cafe/EatenDishesCount';
 
-import CafeModal from '../../components/CafeModal';
+import CafeModal from '../../components/cafe/CafeModal';
 
 
 

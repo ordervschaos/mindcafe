@@ -27,7 +27,7 @@
     "components/RaveView.js",
     "components/PublishModal.js",
     "components/CreateRave.js"
-, "components/CafeMealCard.jsx"  ],
+, "components/cafe/CafeMealCard.jsx", "components/cafe/CafeMealView.jsx"  ],
   "exclude": [
     "node_modules"
   ]

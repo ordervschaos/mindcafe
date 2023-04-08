@@ -1,9 +1,3 @@
-import { ArrowRightIcon } from '@heroicons/react/20/solid'
-// Get icon nams from: https://unpkg.com/browse/@heroicons/react@2.0.11/24/outline/
-import { createClient } from "@supabase/supabase-js";
-import { useSession } from "@clerk/nextjs";
-
-import { useEffect, useState } from 'react';
 import { FiArrowRight } from "react-icons/fi";
 
 
@@ -12,7 +6,7 @@ import { FiArrowRight } from "react-icons/fi";
 
 
 
-export default function DoneButton({  showNextDish }) {
+export default function showNextDishButton({  showNextDish }) {
 
 
 

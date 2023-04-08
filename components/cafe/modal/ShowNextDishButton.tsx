@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 
 
 
-export default function DoneButton({  showNextDish }) {
+export default function ShowNextDishButton({  showNextDish }) {
 
 
 

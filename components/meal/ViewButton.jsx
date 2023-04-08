@@ -1,5 +1,5 @@
 import { FiEye } from "react-icons/fi";
-export default function DoneButton() {
+export default function ViewButton() {
   return (
     <div>
       <button className="flex items-center justify-center cursor-pointer w-12 h-12 rounded-full

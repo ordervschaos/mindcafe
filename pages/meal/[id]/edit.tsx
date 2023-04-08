@@ -1,5 +1,5 @@
 
-import EditMeal from '../../../components/EditMeal'
+import EditMeal from '../../../components/meal/EditMeal'
 import FocusLayout from '../../../components/FocusLayout'
 
 import { createClient } from "@supabase/supabase-js";

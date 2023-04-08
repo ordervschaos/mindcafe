@@ -1,8 +1,8 @@
 import { useSession } from "@clerk/nextjs";
 import { createClient } from "@supabase/supabase-js";
 import { useEffect, useId, useState } from 'react';
-import { EDITOR_JS_TOOLS } from './Editor/tools'
-import {supabaseClient} from '../utils/supabaseClient'
+import { EDITOR_JS_TOOLS } from '../Editor/tools'
+import {supabaseClient} from '../../utils/supabaseClient'
 import { createReactEditorJS } from 'react-editor-js'// documentation at: https://github.com/Jungwoo-An/react-editor-js
 import React from 'react';
 const ReactEditorJS = createReactEditorJS()

@@ -1,5 +1,5 @@
 import { FiArrowUp } from 'react-icons/fi'
-export default function DoneButton({ showPrevMeal }) {
+export default function showPrevMealButton({ showPrevMeal }) {
   return (
     <div>
       <button onClick={showPrevMeal} className="flex items-center justify-center cursor-pointer w-12 h-12 rounded-full content-center	 justify-center items-center

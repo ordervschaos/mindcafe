@@ -8,14 +8,14 @@ import { Cog6ToothIcon,ExclamationTriangleIcon,ChevronUpIcon,ChevronDownIcon } f
 
 //import Editor
 import dynamic from "next/dynamic";
-const CreateDishEditor = dynamic(() => import("./CreateDishEditor"), { ssr: false });
+const CreateDishEditor = dynamic(() => import("../dish/CreateDishEditor"), { ssr: false });
 
-import FocusMenu from "./FocusMenu";
-import { supabaseClient } from '../utils/supabaseClient'
-import DishCard from "./DishCard";
-import TimeDropDown from "./TimeDropDown";
-import InputAndDropDown from "./InputAndDropDown";
-import WeeklySchedulePicker from "./WeeklySchedulePicker";
+import FocusMenu from "../FocusMenu";
+import { supabaseClient } from '../../utils/supabaseClient'
+import DishCard from "../dish/DishCard";
+import TimeDropDown from "../TimeDropDown";
+import InputAndDropDown from "../InputAndDropDown";
+import WeeklySchedulePicker from "../WeeklySchedulePicker";
 
 
 

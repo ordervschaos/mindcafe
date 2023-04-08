@@ -1,5 +1,5 @@
 
-import EditDish from '../../../components/EditDish'
+import EditDish from '../../../components/dish/EditDish'
 import FocusLayout from '../../../components/FocusLayout'
 
 import { createClient } from "@supabase/supabase-js";

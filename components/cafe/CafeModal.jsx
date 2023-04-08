@@ -1,22 +1,18 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
-import { Link } from 'next/link'
 import { useSession } from "@clerk/nextjs";
-
 import { Dialog, Transition } from '@headlessui/react'
 import {
-  PencilSquareIcon,
-  DocumentIcon,
   Square2StackIcon,
   LinkIcon
 } from '@heroicons/react/24/outline'
-import DishCard from './DishCard'
-import DoneButton from "./cafe/modal/DoneButton";
-import ShowNextDishButton from "./cafe/modal/ShowNextDishButton";
-import ShowPrevDishButton from "./cafe/modal/ShowPrevDishButton";
-import ShowNextMealButton from "./meal/ShowNextMealButton";
-import ShowPrevMealButton from "./meal/ShowPrevMealButton";
+import DishCard from '../dish/DishCard'
+import DoneButton from "../meal/DoneButton";
+import ShowNextDishButton from "./modal/ShowNextDishButton";
+import ShowPrevDishButton from "./modal/ShowPrevDishButton";
+import ShowNextMealButton from "../meal/ShowNextMealButton";
+import ShowPrevMealButton from "../meal/ShowPrevMealButton";
 
-import { supabaseClient } from '../utils/supabaseClient'
+import { supabaseClient } from '../../utils/supabaseClient'
 
 export default function CafeModal({ openModal, setOpenModal, mealsList, mealIndex, setMealIndex, eatenDishesCount, setEatenDishesCount }) {
   var { session } = useSession()
@@ -58,10 +54,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
     const supabase_client = await supabaseClient(session)
 
     meal.next_dish_index -= 1
-    console.log("meal.next_dish_index", meal.next_dish_index)
     var next_dish_index = meal.next_dish_index % meal.dish.length
-
-    console.log("meal.dish[next_dish_index ]", meal.dish[next_dish_index])
     setDishDisplayed(meal.dish[next_dish_index])
     supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index }).match({ id: meal.id });
 

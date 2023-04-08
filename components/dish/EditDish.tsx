@@ -7,7 +7,7 @@ import { createClient } from "@supabase/supabase-js";
 
 
 //import Editor
-import FocusMenu from "./FocusMenu";
+import FocusMenu from "../FocusMenu";
 
 import dynamic from "next/dynamic";
 const DishEditor = dynamic(() => import("./DishEditor"), { ssr: false });

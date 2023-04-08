@@ -11,7 +11,7 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
 import {isMealToBeShownNow} from '../../../utils/mealHelpers'
-import CafeMealView from '../../../components/CafeMealView';
+import CafeMealView from '../../../components/cafe/CafeMealView';
 
 export default function Home({user,meals}) {
  

@@ -6,10 +6,10 @@ import {
   LinkIcon
 } from '@heroicons/react/24/outline'
 import { useState } from "react";
-import DoneButton from "./DoneButton";
-import DishCard from "./DishCard";
-import { supabaseClient } from '../utils/supabaseClient'
-import ShowNextDishButton from "./ShowNextDishButton";
+import DoneButton from "components/meal/DoneButton";
+import DishCard from "../dish/DishCard";
+import { supabaseClient } from '../../utils/supabaseClient'
+import ShowNextDishButton from "../ShowNextDishButton";
 
 
 export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCount }) {
