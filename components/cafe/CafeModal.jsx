@@ -2,6 +2,8 @@ import { Fragment, useEffect, useRef, useState } from 'react'
 import { useSession } from "@clerk/nextjs";
 import { Dialog, Transition } from '@headlessui/react'
 import { printCurrentDishIndex, getNextDishIndex } from 'components/meal/utils'
+import { getNextMealIndex } from 'components/cafe/utils'
+import MealCompletionStatusSteps from 'components/cafe/MealCompletionStatusSteps'
 import {
   Square2StackIcon,
   LinkIcon
@@ -17,13 +19,14 @@ import { supabaseClient } from '../../utils/supabaseClient'
 
 export default function CafeModal({ openModal, setOpenModal, mealsList, mealIndex, setMealIndex, eatenDishesCount, setEatenDishesCount }) {
   var { session } = useSession()
+  var cafe = {
+    meals: mealsList,
+    current_meal_index: mealIndex
+  }
   useEffect(() => {
     setMeal(mealsList[mealIndex])
     setDishDisplayed(mealsList[mealIndex].next_dish)
   }, [mealsList, mealIndex])
-
-
-
   const default_meal = mealsList[mealIndex]
   const [meal, setMeal] = useState(default_meal)
 
@@ -62,9 +65,9 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
   }
 
   function showNextMeal() {
-    setMealIndex(mealIndex + 1)
-
-    var next_meal = mealsList[(mealsList.length + mealIndex + 1) % mealsList.length]
+    
+    var next_meal = mealsList[getNextMealIndex(cafe)]
+    setMealIndex(getNextMealIndex(cafe))
     setMeal(next_meal)
     setDishDisplayed(next_meal.next_dish)
   }
@@ -106,7 +109,6 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                 >
                   <Dialog.Panel className="flex  flex-col relative transform   bg-white text-left shadow-xl transition-all w-full">
                     <div className=''>
-
                       <div className="flow-root">
 
                         <button
@@ -180,6 +182,9 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
 
                           <ShowNextMealButton showNextMeal={showNextMeal} />
 
+                        </div>
+                        <div className='flex w-full items-center space-x-1 p-3   px-3 bg-gray-100'>
+                          <MealCompletionStatusSteps current={mealIndex} total={mealsList.length}/>
                         </div>
                       </div>
                     </div>
