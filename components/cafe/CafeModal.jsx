@@ -5,6 +5,7 @@ import { printCurrentDishIndex, getNextDishIndex } from 'components/meal/utils'
 import { getNextMealIndex } from 'components/cafe/utils'
 import MealCompletionStatusSteps from 'components/cafe/MealCompletionStatusSteps'
 import ThreeDotsMealsMenu from 'components/meal/ThreeDotsMealsMenu'
+import Link from 'next/link'
 import {
   Square2StackIcon,
   LinkIcon
@@ -134,8 +135,9 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                                   <Square2StackIcon className='h-5 w-5 text-gray-400' />{printCurrentDishIndex(meal)}/{meal.num_of_dishes}
                                 </span>
                               }
-
+                              <Link href={`/meal/${meal.id}/edit`}>
                                 <h5 className="h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
+                              </Link>
 
                             </div>
 
