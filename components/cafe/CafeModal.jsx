@@ -99,7 +99,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
             </Transition.Child>
 
             <div className="fixed inset-0 z-10 overflow-x-clip">
-              <div className="flex items-end justify-center  text-center sm:items-center p-0">
+              <div className="flex h-full items-start justify-center  text-center sm:items-center p-0">
                 <Transition.Child
                   as={Fragment}
                   enter="ease-out duration-300"
@@ -109,8 +109,8 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                   leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                   leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
-                  <Dialog.Panel className="flex  flex-col relative transform   bg-white text-left shadow-xl transition-all w-full">
-                    <div className=''>
+                  <Dialog.Panel className="h-full relative transform   bg-white text-left shadow-xl transition-all w-full">
+                    <div className='flex h-full flex-col'>
                       <div className="flow-root">
 
                         <button
@@ -121,7 +121,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                           x
                         </button>
                       </div>
-                      <div className=" pb-20  bg-white px-4 pt-5  sm:p-6 sm:pb-4">
+                      <div className=" pb-20 flex-grow bg-white px-4 pt-5  sm:p-6 sm:pb-4">
                         <div className=" bg-white-100 ">
 
 
@@ -173,7 +173,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                       </div>
 
                         
-                      <div className="bottom_controls  w-full bottom-0">
+                      <div className="bottom_controls justify-self-end w-full bottom-0">
                         
                         <div className="meal_controls flex w-full items-center space-x-1 pt-1  px-3 pb-2">
                           <ShowPrevDishButton showPrevDish={showPrevDish} />
