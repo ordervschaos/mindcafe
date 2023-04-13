@@ -121,7 +121,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                           x
                         </button>
                       </div>
-                      <div className=" pb-20 flex-grow bg-white px-4 pt-5  sm:p-6 sm:pb-4">
+                      <div className=" pb-20 flex-grow overflow-y-scroll bg-white px-4 pt-5  sm:p-6 sm:pb-4">
                         <div className=" bg-white-100 ">
 
 
