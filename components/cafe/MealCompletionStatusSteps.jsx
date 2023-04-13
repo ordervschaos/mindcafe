@@ -15,11 +15,11 @@ export default function MealCompletionStatusSteps ({current, total}) {
   console.log("current", current)
 
   return (
-    <nav className="flex items-center justify-center" aria-label="Progress">
+    <nav className="flex items-center justify-center	w-full " aria-label="Progress">
       <p className="text-sm font-medium">
         {steps.findIndex((step) => step.status === 'current') + 1} / {steps.length}
       </p>
-      <ol role="list" className="ml-8 flex items-center space-x-5">
+      <ol role="list" className="ml-8 flex items-center space-x-5  overflow-y-scroll scrollbar-hide h-4">
         {steps.map((step) => (
           <li key={step.name}>
             {step.status === 'complete' ? (

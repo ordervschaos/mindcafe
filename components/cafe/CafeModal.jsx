@@ -98,7 +98,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
               <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
             </Transition.Child>
 
-            <div className="fixed inset-0 z-10 overflow-y-auto">
+            <div className="fixed inset-0 z-10 overflow-x-clip">
               <div className="flex items-end justify-center  text-center sm:items-center p-0">
                 <Transition.Child
                   as={Fragment}
