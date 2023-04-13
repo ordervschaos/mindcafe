@@ -14,18 +14,18 @@ import Link from 'next/link';
 
 
 
-export default function ThreeDotsMealsMenu({ meal, setMealVisible }) {
+export default function ThreeDotsMealsMenu({ meal, setMeal }) {
   var { session } = useSession()
 
   const [showThreeDotMenu, setThreeDotMenu] = useState(false)
-  var archiveMeal = async (meal_id) => {
+  var toggleArchiveMeal = async (meal_id) => {
     const supabase_client= await supabaseClient(session) 
     
     var update_res=await supabase_client.from("meal").update({
-      archived: true
+      archived: !meal.archived
     }).match({ id: meal_id,owner_id: session.user.id });
     console.log(update_res)
-    setMealVisible(false)
+    setMeal(meal=>({...meal,archived: !meal.archived}))
   }
 
   return (
@@ -58,14 +58,16 @@ export default function ThreeDotsMealsMenu({ meal, setMealVisible }) {
                 className='text-gray-700 w-full block  text-sm'
               >
                 <div className='inline-block m-2'>
+                  
                   <button
                     onClick={() => {
                       setThreeDotMenu(false)
-                      archiveMeal(meal.id)
+                      toggleArchiveMeal(meal.id)
                     }}
                     className='text-gray-700 w-full block px-4 py-2 text-sm'
                   >
-                    Delete
+                    {meal.archived && <span>Unarchive</span>}
+                    {!meal.archived && <span>Archive</span>}
                   </button>
                 </div>
               </a>

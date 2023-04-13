@@ -127,8 +127,16 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
 
                           <div className="p-3 pl-5">
 
-
+                            <div className="float-right">
+                              <ThreeDotsMealsMenu setMeal={setMeal} meal={meal} />
+                            </div>
                             <div className="">
+                              {/* tag when meal is archived */}
+                              {meal.archived &&
+                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                  Archived
+                                </span>
+                              }
                               {meal.num_of_dishes > 1 &&
 
                                 <span className="float-right inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
@@ -138,7 +146,6 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                               <Link href={`/meal/${meal.id}/edit`}>
                                 <h5 className="h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
                               </Link>
-
                             </div>
 
 
@@ -148,12 +155,10 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                                   <LinkIcon className='h-5 w-5 text-gray-400' />
                                   <span className='text-gray-400 font-light'>{meal.link}</span>
                                 </a>
-                                <div className="float-right">
-                                  <ThreeDotsMealsMenu  meal={meal} />
-                                </div>
                               </div>
 
                             }
+                            
                           </div>
 
                           <div className="mb-auto ">

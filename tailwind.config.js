@@ -8,7 +8,6 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",  
      ],
   theme: {
-  
     extend: {
       spacing: {
         '128': '32rem',
@@ -17,7 +16,10 @@ module.exports = {
       borderRadius: {
         '4xl': '2rem',
       },
-    }
+      colors: {
+        'paper': '#FFFBF6',
+      }
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),

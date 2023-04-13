@@ -15,7 +15,7 @@ import { supabaseClient } from '../../utils/supabaseClient'
 
 export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCount,showMealPreview }) {
   var { session } = useSession()
-  const [isDone, setIsDone] = useState(false);
+  const [isDone, setIsDone] = useState(meal.done);
 
   const [dishDisplayed,setDishDisplayed]=useState(meal.next_dish)
 
@@ -65,68 +65,58 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
 
   return (
     <div className="overflow-x-clip	">
-      {!isDone &&
+        <div className='my-3 ' >
+          
+          <div className= {`${isDone?'bg-gray-100':'bg-paper'} rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700`} >
 
 
-          <div className='my-3 ' >
-            
-            <div className=" bg-white-100 rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+            <div className="p-3 pl-5">
 
-
-              <div className="p-3 pl-5">
-
-
-                  <div className="">
-                    <Link href={"/meal/"+meal.id + "/edit"  } className=" sm:flex py-8 " key={meal.id} >
-                      <h5 className="cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
-                    </Link>
-                  </div>
-
-
-                {meal.link &&
-                  <div className='mb-6  overflow-hidden	'>
-                    <a href={meal.link} target='_blank' rel='noreferrer' className='flex items-center space-x-2'>
-                      <LinkIcon className='h-5 w-5 text-gray-400' />
-                      <span className='text-gray-400 font-light'>{meal.link}</span>
-                    </a>
-                  </div>
-
-                }
-              </div>
-
-              <div className="">
-                {dishDisplayed &&
-
-                  <DishCard dish={dishDisplayed} isPartOfMeal={true} />
-
-                }
-
-              </div>
-              <div className="p-3 pl-5">
-                <div className="flex w-full items-center space-x-1 pt-1  px-3">
-
-                  <div>
-                  {meal&&
-                    <div className="text-gray-300">  {meal.timing?'🕛'+' '+meal.timing:''}</div>
+              <div className="flex justify-between items-center">
+                <div className="">
+                  <Link href={"/meal/"+meal.id + "/edit"  } className=" sm:flex py-8 " key={meal.id} >
+                    <h5 className="cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
+                  </Link>
+                </div>
+                  {isDone &&
+                    <ViewButton  handleMealPreviewClick={handleMealPreviewClick} />
                   }
-                  </div>
-                  <div className='flex-grow'></div>
-                  <div className="flex  items-center space-x-1 pt-1  ">
-                    <div onClick={handleMealPreviewClick} className="cursor-pointer">
-                      <ViewButton />
+              </div>
+
+
+              {meal.link &&
+                <div className='mb-6  overflow-hidden	'>
+                  <a href={meal.link} target='_blank' rel='noreferrer' className='flex items-center space-x-2'>
+                    <LinkIcon className='h-5 w-5 text-gray-400' />
+                    <span className='text-gray-400 font-light'>{meal.link}</span>
+                  </a>
+                </div>
+
+              }
+            </div>
+
+            {dishDisplayed && !isDone &&
+              <div className="">
+                  <DishCard dish={dishDisplayed} isPartOfMeal={true} />
+                <div className="p-3 pl-5">
+                  <div className="flex w-full items-center space-x-1 pt-1  px-3">
+                    <div>
+                      {meal&&
+                        <div className="text-gray-300">  {meal.timing?'🕛'+' '+meal.timing:''}</div>
+                      }
                     </div>
+                    <div className='flex-grow'></div>
+                    <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenDishesCount={eatenDishesCount} setEatenDishesCount={setEatenDishesCount} />
+                    <div className='flex-grow'></div>
+                    <ViewButton  handleMealPreviewClick={handleMealPreviewClick} />
                   </div>
-                  <div className='flex-grow'></div>
-                  <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenDishesCount={eatenDishesCount} setEatenDishesCount={setEatenDishesCount} />
-                  
                 </div>
               </div>
-
-            </div>
+            }
 
           </div>
 
-      }
+        </div>
     </div>
   )
 }

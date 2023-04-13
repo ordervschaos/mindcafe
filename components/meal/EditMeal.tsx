@@ -17,7 +17,7 @@ import TimeDropDown from "../TimeDropDown";
 import InputAndDropDown from "../InputAndDropDown";
 import WeeklySchedulePicker from "../WeeklySchedulePicker";
 
-
+import   ThreeDotsMealsMenu from "./ThreeDotsMealsMenu";
 
 
 
@@ -25,12 +25,12 @@ import WeeklySchedulePicker from "../WeeklySchedulePicker";
 
 export default function EditMeal({ meal, user }) {
   const { session } = useSession();
+  const [edited_meal, setMeal] = useState(meal)
   const [mealTitle, setMealTitle] = useState(meal.name);
   const [dishesList, setDishesList] = useState(meal.dishes)
 
   const [isMealSettingsOpen, setIsMealSettingsOpen] = useState(false);
   const [isDangerousSettingsOpen, setIsDangerousSettingsOpen] = useState(false);
-
 
   const toggleMealSettingsVisibility = () => {
     setIsMealSettingsOpen(!isMealSettingsOpen);
@@ -86,6 +86,14 @@ export default function EditMeal({ meal, user }) {
                     onChange={(e) => saveTitle(meal, e)}
                     value={mealTitle}
                   />
+                </div>
+                {edited_meal.archived &&
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                      Archived
+                    </span>
+                  }
+                <div className="float-right">
+                  <ThreeDotsMealsMenu setMeal={setMeal} meal={edited_meal} />
                 </div>
                 {/* schedule picker */}
                 <div className="mt-3 bg-gray-100 p-3 border rounded-md">
