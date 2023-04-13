@@ -192,7 +192,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
 
                         </div>
                         <div className='flex w-full items-center space-x-1 p-3   px-3 bg-gray-100'>
-                          <MealCompletionStatusSteps current={mealIndex} total={mealsList.length}/>
+                          <MealCompletionStatusSteps completed={eatenDishesCount} total={mealsList.length}/>
                         </div>
                       </div>
                     </div>
