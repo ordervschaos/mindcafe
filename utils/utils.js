@@ -10,6 +10,7 @@ export const getMealsEatenTodayIds = async(userId)=>{
   var meals_eaten_today_res = await supabase.from("eaten_meal").select(`meal_id`).eq('eater_id', userId).eq('for_date', new Date().toISOString().split('T')[0])
   var meals_eaten_today = meals_eaten_today_res.data
   var meals_eaten_today_ids = meals_eaten_today.map(function (o) { return o.meal_id; })
+  meals_eaten_today_ids = [...new Set(meals_eaten_today_ids)]
   return meals_eaten_today_ids
 }
 

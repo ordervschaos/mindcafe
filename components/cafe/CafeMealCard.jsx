@@ -13,7 +13,7 @@ import DishCard from "../dish/DishCard";
 import { supabaseClient } from '../../utils/supabaseClient'
 
 
-export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCount,showMealPreview }) {
+export default function CafeMealCard({ meal, setEatenMealsCount, eatenMealsCount,showMealPreview }) {
   var { session } = useSession()
   const [isDone, setIsDone] = useState(meal.done);
 
@@ -26,7 +26,7 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
 
   async function markDone() {
     setIsDone(true)
-    setEatenDishesCount(eatenDishesCount + 1)
+    setEatenMealsCount(eatenMealsCount + 1)
     const supabase_client = await supabaseClient(session)
 
     var eaten_meal={
@@ -106,7 +106,7 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
                       }
                     </div>
                     <div className='flex-grow'></div>
-                    <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenDishesCount={eatenDishesCount} setEatenDishesCount={setEatenDishesCount} />
+                    <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenMealsCount={eatenMealsCount} setEatenMealsCount={setEatenMealsCount} />
                     <div className='flex-grow'></div>
                     <ViewButton  handleMealPreviewClick={handleMealPreviewClick} />
                   </div>

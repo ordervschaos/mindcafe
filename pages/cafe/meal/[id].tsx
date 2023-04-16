@@ -14,10 +14,8 @@ import {isMealToBeShownNow} from '../../../utils/mealHelpers'
 import CafeMealView from '../../../components/cafe/CafeMealView';
 
 export default function Home({user,meals}) {
- 
-  const [selectedTags, setSelectedTags] = useState([]);
-  const [mealsList, setPostsList] = useState(meals);
-  const [eatenDishesCount,setEatenDishesCount]=useState(0)
+   const [mealsList, setPostsList] = useState(meals);
+  const [eatenMealsCount,setEatenMealsCount]=useState(0)
 
   
 
@@ -26,7 +24,7 @@ export default function Home({user,meals}) {
       <div className="mt-6 max-w-3xl flow-root">
 
           {mealsList && mealsList.map((meal) => (
-            <CafeMealView key={meal.id} meal={meal} setEatenDishesCount={setEatenDishesCount} eatenDishesCount={eatenDishesCount}/>
+            <CafeMealView key={meal.id} meal={meal} setEatenMealsCount={setEatenMealsCount} eatenMealsCount={eatenMealsCount}/>
           ))}
       </div>
     </Layout>

@@ -19,7 +19,7 @@ import ShowPrevMealButton from "../meal/ShowPrevMealButton";
 
 import { supabaseClient } from '../../utils/supabaseClient'
 
-export default function CafeModal({ openModal, setOpenModal, mealsList, mealIndex, setMealIndex, eatenDishesCount, setEatenDishesCount }) {
+export default function CafeModal({ openModal, setOpenModal, mealsList, mealIndex, setMealIndex, eatenMealsCount, setEatenMealsCount }) {
   var { session } = useSession()
   var cafe = {
     meals: mealsList,
@@ -40,7 +40,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
   const cancelButtonRef = useRef(null)
   async function markDone() {
     setIsDone(true)
-    setEatenDishesCount(eatenDishesCount + 1)
+    setEatenMealsCount(eatenMealsCount + 1)
     const supabase_client = await supabaseClient(session)
     showNextMeal()
 
@@ -57,14 +57,12 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
 
   }
   async function showNextDish() {
-    setEatenDishesCount(eatenDishesCount + 1)
     const supabase_client = await supabaseClient(session)
     meal.next_dish_index = getNextDishIndex(meal)
     setDishDisplayed(meal.dish[meal.next_dish_index])
     supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index }).match({ id: meal.id });
   }
   async function showPrevDish() {
-    setEatenDishesCount(eatenDishesCount + 1)
     const supabase_client = await supabaseClient(session)
 
     meal.next_dish_index -= 1
@@ -193,7 +191,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
 
                           <ShowPrevMealButton showPrevMeal={showPrevMeal} />
                           <div className='flex-grow'></div>
-                          <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenDishesCount={eatenDishesCount} setEatenDishesCount={setEatenDishesCount} />                          
+                          <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenMealsCount={eatenMealsCount} setEatenMealsCount={setEatenMealsCount} />                          
                           <div className='flex-grow'></div>
 
 
@@ -201,7 +199,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
 
                         </div>
                         <div className='flex w-full items-center space-x-1 p-3   px-3 bg-gray-100'>
-                          <MealCompletionStatusSteps completed={eatenDishesCount} total={mealsList.length}/>
+                          <MealCompletionStatusSteps completed={eatenMealsCount} total={mealsList.length}/>
                         </div>
                       </div>
                     </div>

@@ -12,7 +12,7 @@ import { supabaseClient } from '../../utils/supabaseClient'
 import ShowNextDishButton from "../ShowNextDishButton";
 
 
-export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCount }) {
+export default function CafeMealCard({ meal, setEatenMealsCount, eatenMealsCount }) {
   var { session } = useSession()
   const [isDone, setIsDone] = useState(false);
 
@@ -20,13 +20,12 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
 
   async function markDone() {
     setIsDone(true)
-    setEatenDishesCount(eatenDishesCount + 1)
+    setEatenMealsCount(eatenMealsCount + 1)
     
     const supabase_client = await supabaseClient(session)
     var response = await supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index + 1 }).match({ id: meal.id });
   }
   async function showNextDish() {
-    setEatenDishesCount(eatenDishesCount + 1)
     const supabase_client = await supabaseClient(session)
 
     meal.next_dish_index += 1
@@ -95,7 +94,7 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
           <div className="p-3 h-10  pl-5">
             <div className="flex w-full items-center space-x-1 pt-1  px-3">
               <div className='flex-grow'></div>
-                <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenDishesCount={eatenDishesCount} setEatenDishesCount={setEatenDishesCount} />
+                <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenMealsCount={eatenMealsCount} setEatenMealsCount={setEatenMealsCount} />
                 <ShowNextDishButton showNextDish={showNextDish} />
             </div>
           </div>
