@@ -44,7 +44,16 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
     const supabase_client = await supabaseClient(session)
     showNextMeal()
 
-    var response = await supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index + 1 }).match({ id: meal.id });
+    
+    var eaten_meal={
+      eater_id:session.user.id,
+      meal_id:meal.id,
+      dish_id:meal.next_dish.id,
+      
+    }
+    await supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index + 1 }).match({ id: meal.id });
+    await supabase_client.from("eaten_meal").insert([eaten_meal])
+    
 
   }
   async function showNextDish() {
@@ -184,7 +193,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
 
                           <ShowPrevMealButton showPrevMeal={showPrevMeal} />
                           <div className='flex-grow'></div>
-                          <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenDishesCount={eatenDishesCount} setEatenDishesCount={setEatenDishesCount} />
+                          <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenDishesCount={eatenDishesCount} setEatenDishesCount={setEatenDishesCount} />                          
                           <div className='flex-grow'></div>
 
 
