@@ -13,7 +13,7 @@ import DishCard from "../dish/DishCard";
 import { supabaseClient } from '../../utils/supabaseClient'
 
 
-export default function CafeMealCard({ meal, setEatenMealsCount, eatenMealsCount,showMealPreview }) {
+export default function CafeMealCard({ meal, setEatenMealsCount, eatenMealsCount,showMealPreview,scrollNextDishToTop }) {
   var { session } = useSession()
   const [isDone, setIsDone] = useState(meal.done);
 
@@ -26,19 +26,23 @@ export default function CafeMealCard({ meal, setEatenMealsCount, eatenMealsCount
 
   async function markDone() {
     setIsDone(true)
-    setEatenMealsCount(eatenMealsCount + 1)
-    const supabase_client = await supabaseClient(session)
+    // setEatenMealsCount(eatenMealsCount + 1)
+    // const supabase_client = await supabaseClient(session)
 
-    var eaten_meal={
-      eater_id:session.user.id,
-      meal_id:meal.id,
-      dish_id:meal.next_dish.id,
+    // var eaten_meal={
+    //   eater_id:session.user.id,
+    //   meal_id:meal.id,
+    //   dish_id:meal.next_dish.id,
 
-    }
-    await supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index + 1 }).match({ id: meal.id });
-    var response=await supabase_client.from("eaten_meal").insert([eaten_meal])
+    // }
+    // await supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index + 1 }).match({ id: meal.id });
+    // var response=await supabase_client.from("eaten_meal").insert([eaten_meal])
+
+    scrollNextDishToTop(meal.id)
     
   }
+
+  
   
 
 
@@ -64,7 +68,7 @@ export default function CafeMealCard({ meal, setEatenMealsCount, eatenMealsCount
   
 
   return (
-    <div className="overflow-x-clip	font-Merriweather">
+    <div className="overflow-x-clip	font-Merriweather meal_card" id={meal.id}>
         <div className='my-3 ' >
           
           <div className= {`${isDone?'bg-gray-100':'bg-paper'} rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700`} >

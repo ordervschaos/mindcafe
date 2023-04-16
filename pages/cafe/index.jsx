@@ -19,6 +19,18 @@ export default function Home({ user, meals, count_meals_eaten_today }) {
     setOpenModal(true)
   }
 
+  function scrollNextDishToTop(current_meal_id) {
+    var meal_index = mealsList.findIndex((m) => m.id === current_meal_id)
+    var next_meal_index = meal_index + 1
+    if (next_meal_index < mealsList.length) {
+      var next_meal = mealsList[next_meal_index]
+      var next_meal_element = document.getElementById(next_meal.id)
+      next_meal_element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
+
+
   return (
     <Layout user={user}>
       <div className="mt-6 ma  x-w-3xl flow-root">
@@ -31,7 +43,7 @@ export default function Home({ user, meals, count_meals_eaten_today }) {
           }
           {mealsList && mealsList.map((meal) => (
             <div key={meal.id}>
-              <CafeMealCard key={meal.id} meal={meal} showMealPreview={showMealPreview} setEatenMealsCount={setEatenMealsCount} eatenMealsCount={eatenMealsCount} />
+              <CafeMealCard key={meal.id} meal={meal} scrollNextDishToTop={scrollNextDishToTop} showMealPreview={showMealPreview} setEatenMealsCount={setEatenMealsCount} eatenMealsCount={eatenMealsCount} />
             </div>
           ))}
         </ul>
