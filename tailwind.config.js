@@ -18,7 +18,10 @@ module.exports = {
       },
       colors: {
         'paper': '#FFFBF6',
-      }
+      },
+      fontFamily: {
+        Merriweather: ["Merriweather", "cursive"],
+       },
     },
   },
   plugins: [

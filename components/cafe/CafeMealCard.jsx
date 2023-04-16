@@ -64,7 +64,7 @@ export default function CafeMealCard({ meal, setEatenDishesCount, eatenDishesCou
   
 
   return (
-    <div className="overflow-x-clip	">
+    <div className="overflow-x-clip	font-Merriweather">
         <div className='my-3 ' >
           
           <div className= {`${isDone?'bg-gray-100':'bg-paper'} rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700`} >
