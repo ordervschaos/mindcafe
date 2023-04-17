@@ -82,18 +82,14 @@ function pickMealsForNow(meals) {
 // function to pick next dish in the meal
 
 function pickNextDish(meal) {
-  console.log(meal);
   var now = new Date();
   var dishes = meal.dishes;
   var lastEatenDish = meal.lastEatenDish;
-  console.log(lastEatenDish);
-  console.log(dishes);
   var nextDish = dishes[lastEatenDish];
   return nextDish;
 }
 
 
-console.log(pickMealsForNow(meals))
 
 
 var now=moment()
@@ -133,9 +129,7 @@ if(timing){
 
   var todaysMealTime= new Date(todayYear, todayMonth, todayDate, meal_schedule.timing.hour, meal_schedule.timing.minute, 0, 0)
   var mealPerishesAt = moment(todaysMealTime).add(meal_schedule.expiration.value,meal_schedule.expiration.unit ).toDate()
-  console.log(todaysMealTime,mealPerishesAt,now)
   if(now.isBetween(todaysMealTime,mealPerishesAt)){
-    console.log("yes")
     return true
   }else
   return false

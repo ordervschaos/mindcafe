@@ -23,7 +23,6 @@ export default function ThreeDotsMenu({ dish,setDishVisible }) {
     const supabase_client= await supabaseClient(session) 
     
     var delete_res=await supabase_client.from("dish").delete().match({ id: dish_id,owner_id: session.user.id });
-    console.log(delete_res)
     setDishVisible(false)
   }
 

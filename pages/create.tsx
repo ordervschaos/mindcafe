@@ -18,7 +18,6 @@ export const getServerSideProps = withServerSideAuth(async ({ req, resolvedUrl }
     {  owner_id: req.auth.userId },
   ]);
 
-  console.log(meal)
 
   return {
     redirect: {

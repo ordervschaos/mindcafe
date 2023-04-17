@@ -34,7 +34,6 @@ Edit.getLayout = function getLayout(page) {
 export async function getServerSideProps({ params }) {
   // Call an external API endpoint to get dishs
   var dish = await supabase.from("dish").select().eq('id', params.id);
-  console.log(dish)
   dish = dish.data[0]
   // By returning { props: { dishs } }, the Blog component
   // will receive `dishs` as a prop at build time

@@ -24,7 +24,6 @@ export default function ThreeDotsMealsMenu({ meal, setMeal }) {
     var update_res=await supabase_client.from("meal").update({
       archived: !meal.archived
     }).match({ id: meal_id,owner_id: session.user.id });
-    console.log(update_res)
     setMeal(meal=>({...meal,archived: !meal.archived}))
   }
 

@@ -34,29 +34,19 @@ export default function WeeklySchedulePicker({ meal }) {
     const supabase = await supabaseClient(session);
     var updateResponse=await supabase.from("meal")
       .update({ weeklySchedule: updatedList }).match({ id: meal.id, owner_id: session.user.id });
-    console.log("updated weeklySchedule", updateResponse.data[0].weeklySchedule)
 
   }
   const handleCheck = (event) => {
-    console.log(event.target.value)
     var updatedList = [...weeklySchedule];
     if (event.target.checked) {
       updatedList = [...weeklySchedule, event.target.value];
     } else {
       updatedList.splice(weeklySchedule.indexOf(event.target.value), 1);
     }
-    console.log(weeklySchedule)
     setWeeklySchedule(updatedList);
     updateWeeklySchedule(updatedList)
   };
-  var saveSchedule = async (meal, e) => {
-    //update weeklySchedule in supabase
-    // await setWeeklySchedule([...weeklySchedule,e.target.value])
-    console.log("weeklySchedule", e)
 
-    // const supabase = await supabaseClient(session);
-    
-  }
   return (
 
     <fieldset className="space-y-5">
