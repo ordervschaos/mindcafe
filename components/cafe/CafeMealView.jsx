@@ -10,6 +10,7 @@ import DoneButton from "components/meal/DoneButton";
 import DishCard from "../dish/DishCard";
 import { supabaseClient } from '../../utils/supabaseClient'
 import ShowNextDishButton from "../ShowNextDishButton";
+import { getNextDishIndex } from 'components/meal/utils'
 
 
 export default function CafeMealCard({ meal, setEatenMealsCount, eatenMealsCount }) {
@@ -28,11 +29,11 @@ export default function CafeMealCard({ meal, setEatenMealsCount, eatenMealsCount
   async function showNextDish() {
     const supabase_client = await supabaseClient(session)
 
-    meal.next_dish_index += 1
+    meal.next_dish_index = getNextDishIndex(meal)
 
-    var next_dish_index = meal.next_dish_index % meal.dish.length
+  
 
-    setDishDisplayed(meal.dish[next_dish_index])
+    setDishDisplayed(meal.dish[meal.next_dish_index])
     supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index }).match({ id: meal.id });
 
 

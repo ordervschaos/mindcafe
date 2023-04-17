@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { useSession } from "@clerk/nextjs";
 import { Dialog, Transition } from '@headlessui/react'
-import { printCurrentDishIndex, getNextDishIndex } from 'components/meal/utils'
+import { printCurrentDishIndex, getNextDishIndex, getPrevDishIndex } from 'components/meal/utils'
 import { getNextMealIndex, getPrevMealIndex } from 'components/cafe/utils'
 import MealCompletionStatusSteps from 'components/cafe/MealCompletionStatusSteps'
 import ThreeDotsMealsMenu from 'components/meal/ThreeDotsMealsMenu'
@@ -63,9 +63,9 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
   async function showPrevDish() {
     const supabase_client = await supabaseClient(session)
 
-    meal.next_dish_index -= 1
-    var next_dish_index = meal.next_dish_index % meal.dish.length
-    setDishDisplayed(meal.dish[next_dish_index])
+    meal.next_dish_index = getPrevDishIndex(meal)
+    
+    setDishDisplayed(meal.dish[meal.next_dish_index])
     supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index }).match({ id: meal.id });
 
 
@@ -149,12 +149,12 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                                   Archived
                                 </span>
                               }
-                              {meal.num_of_dishes > 1 &&
+                            
 
-                                <span className="float-right inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
-                                  <Square2StackIcon className='h-5 w-5 text-gray-400' />{printCurrentDishIndex(meal)}/{meal.num_of_dishes}
-                                </span>
-                              }
+                              <span className="float-right inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
+                                <Square2StackIcon className='h-5 w-5 text-gray-400' />{printCurrentDishIndex(meal)}/{meal.num_of_dishes}
+                              </span>
+                            
                               <Link href={`/meal/${meal.id}/edit`} id="cafe_modal_meal_title">
                                 <h5 className="font-Merriweather h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
                               </Link>
