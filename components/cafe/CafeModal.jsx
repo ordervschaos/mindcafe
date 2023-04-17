@@ -2,7 +2,7 @@ import { Fragment, useEffect, useRef, useState } from 'react'
 import { useSession } from "@clerk/nextjs";
 import { Dialog, Transition } from '@headlessui/react'
 import { printCurrentDishIndex, getNextDishIndex } from 'components/meal/utils'
-import { getNextMealIndex } from 'components/cafe/utils'
+import { getNextMealIndex, getPrevMealIndex } from 'components/cafe/utils'
 import MealCompletionStatusSteps from 'components/cafe/MealCompletionStatusSteps'
 import ThreeDotsMealsMenu from 'components/meal/ThreeDotsMealsMenu'
 import Link from 'next/link'
@@ -31,8 +31,6 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
   }, [mealsList, mealIndex])
   const default_meal = mealsList[mealIndex]
   const [meal, setMeal] = useState(default_meal)
-
- 
 
   const [dishDisplayed, setDishDisplayed] = useState(default_meal.next_dish)
   const [isDone, setIsDone] = useState(false);
@@ -74,20 +72,27 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
   }
 
   function showNextMeal() {
-    
-    var next_meal = mealsList[getNextMealIndex(cafe)]
-    setMealIndex(getNextMealIndex(cafe))
+    var next_meal_index = getNextMealIndex(cafe)
+    var next_meal = mealsList[next_meal_index]
+    setMealIndex(next_meal_index)
     setMeal(next_meal)
     setDishDisplayed(next_meal.next_dish)
   }
   function showPrevMeal() {
-    console.log("list", mealsList)
-    setMealIndex(mealIndex - 1)
-    console.log("showPrevtMeal", mealsList[(mealIndex - 1) % mealsList.length])
-    var prev_meal = mealsList[(mealsList.length + mealIndex - 1) % mealsList.length]
+    var prev_meal_index = getPrevMealIndex(cafe)
+    
+    setMealIndex(prev_meal_index)
+    var prev_meal = mealsList[prev_meal_index]
     setMeal(prev_meal)
     setDishDisplayed(prev_meal.next_dish)
   }
+  useEffect(() => {
+    // scroll cafe_modal_meal_title to top
+    var cafe_modal_meal_title = document.getElementById("cafe_modal_meal_title")
+    if (cafe_modal_meal_title) {
+      cafe_modal_meal_title.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [showPrevMeal, showNextMeal, showPrevDish, showNextDish, markDone])
   return (
     <div>
       {meal && meal.dish && meal.dish.length > 0 &&
@@ -150,11 +155,10 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                                   <Square2StackIcon className='h-5 w-5 text-gray-400' />{printCurrentDishIndex(meal)}/{meal.num_of_dishes}
                                 </span>
                               }
-                              <Link href={`/meal/${meal.id}/edit`}>
+                              <Link href={`/meal/${meal.id}/edit`} id="cafe_modal_meal_title">
                                 <h5 className="font-Merriweather h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
                               </Link>
                             </div>
-
 
                             {meal.link &&
                               <div className='mb-6  overflow-hidden	'>
@@ -163,9 +167,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                                   <span className='text-gray-400 font-light'>{meal.link}</span>
                                 </a>
                               </div>
-
                             }
-                            
                           </div>
 
                           <div className="mb-auto ">
