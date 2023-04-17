@@ -50,7 +50,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
       
     }
     await supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index + 1 }).match({ id: meal.id });
-    await supabase_client.from("eaten_meal").insert([eaten_meal])
+    var eaten_meal_res = await supabase_client.from("eaten_meal").insert([eaten_meal])
     
 
   }

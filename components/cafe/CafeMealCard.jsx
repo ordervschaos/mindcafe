@@ -26,17 +26,17 @@ export default function CafeMealCard({ meal, setEatenMealsCount, eatenMealsCount
 
   async function markDone() {
     setIsDone(true)
-    // setEatenMealsCount(eatenMealsCount + 1)
-    // const supabase_client = await supabaseClient(session)
+    setEatenMealsCount(eatenMealsCount + 1)
+    const supabase_client = await supabaseClient(session)
 
-    // var eaten_meal={
-    //   eater_id:session.user.id,
-    //   meal_id:meal.id,
-    //   dish_id:meal.next_dish.id,
+    var eaten_meal={
+      eater_id:session.user.id,
+      meal_id:meal.id,
+      dish_id:meal.next_dish.id,
 
-    // }
-    // await supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index + 1 }).match({ id: meal.id });
-    // var response=await supabase_client.from("eaten_meal").insert([eaten_meal])
+    }
+    await supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index + 1 }).match({ id: meal.id });
+    var response=await supabase_client.from("eaten_meal").insert([eaten_meal])
 
     scrollNextDishToTop(meal.id)
     

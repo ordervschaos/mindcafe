@@ -54,11 +54,6 @@ export default function Home({ user, meals, count_meals_eaten_today }) {
 
 export const getServerSideProps = withServerSideAuth(async ({ req }) => {
   var { userId } = req.auth;
-  // Convert this to a function
-  
-
-  
-
   var meals = await getMeals(userId)
 
   var meals_eaten_today_ids = await getMealsEatenTodayIds(userId)
