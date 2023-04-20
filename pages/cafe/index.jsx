@@ -38,7 +38,7 @@ export default function Home({ user, meals, count_meals_eaten_today }) {
         <EatenDishesCount eatenMealsCount={eatenMealsCount} total={mealsList.length}/>
 
         <ul role="list" className="lg:px-5">
-          {mealsList && mealsList.length > 0 &&
+          {mealsList && mealsList.length > 0 && eatenMealsCount!=mealsList.length &&
             <CafeModal mealIndex={mealIndex} setMealIndex={setMealIndex} openModal={openModal} setOpenModal={setOpenModal} mealsList={mealsList} setEatenMealsCount={setEatenMealsCount} eatenMealsCount={eatenMealsCount} />
           }
           {mealsList && mealsList.map((meal) => (
