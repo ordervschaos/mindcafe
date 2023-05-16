@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
-
+import MealsWidget from 'components/meal/MealsWidget'
 
 
 import {
@@ -14,10 +14,8 @@ import {
 import MindCafeLogo from './MindCafeLogo'
 
 
+import { classNames } from 'utils/utils'
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
 export default function Layout({children,user}) {
   const navigation = [
@@ -116,6 +114,7 @@ export default function Layout({children,user}) {
                         </a>
                       ))}
                     </nav>
+                    <MealsWidget />
                   </div>
                   <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
                     <a href="#" className="group block flex-shrink-0">

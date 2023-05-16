@@ -15,9 +15,16 @@ export const getMealsEatenTodayIds = async(userId)=>{
 }
 
 
+export function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
 
-
-
+export const getMealsForWidget = async (userId) => {
+  var meals_res = await supabase.from("meal").select(`
+  id, owner_id, name, updated_at`).eq('owner_id', userId ).neq('archived',true).order('updated_at', { ascending: false });
+  var meals = meals_res.data || []
+  return meals.filter(meal=>!!meal.name)
+}
 
 
 export const getMeals = async (userId) => {
@@ -25,7 +32,8 @@ export const getMeals = async (userId) => {
   id, owner_id, name,schedule,next_dish_index,timing,expiresIn,weeklySchedule,
   dish(content, id, meal_id, owner_id, created_at)
   `).eq('owner_id', userId ).neq('archived',true).order('created_at', { ascending: false });
-  return meals_res.data || []
+  var meals = meals_res.data || []
+  return meals.filter(meal=>!!meal.name)
 }
 export const getTodaysMealsList = (meals, meals_eaten_today_ids) => {
   var meals_view_data = []

@@ -6,8 +6,8 @@ import Layout from '../components/Layout'
 import { createClient } from "@supabase/supabase-js";
 import MealCard from '../components/MealCard';
 import _ from 'lodash'
-import FilterMenu from '../components/FilterMenu';
 import { GetServerSideProps } from 'next'
+import { getMeals } from '../utils/utils';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -40,11 +40,7 @@ export default function Home({user,meals}) {
 export const getServerSideProps: GetServerSideProps = withServerSideAuth(async ({ req }) => {  const { userId } = req.auth;
   // Call an external API endpoint to get meals
   // var meal = await supabase.from("rave").select().eq('id', params.id);
-  var meals_res = await supabase.from("meal").select(`
-  id, owner_id, name,schedule,next_dish_index,
-  dish(content, id, meal_id, owner_id, created_at)
-  `).eq('owner_id',userId).order('created_at', { ascending: false });
-  var meals = meals_res.data
+  var meals = await getMeals(userId)
   var meals_view_data=[]
   for(var i=0;i<meals.length;i++){
     var meal = meals[i]
