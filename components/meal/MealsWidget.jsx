@@ -28,7 +28,7 @@ export default function MealsWidget() {
       {mealsList.map((item) => (
         <a
           key={item.id}
-          href={"/meals/" + item.id + "/edit"}
+          href={"/meal/" + item.id + "/edit"}
           className={classNames(
             item.current
               ? 'bg-gray-100 text-gray-900'
