@@ -22,7 +22,7 @@ export const getServerSideProps = withServerSideAuth(async ({ req, resolvedUrl }
   return {
     redirect: {
       permanent: false,
-      destination: "meal/" + meal.data[0].id + "/edit",
+      destination:  meal.data[0].id + "/edit",
     }
   }
 });

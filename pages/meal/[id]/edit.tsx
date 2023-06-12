@@ -1,6 +1,6 @@
 
 import EditMeal from '../../../components/meal/EditMeal/EditMeal'
-import FocusLayout from '../../../components/layouts/FocusLayout'
+import Layout from '../../../components/layouts/Layout'
 
 import { createClient } from "@supabase/supabase-js";
 const supabase = createClient(
@@ -13,19 +13,15 @@ const supabase = createClient(
 
 export default function Edit({meal,user}) {
   return (
-    <>
+    <Layout>
       <EditMeal user={user} meal={meal}/>
-    </>
+    </Layout>
   )
 }
 
 
 
-Edit.getLayout = function getLayout(page) {
-  return (
-    <FocusLayout>{page}</FocusLayout>
-  )
-}
+
 
 
 export async function getServerSideProps({ params }) {

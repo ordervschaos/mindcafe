@@ -11,11 +11,15 @@ export default function Home({ user, meals, count_meals_eaten_today }) {
 
   const [mealsList, setMealsList] = useState(meals);
   const [eatenMealsCount, setEatenMealsCount] = useState(count_meals_eaten_today)
-  const [openModal, setOpenModal] = useState(true)
+  const [openModal, setOpenModal] = useState(false)
   const [mealIndex, setMealIndex] = useState(0)
 
   function showMealPreview(meal_id) {
     setMealIndex(mealsList.findIndex((m) => m.id === meal_id))
+    setOpenModal(true)
+  }
+
+  function handleOpenModal() {
     setOpenModal(true)
   }
 
@@ -35,7 +39,7 @@ export default function Home({ user, meals, count_meals_eaten_today }) {
     <Layout user={user}>
       <div className="mt-6 ma  x-w-3xl flow-root">
 
-        <EatenDishesCount eatenMealsCount={eatenMealsCount} total={mealsList.length}/>
+        <EatenDishesCount eatenMealsCount={eatenMealsCount} handleOpenModal={handleOpenModal} total={mealsList.length}/>
 
         <ul role="list" className="lg:px-5">
           {mealsList && mealsList.length > 0 && eatenMealsCount!=mealsList.length &&
