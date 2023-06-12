@@ -24,13 +24,26 @@ export default function MealsWidget() {
         {
           borderBottom: '1px solid #DDD',
         }}>
-        <a className='mt-0 text-gray-900 font-bold	px-2 py-2 mt-8 '>
-        Meals</a>
+        <a className='text-gray-900 font-bold	px-2'>Meals</a>
+        {/* right floated link */}
+        <a href="/meals" className='float-right text-gray-600 hover:bg-gray-50 hover:text-gray-900 px-2 text-sm font-medium rounded-md'>
+          See all
+        </a>
       </div>
         {/* divider */}
         <div className="border-t border-gray-200"></div>
       </div>
-      
+      <a
+          href={"/meal/create"}
+          className={classNames('pl-4','text-gray-400 hover:bg-gray-50 hover:text-gray-900',
+            'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
+          )}
+          >
+        
+          [+] Create new meal
+          
+          
+        </a>
       {mealsList.map((item) => (
         <a
           key={item.id}

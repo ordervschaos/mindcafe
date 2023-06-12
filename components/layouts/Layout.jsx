@@ -19,10 +19,7 @@ import { classNames } from 'utils/utils'
 
 export default function Layout({children,user}) {
   const navigation = [
-    { name: 'Create a meal', href: '/create', icon: PencilSquareIcon, current: false,
-    additionalClasses: 'rounded bg-gray-800 hover:bg-gray-900 text-gray-100 hover:text-gray-300 rounded-4xl pl-6 mt-12 pr-10 my-5 mx-3' },
-    { name: 'Home', href: '/cafe', icon: HomeIcon, current: false },
-    { name: 'Meals', href: '/meals', icon: DocumentTextIcon, current: false },
+    { name: 'Cafe', href: '/cafe', icon: HomeIcon, current: false },
     
   ]
   navigation.forEach((item) => {

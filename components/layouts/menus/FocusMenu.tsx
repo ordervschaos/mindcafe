@@ -13,6 +13,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import MindCafeLogo from '../../MindCafeLogo'
+import MealsWidget from 'components/meal/MealsWidget'
 
 
 function classNames(...classes) {
@@ -21,9 +22,7 @@ function classNames(...classes) {
 
 export default function FocusMenu({user}) {
   const navigation = [
-    { name: 'Home', href: '/cafe', icon: HomeIcon, current: false },
-    { name: 'Meals', href: '/meals/' +user.id, icon: DocumentTextIcon, current: false },
-    { name: 'Create a meal', href: '/create', icon: PencilSquareIcon, current: false },
+    { name: 'Cafe', href: '/cafe', icon: HomeIcon, current: false },
     
   ]
   navigation.forEach((item) => {
@@ -91,7 +90,7 @@ export default function FocusMenu({user}) {
                             item.current
                               ? 'bg-gray-100 text-gray-900'
                               : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                            'group flex items-center px-2 py-2 text-base font-medium rounded-md'
+                            'group flex items-center px-2 py-2 text-base font-medium',item.additionalClasses
                           )}
                         >
                           <item.icon
@@ -105,6 +104,7 @@ export default function FocusMenu({user}) {
                         </a>
                       ))}
                     </nav>
+                    <MealsWidget />
                   </div>
                   <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
                     <a href="#" className="group block flex-shrink-0">
