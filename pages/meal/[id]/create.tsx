@@ -1,5 +1,5 @@
 import { withServerSideAuth } from "@clerk/nextjs/ssr";
-import { supabaseServerSide } from "../utils/supabaseClient";
+import { supabaseServerSide } from "utils/supabaseClient";
 
 
 export const getServerSideProps = withServerSideAuth(async ({ req, resolvedUrl }) => {
@@ -7,7 +7,7 @@ export const getServerSideProps = withServerSideAuth(async ({ req, resolvedUrl }
     return {
       redirect: {
         permanent: false,
-        destination: "/sign-in?redirectTo=/create",
+        destination: "/sign-in?redirectTo=/meal/create",
       }
     }
   const supabase = await supabaseServerSide(req.auth);

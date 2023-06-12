@@ -1,9 +1,9 @@
 import { withServerSideAuth } from "@clerk/nextjs/ssr";
 import { useState } from 'react'
-import Layout from '../../components/Layout'
+import Layout from '../../components/layouts/Layout'
 import CafeMealCard from '../../components/cafe/CafeMealCard';
 import EatenDishesCount from '../../components/cafe/EatenDishesCount';
-import CafeModal from '../../components/cafe/CafeModal';
+import CafeModal from '../../components/cafe/CafeModal/CafeModal';
 import { getTodaysMealsList, getMealsEatenTodayIds, getMeals } from 'utils/utils'
 
 

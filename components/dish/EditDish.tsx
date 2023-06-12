@@ -1,25 +1,11 @@
-import { useSession } from "@clerk/nextjs";
-import { useEffect, useRef, useState } from 'react'
-import { createClient } from "@supabase/supabase-js";
-
-
-
-
-
 //import Editor
-import FocusMenu from "../FocusMenu";
+import FocusMenu from "../layouts/menus/FocusMenu";
 
 import dynamic from "next/dynamic";
 const DishEditor = dynamic(() => import("./DishEditor"), { ssr: false });
 
 
-
-
-
-
-
-
-export default function EditRave({dish,user}) {
+export default function EditDish({dish,user}) {
 
 
   return (

@@ -1,6 +1,6 @@
 
 import EditDish from '../../../components/dish/EditDish'
-import FocusLayout from '../../../components/FocusLayout'
+import FocusLayout from '../../../components/layouts/FocusLayout'
 
 import { createClient } from "@supabase/supabase-js";
 const supabase = createClient(
@@ -17,7 +17,6 @@ export default function Edit({dish,user}) {
   return (
     <>
       <EditDish user={user} dish={dish}/>
-      
     </>
   )
 }

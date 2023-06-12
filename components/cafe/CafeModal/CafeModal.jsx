@@ -1,23 +1,23 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { useSession } from "@clerk/nextjs";
 import { Dialog, Transition } from '@headlessui/react'
-import { printCurrentDishIndex, getNextDishIndex, getPrevDishIndex } from 'components/meal/utils'
-import { getNextMealIndex, getPrevMealIndex } from 'components/cafe/utils'
-import MealCompletionStatusSteps from 'components/cafe/MealCompletionStatusSteps'
-import ThreeDotsMealsMenu from 'components/meal/ThreeDotsMealsMenu'
+import { printCurrentDishIndex, getNextDishIndex, getPrevDishIndex } from 'utils/dish_utils'
+import { getNextMealIndex, getPrevMealIndex } from 'utils/meal_utils'
+import MealCompletionStatusSteps from './MealCompletionStatusSteps'
+import ThreeDotsMealsMenu from './ThreeDotsMealsMenu'
 import Link from 'next/link'
 import {
   Square2StackIcon,
   LinkIcon
 } from '@heroicons/react/24/outline'
-import DishCard from '../dish/DishCard'
-import DoneButton from "../meal/DoneButton";
-import ShowNextDishButton from "./modal/ShowNextDishButton";
-import ShowPrevDishButton from "./modal/ShowPrevDishButton";
-import ShowNextMealButton from "../meal/ShowNextMealButton";
-import ShowPrevMealButton from "../meal/ShowPrevMealButton";
+import DishCard from '../../dish/DishCard/DishCard'
+import DoneButton from "../../meal/DoneButton";
+import ShowNextDishButton from "./ShowNextDishButton";
+import ShowPrevDishButton from "./ShowPrevDishButton";
+import ShowNextMealButton from "../../meal/ShowNextMealButton";
+import ShowPrevMealButton from "../../meal/ShowPrevMealButton";
 
-import { supabaseClient } from '../../utils/supabaseClient'
+import { supabaseClient } from 'utils/supabaseClient'
 
 export default function CafeModal({ openModal, setOpenModal, mealsList, mealIndex, setMealIndex, eatenMealsCount, setEatenMealsCount }) {
   var { session } = useSession()
@@ -197,7 +197,8 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                           <div className='flex-grow'></div>
 
 
-                          <ShowNextMealButton showNextMeal={showNextMeal} />
+                          {/* <ShowNextMealButton showNextMeal={showNextMeal} /> */}
+                          {/* <AddNewDishB  utton meal={meal} /> */}
 
                         </div>
                         <div className='flex w-full items-center space-x-1 p-3   px-3 bg-gray-100'>

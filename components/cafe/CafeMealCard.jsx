@@ -9,7 +9,7 @@ import {
 
 import { useState } from "react";
 import DoneButton from "components/meal/DoneButton";
-import DishCard from "../dish/DishCard";
+import DishCard from "../dish/DishCard/DishCard";
 import { supabaseClient } from '../../utils/supabaseClient'
 
 

@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import moment from 'moment';
 
 import { useSession } from "@clerk/nextjs";
-import Layout from '../components/Layout'
+import Layout from '../components/layouts/Layout'
 import { createClient } from "@supabase/supabase-js";
-import MealCard from '../components/MealCard';
+import MealCard from '../components/meal/MealCard';
 import _ from 'lodash'
 import { GetServerSideProps } from 'next'
 import { getMeals } from '../utils/utils';

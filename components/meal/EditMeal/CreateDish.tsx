@@ -1,15 +1,14 @@
 import { useSession } from "@clerk/nextjs";
 import { useEffect, useState } from 'react';
-import { EDITOR_JS_TOOLS } from '../Editor/tools'
-import { supabaseClient } from '../../utils/supabaseClient'
+import { EDITOR_JS_TOOLS } from '../../editor/tools'
+import { supabaseClient } from 'utils/supabaseClient'
 import { createReactEditorJS } from 'react-editor-js'// documentation at: https://github.com/Jungwoo-An/react-editor-js
 import {useRef,useCallback} from 'react';
 const ReactEditorJS = createReactEditorJS()
 
 
 
-export default function Editor({ meal,dishesList, setDishesList }) {
-  var dishesListTemp = [...dishesList]
+export default function CreateDish({ meal,dishesList, setDishesList }) {
   const { session } = useSession();
   const editorCore = useRef(null)
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
@@ -17,7 +16,7 @@ export default function Editor({ meal,dishesList, setDishesList }) {
   const handleKeyPress = (event) => {
     if (( event.metaKey || event.ctrlKey) && event.key === 'Enter') {
       event.preventDefault()
-      saveReview()
+      saveDish()
     }
   };
 
@@ -36,14 +35,12 @@ export default function Editor({ meal,dishesList, setDishesList }) {
     editorCore.current = instance
   }, [])
 
-  const saveReview = useCallback(async () => {
+  const saveDish = useCallback(async () => {
     const savedData = await editorCore.current.save();
     if (savedData.blocks.length == 0) {
       return
     } else {
-      console.log(savedData)
 
-      
       // update the data in supabase
       var newDishes = []
       var first_index=0
@@ -118,14 +115,18 @@ export default function Editor({ meal,dishesList, setDishesList }) {
       editorCore.current.clear()
 
 
-
-      dishesListTemp=[...newDishes,...dishesListTemp]
+      
       setShowSuccessMessage(true)
 
       setTimeout(() => {
         setShowSuccessMessage(false)
       }, 2000);
-      await setDishesList([...dishesListTemp])
+
+      if(dishesList){
+        var dishesListTemp = [...dishesList]
+        dishesListTemp=[...newDishes,...dishesListTemp]
+        await setDishesList([...dishesListTemp])
+      }
 
     }
 
@@ -147,7 +148,7 @@ export default function Editor({ meal,dishesList, setDishesList }) {
 
       <div className="flex justify-end">
 
-        <button onClick={saveReview}
+        <button onClick={saveDish}
           type="button"
           className="px-6 inline-flex  text-center items-center rounded border border-transparent bg-gray-900 px-2.5 py-1.5 text-xl font-medium text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSession } from "@clerk/nextjs";
-import { supabaseClient } from "../utils/supabaseClient";
+import { supabaseClient } from "utils/supabaseClient";
 
 const weeksDays=[
   {label:"Sun",value:"0"},

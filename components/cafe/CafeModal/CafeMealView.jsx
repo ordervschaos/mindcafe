@@ -10,7 +10,7 @@ import DoneButton from "components/meal/DoneButton";
 import DishCard from "../dish/DishCard";
 import { supabaseClient } from '../../utils/supabaseClient'
 import ShowNextDishButton from "../ShowNextDishButton";
-import { getNextDishIndex } from 'components/meal/utils'
+import { getNextDishIndex } from 'utils/meal_utils'
 
 
 export default function CafeMealCard({ meal, setEatenMealsCount, eatenMealsCount }) {

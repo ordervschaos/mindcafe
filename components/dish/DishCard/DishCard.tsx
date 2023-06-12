@@ -6,7 +6,7 @@ import {
   TrashIcon,
   LinkIcon
 } from '@heroicons/react/24/outline'
-import ThreeDotsMenu from "../ThreeDotsMenu";
+import ThreeDotsMenu from "./ThreeDotsMenu";
 import { useEffect, useState } from "react";
 
 export function formatDate(dateString) {

@@ -1,4 +1,4 @@
-import { supabaseClient } from '../utils/supabaseClient'
+import { supabaseClient } from 'utils/supabaseClient'
 import { useSession } from "@clerk/nextjs";
 import { useEffect, useState } from 'react';
 /*
@@ -18,7 +18,7 @@ import { useEffect, useState } from 'react';
 export default function ExpiryDropDown({ meal }) {
 
   var [expiresInValue,expiresInUnit]=meal.expiresIn?meal.expiresIn.split(" "):["24","hours"]
-  console.log(expiresInValue,expiresInUnit)
+
   const { session } = useSession();
   const [expiryUnit, setExpiryUnit] = useState(expiresInUnit)
   const [expiryValue, setExpiryValue] = useState(expiresInValue)
