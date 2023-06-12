@@ -142,7 +142,7 @@ export default function Layout({children,user}) {
               <div className="flex flex-shrink-0 items-center px-4">
                 <MindCafeLogo />
               </div>
-              <nav className="mt-5 flex-1 space-y-3 bg-white  ">
+              <nav className="mt-5  space-y-3 bg-white  ">
                 {navigation.map((item) => (
                   <a
                     key={item.name}
@@ -163,6 +163,9 @@ export default function Layout({children,user}) {
                   </a>
                 ))}
               </nav>
+              
+              <MealsWidget />
+
             </div>
             <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
               <a href="#" className="group block w-full flex-shrink-0">
