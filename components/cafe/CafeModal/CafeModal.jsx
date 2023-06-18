@@ -5,6 +5,7 @@ import { printCurrentDishIndex, getNextDishIndex, getPrevDishIndex } from 'utils
 import { getNextMealIndex, getPrevMealIndex } from 'utils/meal_utils'
 import MealCompletionStatusSteps from './MealCompletionStatusSteps'
 import ThreeDotsMealsMenu from './ThreeDotsMealsMenu'
+import CloseButton from 'components/design-base/CloseButton'
 import Link from 'next/link'
 import {
   Square2StackIcon,
@@ -14,7 +15,6 @@ import DishCard from '../../dish/DishCard/DishCard'
 import DoneButton from "../../meal/DoneButton";
 import ShowNextDishButton from "./ShowNextDishButton";
 import ShowPrevDishButton from "./ShowPrevDishButton";
-import ShowNextMealButton from "../../meal/ShowNextMealButton";
 import ShowPrevMealButton from "../../meal/ShowPrevMealButton";
 
 import { supabaseClient } from 'utils/supabaseClient'
@@ -34,8 +34,6 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
 
   const [dishDisplayed, setDishDisplayed] = useState(default_meal.next_dish)
   const [isDone, setIsDone] = useState(false);
-
-  const cancelButtonRef = useRef(null)
   async function markDone() {
     setIsDone(true)
     setEatenMealsCount(eatenMealsCount + 1)
@@ -86,6 +84,10 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
     setMeal(prev_meal)
     setDishDisplayed(prev_meal.next_dish)
   }
+
+  function handleClose() {
+    setOpenModal(false)
+  }
   useEffect(() => {
     // scroll cafe_modal_meal_title to top
     var cafe_modal_meal_title = document.getElementById("cafe_modal_meal_title")
@@ -97,7 +99,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
     <div>
       {meal && meal.dish && meal.dish.length > 0 &&
         <Transition.Root show={openModal} as={Fragment}>
-          <Dialog as="div" className="fixed z-10" initialFocus={cancelButtonRef} onClose={setOpenModal}>
+          <Dialog as="div" className="fixed z-10" onClose={setOpenModal}>
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -123,15 +125,9 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                 >
                   <Dialog.Panel className="h-full relative transform   bg-white text-left shadow-xl transition-all w-full">
                     <div className='flex h-full flex-col'>
-                      <div className="flow-root">
-
-                        <button
-                          type="button"
-                          className="m-1 p-1 h-7 w-7 float-right inline-flex w-10 justify-center  rounded-4xl border border-gray-300 bg-white  text-xs	 font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none  focus:ring-blue-500 focus:ring-offset-2 "
-                          onClick={() => setOpenModal(false)}
-                          ref={cancelButtonRef}>
-                          x
-                        </button>
+                      <div className="flex w-full justify-between p-2">
+                        <ShowPrevMealButton showPrevMeal={showPrevMeal} />
+                        <CloseButton onClick={handleClose} />
                       </div>
                       <div className=" pb-20 flex-grow overflow-y-scroll bg-white px-4 pt-5  sm:p-6 sm:pb-4">
                         <div className=" bg-white-100 ">
@@ -191,7 +187,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                         </div>
                         <div className="meal_controls flex w-full items-center space-x-1 p-3   px-3 bg-gray-100">
 
-                          <ShowPrevMealButton showPrevMeal={showPrevMeal} />
+                          
                           <div className='flex-grow'></div>
                           <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenMealsCount={eatenMealsCount} setEatenMealsCount={setEatenMealsCount} />                          
                           <div className='flex-grow'></div>
