@@ -1,6 +1,6 @@
 import React from "react";
-import Link from "../node_modules/next/link";
-import MindCafeLogo from "./MindCafeLogo";
+import Link from "next/link";
+import MindCafeLogo from "components/MindCafeLogo";
 
 export default function Header() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);

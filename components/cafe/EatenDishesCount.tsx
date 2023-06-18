@@ -7,8 +7,8 @@ export default function EatenDishesCount({eatenMealsCount,handleOpenModal, total
     <div className="rounded-4xl bg-green-50 p-4 my-3 lg:mx-5">
       <div className="flex">
         
-        <div onClick={handleOpenModal} className="cursor-pointer">
-          <PlayCircleIcon className="ml-auto h-16 w-16 text-green-400"/>
+        <div onClick={handleOpenModal} className="cursor-pointer ">
+          <PlayCircleIcon className="shadow-md hover:shadow-lg rounded-full ml-auto h-12 w-12 text-green-400"/>
         </div>
         <div>
 
@@ -26,13 +26,6 @@ export default function EatenDishesCount({eatenMealsCount,handleOpenModal, total
         </div>
 
         
-        {/* make it centered */}
-        <div className="flex-grow"/>
-        
-
-
-        <div className="flex-grow"/>
-
           
 
        

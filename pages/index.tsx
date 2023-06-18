@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Header from "../components/Header";
+import Header from "../components/landing/Header";
 import Main from "../components/landing/Main";
 import Footer from "../components/landing/Footer";
 import { NextSeo } from "next-seo";
