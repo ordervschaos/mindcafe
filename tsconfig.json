@@ -27,7 +27,7 @@
     "components/RaveView.js",
     "components/PublishModal.js",
     "components/CreateRave.js"
-, "components/cafe/CafeMealCard.jsx", "components/cafe/CafeMealView.jsx", "pages/cafe/index.jsx", "components/layouts/Layout.jsx", "components/dish/DishCard/ThreeDotsMenu.jsx", "components/landing/Header.jsx", "components/layouts/menus/FocusMenu.jsx", "components/meal/EditMeal/AdvancedSettingsWidget/InputAndDropDown.jsx", "components/meal/EditMeal/AdvancedSettingsWidget/TimeDropDown.jsx", "components/meal/EditMeal/AdvancedSettingsWidget/WeeklySchedulePicker.jsx", "components/meal/EditMeal/CreateDishWidget.jsx", "components/meal/EditMeal/EditMeal.jsx", "pages/meal/[id]/edit.jsx", "pages/meal/create.jsx"  ],
+, "components/cafe/CafeMealCard.jsx", "components/cafe/CafeMealView.jsx", "pages/cafe/index.jsx", "components/layouts/Layout.jsx", "components/dish/DishCard/ThreeDotsMenu.jsx", "components/landing/Header.jsx", "components/layouts/menus/FocusMenu.jsx", "components/meal/EditMeal/AdvancedSettingsWidget/InputAndDropDown.jsx", "components/meal/EditMeal/AdvancedSettingsWidget/TimeDropDown.jsx", "components/meal/EditMeal/AdvancedSettingsWidget/WeeklySchedulePicker.jsx", "components/meal/EditMeal/CreateDishWidget.jsx", "components/meal/EditMeal/EditMeal.jsx", "pages/meal/[id]/edit.jsx", "pages/meal/create.jsx", "components/CreateDishEditor.jsx"  ],
   "exclude": [
     "node_modules"
   ]
