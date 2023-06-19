@@ -1,6 +1,6 @@
 import { useSession } from "@clerk/nextjs";
 import { useEffect, useState } from 'react';
-import { EDITOR_JS_TOOLS } from '../.components/editor/tools'
+import { EDITOR_JS_TOOLS } from 'components/editor/tools'
 import { supabaseClient } from 'utils/supabaseClient'
 import { createReactEditorJS } from 'react-editor-js'// documentation at: https://github.com/Jungwoo-An/react-editor-js
 import {useRef,useCallback} from 'react';
