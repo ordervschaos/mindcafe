@@ -105,7 +105,7 @@ export default function CreateDishWidget({ meal,dishesList, setDishesList }) {
       else
         newDishes.push({content: JSON.stringify(savedData), owner_id: session.user.id, meal_id: meal.id})
       const supabase_client = await supabaseClient(session)
-      var newDish:any={content: JSON.stringify(savedData), owner_id: session.user.id, meal_id: meal.id}
+      var newDish={content: JSON.stringify(savedData), owner_id: session.user.id, meal_id: meal.id}
       var dishResponse=await supabase_client
         .from("dish")
         .insert(newDishes);

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSession } from "@clerk/nextjs";
+import Link from 'next/link'
 import { getMealsForWidget, classNames } from 'utils/utils'
 export default function MealsWidget() {
   var { session } = useSession()
@@ -13,7 +14,7 @@ export default function MealsWidget() {
     getMeals(userId).then((mealsList) => {
       setMealsList(mealsList)
     })
-  }, [])
+  }, [userId])
 
   return (
     <nav>
@@ -26,9 +27,9 @@ export default function MealsWidget() {
         }}>
         <a className='text-gray-900 font-bold	px-2'>Meals</a>
         {/* right floated link */}
-        <a href="/meals" className='float-right text-gray-600 hover:bg-gray-50 hover:text-gray-900 px-2 text-sm font-medium rounded-md'>
+        <Link href="/meals" className='float-right text-gray-600 hover:bg-gray-50 hover:text-gray-900 px-2 text-sm font-medium rounded-md'>
           See all
-        </a>
+        </Link>
       </div>
         {/* divider */}
         <div className="border-t border-gray-200"></div>
