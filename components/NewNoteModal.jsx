@@ -97,10 +97,19 @@ export default function NewNoteModal({ openModal, setOpenModal, meal }) {
   }, [saveDish]);
 
 
- 
+  const deleteDish = async () => {
+    const supabase_client = await supabaseClient(session)
+    await supabase_client
+      .from("dish")
+      .delete().match({ id: dishId });
+  }
 
-  function handleClose() {
-    saveDish()
+  async function handleClose() {
+    const savedData = await editorCore.current.save();
+    if(savedData.blocks.length==0)
+      deleteDish()
+    else
+      saveDish()
     setOpenModal(false)
   }
 
@@ -178,7 +187,7 @@ export default function NewNoteModal({ openModal, setOpenModal, meal }) {
                       <div className="bottom_controls justify-self-end w-full bottom-0">
                         <div className="meal_controls flex w-full items-center space-x-1 p-3   px-3 bg-gray-100">
                           <div className='flex-grow'></div>
-                          <button onClick={saveDish}
+                          <button onClick={handleClose}
                                   type="button"
                                   className="px-6 inline-flex  text-center items-center rounded border border-transparent bg-gray-900 px-2.5 py-1.5 text-xl font-medium text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                 >
