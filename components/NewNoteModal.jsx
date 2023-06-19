@@ -6,7 +6,7 @@ import CloseButton from 'components/design-base/CloseButton'
 import Link from 'next/link'
 
 
-import { EDITOR_JS_TOOLS } from './editor/tools'
+import { EDITOR_JS_TOOLS } from 'components/editor/tools'
 import { supabaseClient } from 'utils/supabaseClient'
 import { createReactEditorJS } from 'react-editor-js'// documentation at: https://github.com/Jungwoo-An/react-editor-js
 import { useRef, useCallback } from 'react';
