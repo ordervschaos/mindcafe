@@ -7,7 +7,7 @@ import { useState } from 'react'
 
 //import Editor
 import dynamic from "next/dynamic";
-const CreateDish = dynamic(() => import("./CreateDish"), { ssr: false });
+const CreateDishWidget = dynamic(() => import("./CreateDishWidget"), { ssr: false });
 
 import FocusMenu from "../../layouts/menus/FocusMenu";
 import { supabaseClient } from 'utils/supabaseClient'
@@ -100,7 +100,7 @@ export default function EditMeal({ meal, user }) {
 
                 <div className="divider"></div>
                 <div className="mt-3 mb-3">
-                  <CreateDish meal={meal} dishesList={dishesList} setDishesList={setDishesList} />
+                  <CreateDishWidget meal={meal} dishesList={dishesList} setDishesList={setDishesList} />
                   {/* this will create take input and save */}
                 </div>
 

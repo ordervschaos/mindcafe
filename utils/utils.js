@@ -33,6 +33,9 @@ export const getMeals = async (userId) => {
   dish(content, id, meal_id, owner_id, created_at)
   `).eq('owner_id', userId ).neq('archived',true).order('created_at', { ascending: false });
   var meals = meals_res.data || []
+  meals.forEach(meal=>{
+    meal.dish = meal.dish.filter(dish=>!!dish.content)
+  })
   return meals.filter(meal=>!!meal.name)
 }
 export const getTodaysMealsList = (meals, meals_eaten_today_ids) => {

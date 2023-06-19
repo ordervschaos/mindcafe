@@ -1,6 +1,6 @@
 
-import EditMeal from '../../../components/meal/EditMeal/EditMeal'
-import Layout from '../../../components/layouts/Layout'
+import EditMeal from 'components/meal/EditMeal/EditMeal'
+import Layout from 'components/layouts/Layout'
 
 import { createClient } from "@supabase/supabase-js";
 const supabase = createClient(
@@ -33,6 +33,9 @@ export async function getServerSideProps({ params }) {
   
   meal = meal.data[0]
   meal.dishes=meal.dish
+
+  //filtter meals with no dishes
+  meal.dishes=meal.dishes.filter(dish=>dish.content)
 
   // By returning { props: { meals } }, the Blog component
   // will receive `meals` as a prop at build time

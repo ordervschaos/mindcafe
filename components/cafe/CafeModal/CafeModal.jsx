@@ -6,6 +6,7 @@ import { getNextMealIndex, getPrevMealIndex } from 'utils/meal_utils'
 import MealCompletionStatusSteps from './MealCompletionStatusSteps'
 import ThreeDotsMealsMenu from './ThreeDotsMealsMenu'
 import CloseButton from 'components/design-base/CloseButton'
+import NewNoteWidget from 'components/NewNoteWidget'
 import Link from 'next/link'
 import {
   Square2StackIcon,
@@ -16,6 +17,7 @@ import DoneButton from "../../meal/DoneButton";
 import ShowNextDishButton from "./ShowNextDishButton";
 import ShowPrevDishButton from "./ShowPrevDishButton";
 import ShowPrevMealButton from "../../meal/ShowPrevMealButton";
+import ShowNextMealButton from "../../meal/ShowNextMealButton";
 
 import { supabaseClient } from 'utils/supabaseClient'
 
@@ -187,14 +189,13 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                         </div>
                         <div className="meal_controls flex w-full items-center space-x-1 p-3   px-3 bg-gray-100">
 
-                          
+                          <ShowNextMealButton showNextMeal={showNextMeal} />
                           <div className='flex-grow'></div>
                           <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenMealsCount={eatenMealsCount} setEatenMealsCount={setEatenMealsCount} />                          
                           <div className='flex-grow'></div>
+                          <NewNoteWidget meal={meal} />
 
-
-                          {/* <ShowNextMealButton showNextMeal={showNextMeal} /> */}
-                          {/* <AddNewDishB  utton meal={meal} /> */}
+                          
 
                         </div>
                         <div className='flex w-full items-center space-x-1 p-3   px-3 bg-gray-100'>

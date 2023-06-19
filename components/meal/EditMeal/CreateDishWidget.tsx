@@ -8,7 +8,7 @@ const ReactEditorJS = createReactEditorJS()
 
 
 
-export default function CreateDish({ meal,dishesList, setDishesList }) {
+export default function CreateDishWidget({ meal,dishesList, setDishesList }) {
   const { session } = useSession();
   const editorCore = useRef(null)
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
