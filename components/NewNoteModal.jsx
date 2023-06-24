@@ -6,11 +6,13 @@ import CloseButton from 'components/design-base/CloseButton'
 import Link from 'next/link'
 
 
-import { EDITOR_JS_TOOLS } from 'components/editor/tools'
+
 import { supabaseClient } from 'utils/supabaseClient'
-import { createReactEditorJS } from 'react-editor-js'// documentation at: https://github.com/Jungwoo-An/react-editor-js
+
 import { useRef, useCallback } from 'react';
-const ReactEditorJS = createReactEditorJS()
+
+import  CKEditor  from 'components/CKEditor';
+
 
 
 
@@ -30,9 +32,7 @@ export default function NewNoteModal({ openModal, setOpenModal, meal }) {
     }
   };
 
-  const handleInitialize = useCallback((instance) => {
-    editorCore.current = instance
-  }, [])
+  
   useEffect(() => {
     // attach the event listener
     document.addEventListener('keydown', handleKeyPress);
@@ -58,23 +58,22 @@ export default function NewNoteModal({ openModal, setOpenModal, meal }) {
 
   }
 
-  const saveDish = useCallback(async () => {
-    if(!editorCore?.current)
+  const saveDish = useCallback(async (savedData) => {
+    
+    console.log("savedData",savedData)
+    if (!savedData) 
       return
-    const savedData = await editorCore.current.save();
-    if (savedData.blocks.length == 0) {
-      return
-    } else {
-      const supabase_client = await supabaseClient(session)
-      await supabase_client
-        .from("dish")
-        .update({ content: JSON.stringify(savedData), owner_id: session.user.id }).match({ id: dishId });
-      setShowSuccessMessage(true)
+    
+    const supabase_client = await supabaseClient(session)
+    await supabase_client
+      .from("dish")
+      .update({ content: JSON.stringify(savedData), owner_id: session.user.id }).match({ id: dishId });
+    setShowSuccessMessage(true)
 
-      setTimeout(() => {
-        setShowSuccessMessage(false)
-      }, 2000);
-    }
+    setTimeout(() => {
+      setShowSuccessMessage(false)
+    }, 2000);
+    
 
 
   }, [session, meal.id])
@@ -164,9 +163,7 @@ export default function NewNoteModal({ openModal, setOpenModal, meal }) {
                           <div className="mb-auto ">
                             <div className='CreateDishEsitor'>
                               <div className="border p-2 border-round mb-3">
-                                <ReactEditorJS defaultValue={{
-                                  blocks: []
-                                }} onInitialize={handleInitialize} autofocus={false} tools={EDITOR_JS_TOOLS} placeholder="Create a new dish...." />
+                                <CKEditor saveDish={saveDish}/>
                               </div>
 
                               <div className="flex justify-end">

@@ -30,13 +30,14 @@ export default function DishCard({ dish,isPartOfMeal }) {
     dish.content={
       blocks:[]
     }
-  if(typeof dish.content == "string")
-    dish.content=dish.content?JSON.parse(dish.content):{blocks:[]}
+  // if(typeof dish.content == "string")
+  //   dish.content=dish.content?JSON.parse(dish.content):{blocks:[]}
   // convert all embed to 100% width
-  dish.content.blocks.forEach((block)=>{
-    if(block.type=='embed')
-      block.data.width="100%"
-  })
+  // dish.content.blocks.forEach((block)=>{
+  //   if(block.type=='embed')
+  //     block.data.width="100%"
+  // })
+
 
  
   return (
@@ -73,18 +74,10 @@ export default function DishCard({ dish,isPartOfMeal }) {
 
 
                 <p className="cursor-pointer mb-3 font-normal text-gray-700 dark:text-gray-400">
-                  <Blocks config={{
-                    paragraph: {
-                      className: 'text-gray-700 dark:text-gray-400 pt-2',
-                    },
-                    quote:{
-                      className: "py-3 px-5 italic font-serif"
-                    },
-                    list: {
-                      className: "list-inside list-decimal ml-2	"
-                    },
-                  
-                  }} data={dish.content} />
+                  {dish.content && 
+                      <div dangerouslySetInnerHTML={{ __html: dish.content }}></div>
+
+                  }
                 </p>
 
             </div>
