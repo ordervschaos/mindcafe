@@ -20,7 +20,7 @@ import  CKEditor  from 'components/CKEditor';
 
 export default function NewNoteModal({ openModal, setOpenModal, meal, addDishToMeal, setDish, dish }) {
   const { session } = useSession();
-  const [editorData, setEditorData] = useState(null)
+  const [editorData, setEditorData] = useState(dish.content)
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
   var dishId = dish ? dish.id : null
   
@@ -151,6 +151,7 @@ export default function NewNoteModal({ openModal, setOpenModal, meal, addDishToM
 
                           <div className="mb-auto ">
                             <div className=''>
+                            
                               <CKEditor id={dish.id} editorData={editorData} setEditorData={setEditorData} saveDish={saveDish}/>
 
                               <div className="flex justify-end">

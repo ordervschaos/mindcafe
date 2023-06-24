@@ -87,7 +87,7 @@ export default function CafeMealCard({ meal, setEatenMealsCount, eatenMealsCount
 
               <div className="mb-auto h-10">
                 {dishDisplayed &&
-                  <DishCard dish={dishDisplayed} isPartOfMeal={true} />
+                  <DishCard meal={meal} dish={dishDisplayed} isPartOfMeal={true} />
                 }
               </div>
             </div>

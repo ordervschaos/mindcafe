@@ -190,12 +190,12 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                             }
                           </div>
 
-                          <div className="mb-auto ">
                             {dishDisplayed &&
-                              <DishCard dish={dishDisplayed} isPartOfMeal={true} />
+                          <div className="mb-auto" >
+                              <DishCard meal={meal} dish={dishDisplayed} isPartOfMeal={true} />
+                          </div>
                             }
                             
-                          </div>
 
 
                         </div>

@@ -101,7 +101,9 @@ export default function CafeMealCard({ meal, setEatenMealsCount, eatenMealsCount
 
             {dishDisplayed && !isDone &&
               <div className="">
-                  <DishCard dish={dishDisplayed} isPartOfMeal={true} />
+                <div>
+                  <DishCard meal ={meal} dish={dishDisplayed} isPartOfMeal={true} />
+                </div>
                 <div className="p-3 pl-5">
                   <div className="flex w-full items-center space-x-1 pt-1  px-3">
                     <div>

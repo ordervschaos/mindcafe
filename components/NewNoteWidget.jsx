@@ -5,7 +5,6 @@ import { useSession } from "@clerk/nextjs";
 
 
 import dynamic from "next/dynamic";
-
 const NewNoteModal = dynamic(() => import("components/NewNoteModal"), { ssr: false });
 
 export default function NewNoteWidget({ meal, addDishToMeal }) {
