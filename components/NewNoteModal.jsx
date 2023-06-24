@@ -18,17 +18,19 @@ import  CKEditor  from 'components/CKEditor';
 
 // 
 
-export default function NewNoteModal({ openModal, setOpenModal, meal }) {
+export default function NewNoteModal({ openModal, setOpenModal, meal, addDishToMeal, setDish, dish }) {
   const { session } = useSession();
-  const editorCore = useRef(null)
+  const [editorData, setEditorData] = useState(null)
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+  var dishId = dish ? dish.id : null
+  
 
-  const [dishId, setDishId] = useState(null)
+  
 
   const handleKeyPress = (event) => {
     if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') {
       event.preventDefault()
-      saveDish()
+      saveDish(editorData)
     }
   };
 
@@ -45,30 +47,18 @@ export default function NewNoteModal({ openModal, setOpenModal, meal }) {
 
 
 
-  const createNewDish = async () => {
-    const supabase_client = await supabaseClient(session)
-    var dishResponse = await supabase_client
-      .from("dish")
-      .insert([
-        { owner_id: session.user.id, meal_id: meal.id },
-      ]);
-    var dish = dishResponse.data[0]
-    setDishId(dish.id)
+
+  const saveDish = useCallback(async (editorData) => {
 
 
-  }
-
-  const saveDish = useCallback(async (savedData) => {
-    
-    console.log("savedData",savedData)
-    if (!savedData) 
+    if (!editorData || !dishId) 
       return
-    
     const supabase_client = await supabaseClient(session)
-    await supabase_client
+    var dishCreated=await supabase_client
       .from("dish")
-      .update({ content: JSON.stringify(savedData), owner_id: session.user.id }).match({ id: dishId });
+      .update({ content: editorData, owner_id: session.user.id }).match({ id: dishId });
     setShowSuccessMessage(true)
+    addDishToMeal(dishCreated.data[0])
 
     setTimeout(() => {
       setShowSuccessMessage(false)
@@ -78,37 +68,36 @@ export default function NewNoteModal({ openModal, setOpenModal, meal }) {
 
   }, [session, meal.id])
 
-  useEffect(() => {
-    // populate the editor with the dish content
-    if (!dishId)
-      createNewDish()
-  }, [session, dishId])
+  
 
 
   
 
 // save dish every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      saveDish()
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [saveDish]);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     saveDish(editorData)
+  //   }, 5000);
+  //   return () => clearInterval(interval);
+  // }, [saveDish]);
 
 
-  const deleteDish = async () => {
+  const deleteDish = async (dishId) => {
     const supabase_client = await supabaseClient(session)
     await supabase_client
       .from("dish")
       .delete().match({ id: dishId });
   }
 
+  const clearEditor = () => {
+    setDish(null)
+  }
   async function handleClose() {
-    const savedData = await editorCore.current.save();
-    if(savedData.blocks.length==0)
-      deleteDish()
-    else
-      saveDish()
+    // if(!editorData)
+    //   deleteDish()
+    // else
+    saveDish(editorData)
+    clearEditor()
     setOpenModal(false)
   }
 
@@ -161,10 +150,8 @@ export default function NewNoteModal({ openModal, setOpenModal, meal }) {
                           </div>
 
                           <div className="mb-auto ">
-                            <div className='CreateDishEsitor'>
-                              <div className="border p-2 border-round mb-3">
-                                <CKEditor saveDish={saveDish}/>
-                              </div>
+                            <div className=''>
+                              <CKEditor id={dish.id} editorData={editorData} setEditorData={setEditorData} saveDish={saveDish}/>
 
                               <div className="flex justify-end">
 

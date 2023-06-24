@@ -2,7 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-const App = ({saveDish}) => {
+const App = ({ saveDish, editorData, setEditorData}) => {
+
   const editorRef = useRef(null);
     const onReady = (editor) => {
         // You can store the "editor" and use it when needed.
@@ -10,10 +11,9 @@ const App = ({saveDish}) => {
     };
 
     const onChange = (event, editor) => {
-        // const data = editor.getData();
-        // localStorage.setItem('editorContent', data);
+        const data = editor.getData();
+        setEditorData(data)
 
-        // console.log({ event, editor, data });
     };
 
     const onBlur = (event, editor) => {
@@ -34,15 +34,18 @@ const App = ({saveDish}) => {
     }, [saveDish]);
 
     return (
-        <div className="App">
-            <CKEditor
+      <div style={{ height: '400px' }}>
+      <CKEditor
                 ref={editorRef}
                 editor={ClassicEditor}
-                data="<p>Hello from CKEditor 5!</p>"
+                data={editorData}
                 onReady={onReady}
                 onChange={onChange}
                 onBlur={onBlur}
                 onFocus={onFocus}
+                config={{
+                  height: '100%',
+                }}
             />
         </div>
     );

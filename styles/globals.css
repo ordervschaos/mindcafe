@@ -33,5 +33,15 @@
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
     }
+    .ck-editor__editable {
+      min-height: 400px;
+    }
   }
+}
+
+/* Inline #18 | http://0.0.0.0:9292/ */
+
+.ck.ck-editor__editable_inline {
+   min-height: 300px;
+
 }

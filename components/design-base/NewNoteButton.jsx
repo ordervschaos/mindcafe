@@ -1,7 +1,7 @@
 
 import React from "react";
 import {
-  PlusIcon
+  PlusIcon,
 } from '@heroicons/react/24/outline'
 
 export default function NewNoteButton({ onClick }) {

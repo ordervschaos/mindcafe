@@ -27,6 +27,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
     meals: mealsList,
     current_meal_index: mealIndex
   }
+  const [dishAdded, setDishAdded] = useState(null)
   useEffect(() => {
     setMeal(mealsList[mealIndex])
     setDishDisplayed(mealsList[mealIndex].next_dish)
@@ -90,6 +91,20 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
   function handleClose() {
     setOpenModal(false)
   }
+
+  function addDishToMeal(dish) {
+    // flash a success message 
+    setDishAdded(dish.id)
+
+
+    setTimeout(() => {
+      setDishAdded(null)
+    },5000)
+
+
+  }
+
+
   useEffect(() => {
     // scroll cafe_modal_meal_title to top
     var cafe_modal_meal_title = document.getElementById("cafe_modal_meal_title")
@@ -147,6 +162,13 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                                   Archived
                                 </span>
                               }
+
+                              {/* flash a success message here */}
+                              {dishAdded &&
+                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                  Dish Added.  <Link href={`/dish/${dishAdded}/edit`}> View it here</Link>
+                                </span>
+                              }
                             
 
                               <span className="float-right inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
@@ -193,7 +215,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                           <div className='flex-grow'></div>
                           <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenMealsCount={eatenMealsCount} setEatenMealsCount={setEatenMealsCount} />                          
                           <div className='flex-grow'></div>
-                          <NewNoteWidget meal={meal} />
+                          <NewNoteWidget meal={meal} addDishToMeal={addDishToMeal} />
 
                           
 

@@ -1,13 +1,11 @@
 import { useSession } from "@clerk/nextjs";
 import { useState } from 'react'
-
+import NewNoteWidget from "components/NewNoteWidget";
 
 
 
 
 //import Editor
-import dynamic from "next/dynamic";
-const CreateDishWidget = dynamic(() => import("./CreateDishWidget"), { ssr: false });
 
 import FocusMenu from "../../layouts/menus/FocusMenu";
 import { supabaseClient } from 'utils/supabaseClient'
@@ -57,6 +55,11 @@ export default function EditMeal({ meal, user }) {
     setDishesList([])
   }
 
+  var addDishToMeal = (dish) => {
+    setDishesList([dish,...dishesList])
+    console.log("dishesList", dishesList)
+  }
+
 
 
 
@@ -100,13 +103,16 @@ export default function EditMeal({ meal, user }) {
 
                 <div className="divider"></div>
                 <div className="mt-3 mb-3">
-                  <CreateDishWidget meal={meal} dishesList={dishesList} setDishesList={setDishesList} />
                   {/* this will create take input and save */}
                 </div>
 
                 {/* Dishes title*/}
                 <div className="mt-24">
                   <h2 className="text-2xl text-center font-bold">Rotating Dishes Queue</h2>
+                </div>
+                {/* centered widget */}
+                <div className="flex justify-center items-center ">
+                  <NewNoteWidget meal={meal} addDishToMeal={addDishToMeal} />
                 </div>
 
                 <div className="mt-6 max-w-3xl flow-root">

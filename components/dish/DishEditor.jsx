@@ -1,18 +1,14 @@
 import { useSession } from "@clerk/nextjs";
-import { createClient } from "@supabase/supabase-js";
 import { useEffect, useId, useState } from 'react';
-import { EDITOR_JS_TOOLS } from 'components/editor/tools'
 import {supabaseClient} from '../../utils/supabaseClient'
-import { createReactEditorJS } from 'react-editor-js'// documentation at: https://github.com/Jungwoo-An/react-editor-js
-import React from 'react';
-const ReactEditorJS = createReactEditorJS()
+import React, {useCallback} from 'react';
+import CKEditor from 'components/CKEditor'
 
 import { useRouter } from 'next/router'
 
 
 export default function DishEditor({ dish }) {
   const { session } = useSession();
-  const editorCore = React.useRef(null)
   const router = useRouter()
 
   var review_data=dish.content
@@ -35,25 +31,34 @@ export default function DishEditor({ dish }) {
     };
   }, [handleKeyPress]);
 
-  const handleInitialize = React.useCallback((instance) => {
-    editorCore.current = instance
-  }, [])
 
-  const saveReview = React.useCallback(async () => {
-    const savedData = await editorCore.current.save();
-    if(savedData.blocks.length==0){
+  const [editorData, setEditorData] = useState(review_data)
+
+  const saveDish = useCallback(async (editorData) => {
+
+
+    if (!editorData || !dish.id) 
       return
-    }else{
-      //update the data in supabase
-      const supabase_client= await supabaseClient(session) 
-
-      await supabase_client
-        .from("dish")
-        .update({ content: JSON.stringify(savedData), owner_id: session.user.id }).match({ id: dish.id });
-    }
+  
+    const supabase_client = await supabaseClient(session)
+    var dishCreated=await supabase_client
+      .from("dish")
+      .update({ content: editorData, owner_id: session.user.id }).match({ id: dish.id });
 
 
-  }, [session,dish.id])
+
+
+  
+    
+
+
+  }, [session])
+
+  const handleSaveClick = () => {
+    saveDish(editorData)
+    router.back()
+  }
+
   
 
 
@@ -62,10 +67,11 @@ export default function DishEditor({ dish }) {
 
   return (
     <>
-      <ReactEditorJS defaultValue={JSON.parse(review_data)} onInitialize={handleInitialize} autofocus={false} onChange={saveReview} tools={EDITOR_JS_TOOLS} placeholder="Tell us the awesome things about the awesome thing" />
+      <CKEditor id={dish.id} editorData={editorData} setEditorData={setEditorData} saveDish={saveDish}/>
+
       <div className="flex justify-end">
 
-      <button onClick={()=>{router.back()}}
+      <button onClick={handleSaveClick}
         type="button"
         className="px-6 inline-flex  text-center items-center rounded border border-transparent bg-gray-900 px-2.5 py-1.5 text-xl font-medium text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
       >
