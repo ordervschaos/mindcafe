@@ -1,11 +1,4 @@
 import { useSession } from "@clerk/nextjs";
-import Blocks from 'editorjs-blocks-react-renderer';
-import Link from 'next/link'
-import {
-  PencilSquareIcon,
-  TrashIcon,
-  LinkIcon
-} from '@heroicons/react/24/outline'
 import ThreeDotsMenu from "./ThreeDotsMenu";
 import { useEffect, useState } from "react";
 
@@ -16,7 +9,6 @@ export function formatDate(dateString) {
   return new Date(`${dateString}T00:00:00Z`).toLocaleDateString('en-US', {
     day: 'numeric',
     month: 'short',
-    // year: 'numeric',
     timeZone: 'UTC',
   })
 }
@@ -33,27 +25,16 @@ export default function DishCard({ meal, dish,isPartOfMeal }) {
     dish={
       content:null
     }
-  // if(typeof dishToDisplay.content == "string")
-  //   dish.content=dish.content?JSON.parse(dish.content):{blocks:[]}
-  // convert all embed to 100% width
-  // dish.content.blocks.forEach((block)=>{
-  //   if(block.type=='embed')
-  //     block.data.width="100%"
-  // })
-
-  {/* openModal, setOpenModal, meal, addDishToMeal, setDish, dish */}
 
   const [openModal, setOpenModal] = useState(false);
 
   const [dishToDisplay, setDishToDisplay] = useState(dish)
 
     const handleContentClick = (e) => {
-      console.log("handleContentClick", dishToDisplay)
       setOpenModal(true)
     }
 
     const handleContentChange = (updatedDish) => {
-      console.log("handleContentChange7777", updatedDish)
       setDishToDisplay(updatedDish)
     }
 
