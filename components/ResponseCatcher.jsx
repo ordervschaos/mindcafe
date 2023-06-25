@@ -27,8 +27,8 @@ export default function ResponseCatcher({ dish, onSave }) {
 
   const [response, setResponse] = useState(null)
 
-  const handleShowAllResponsesClick = () => {
-    setShowAllResponses(true)
+  const handleToggleShowAllResponsesClick = () => {
+    setShowAllResponses(!showAllResponses)
   }
 
 
@@ -108,7 +108,7 @@ export default function ResponseCatcher({ dish, onSave }) {
       <div>
         
         <div className="flex justify-start text-smallest text-gray-400 font-sans" >
-          <div  className='cursor-pointer' onClick={handleShowAllResponsesClick}> <FiMessageCircle className='inline'/>  view all responses </div>
+          <div  className='cursor-pointer' onClick={handleToggleShowAllResponsesClick}> <FiMessageCircle className='inline'/>  {showAllResponses?'hide':'show all'} responses </div>
         </div>
         <div>
             {showAllResponses && 
