@@ -1,4 +1,5 @@
 
+import DishCard from '../../../components/dish/DishCard/DishCard';
 import EditDish from '../../../components/dish/EditDish'
 import FocusLayout from '../../../components/layouts/FocusLayout'
 
@@ -11,12 +12,12 @@ const supabase = createClient(
 
 
 
-export default function Edit({dish,user}) {
+export default function Edit({dish,meal}) {
 
   
   return (
     <>
-      <EditDish user={user} dish={dish}/>
+      <DishCard  dish={dish} meal={meal}/>
     </>
   )
 }
@@ -32,13 +33,14 @@ Edit.getLayout = function getLayout(page) {
 
 export async function getServerSideProps({ params }) {
   // Call an external API endpoint to get dishs
-  var dish = await supabase.from("dish").select().eq('id', params.id);
+  var dish = await supabase.from("dish").select('*,meal(*)').eq('id', params.id);
   dish = dish.data[0]
   // By returning { props: { dishs } }, the Blog component
   // will receive `dishs` as a prop at build time
   return {
     props: {
       dish,
+      meal:dish.meal
     },
   }
 }

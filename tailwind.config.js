@@ -9,6 +9,9 @@ module.exports = {
      ],
   theme: {
     extend: {
+      fontSize: {
+        'smallest': '0.625rem', // Adjust the value as needed
+      },
       spacing: {
         '128': '32rem',
         '144': '36rem',

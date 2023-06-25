@@ -2,15 +2,17 @@
 import { useState } from 'react'
 import { useSession } from "@clerk/nextjs";
 
-
+import Link from 'next/link'
 
 import { supabaseClient } from 'utils/supabaseClient'
 
 import { useCallback } from 'react';
-
+import { FiMessageCircle } from 'react-icons/fi';
 import CKEditor from 'components/CKEditor';
 
+import ShowAllResponses from 'components/ShowAllResponses';
 
+import DisplayResponse from 'components/DisplayResponse';
 
 
 // 
@@ -21,8 +23,13 @@ export default function ResponseCatcher({ dish, onSave }) {
 
   const [showEditor, setShowEditor] = useState(dish.accepts_responses)
   const [displayResponse, setDisplayResponse] = useState(false)
+  const [showAllResponses, setShowAllResponses] = useState(false)
 
   const [response, setResponse] = useState(null)
+
+  const handleShowAllResponsesClick = () => {
+    setShowAllResponses(true)
+  }
 
 
   const saveResponse = useCallback(async (editorData) => {
@@ -94,14 +101,24 @@ export default function ResponseCatcher({ dish, onSave }) {
       }
 
       {dish && displayResponse && response &&
-        <div className='flex flex-col bg-gray-100 mr-2 rounded cursor-pointer' onClick={handleClickOnDisplayedResponse}>
-          <div className="p-4 2">
-            <div>
-              <div dangerouslySetInnerHTML={{ __html: response.content }}></div>
+        <DisplayResponse response={response} onClick={handleClickOnDisplayedResponse} />
+      }
 
-            </div>
-          </div>
+      {dish && dish.accepts_responses &&
+      <div>
+        
+        <div className="flex justify-start text-smallest text-gray-400 font-sans" >
+          <div  className='cursor-pointer' onClick={handleShowAllResponsesClick}> <FiMessageCircle className='inline'/>  view all responses </div>
         </div>
+        <div>
+            {showAllResponses && 
+            <ShowAllResponses dish={dish} handleClickOnDisplayedResponse={handleClickOnDisplayedResponse} />
+            }
+            </div>
+
+      </div>
+
+
       }
 
     </div>

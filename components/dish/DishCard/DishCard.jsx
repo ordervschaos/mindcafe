@@ -18,7 +18,7 @@ export function formatDate(dateString) {
 }
 
 
-export default function DishCard({ meal, dish, isPartOfMeal }) {
+export default function DishCard({ meal, dish }) {
   const [dishVisible, setDishVisible] = useState(true)
 
   useEffect(() => {
@@ -64,7 +64,7 @@ export default function DishCard({ meal, dish, isPartOfMeal }) {
     <div>
       {dishVisible && dishToDisplay &&
         <div className='font-Merriweather my-3'>
-          <div className={isPartOfMeal ? "" : "rounded-lg border border-gray-200" + " bg-white dark:bg-gray-800 dark:border-gray-700"}>
+          <div className={ " bg-white dark:bg-gray-800 dark:border-gray-700"}>
             {dishToDisplay &&
               <div>
                 <NewNoteModal openModal={openModal} setOpenModal={setOpenModal}

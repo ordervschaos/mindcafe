@@ -1,6 +1,8 @@
 import { isMealToBeShownNow } from 'utils/mealHelpers'
 import _ from 'lodash'
 import { createClient } from "@supabase/supabase-js";
+import { supabaseClient } from 'utils/supabaseClient'
+
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -17,6 +19,12 @@ export const getMealsEatenTodayIds = async(userId)=>{
 
 export function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
+}
+
+export function formatDate(date) {
+  var d = new Date(date);
+  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  return d.toLocaleDateString(undefined, options)
 }
 
 export const getMealsForWidget = async (userId) => {
@@ -91,4 +99,15 @@ export const getTodaysMealsList = (meals, meals_eaten_today_ids) => {
   })
 
   return meals_view_data
+}
+
+export const getAllResponsesOfADish = async (dish_id,session) => {
+
+  const supabase_client = await supabaseClient(session)
+
+  var responses_res = await supabase_client.from("response").select(`
+  id, dish_id, content, created_at, owner_id
+  `).eq('dish_id', dish_id).order('created_at', { ascending: false });
+  var responses = responses_res.data || []
+  return responses
 }
