@@ -50,7 +50,7 @@ export default function EditMeal({ meal, user }) {
   var deleteAllDishes = async (meal_id) => {
     const supabase_client = await supabaseClient(session)
 
-    var delete_res = await supabase_client.from("dish").delete().match({ meal_id: meal_id, owner_id: session.user.id });
+    var delete_res = await supabase_client.from("dish").update({archived:true}).match({ meal_id: meal_id, owner_id: session.user.id });
 
     setDishesList([])
   }

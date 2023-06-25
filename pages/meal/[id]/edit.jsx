@@ -28,14 +28,15 @@ export async function getServerSideProps({ params }) {
   // Call an external API endpoint to get meals
   var meal = await supabase.from("meal").select(`
   id, owner_id, name,schedule,next_dish_index,timing,expiresIn,weeklySchedule,
-  dish(content, id, meal_id, owner_id, created_at)
+  dish(content, id, meal_id, owner_id, created_at, archived)
   `).eq('id', params.id);
   
   meal = meal.data[0]
   meal.dishes=meal.dish
-
+  console.log("meal+++------",meal)
   //filtter meals with no dishes
-  meal.dishes=meal.dishes.filter(dish=>dish.content)
+  meal.dishes=meal.dishes.filter(dish=>dish.content && !dish.archived)
+  console.log("meal+++",meal)
 
   // By returning { props: { meals } }, the Blog component
   // will receive `meals` as a prop at build time

@@ -1,5 +1,5 @@
 import { useSession } from "@clerk/nextjs";
-import ThreeDotsMenu from "./ThreeDotsMenu";
+
 import { useEffect, useState } from "react";
 
 import dynamic from "next/dynamic";
@@ -53,10 +53,7 @@ export default function DishCard({ meal, dish, isPartOfMeal }) {
 
 
               <div>
-                <div className="float-right">
-                  <ThreeDotsMenu dish={dish} setDishVisible={setDishVisible} />
-
-                </div>
+            
                 <NewNoteModal openModal={openModal} setOpenModal={setOpenModal}
                   meal={meal} addDishToMeal={handleContentChange} setDish={setDishToDisplay} dish={dishToDisplay} />
               </div>

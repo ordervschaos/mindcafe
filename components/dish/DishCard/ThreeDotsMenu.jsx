@@ -15,16 +15,11 @@ import Link from 'next/link';
 
 
 
-export default function ThreeDotsMenu({ dish,setDishVisible }) {
+export default function ThreeDotsMenu({ dish,handleDelete }) {
   var { session } = useSession()
 
   const [showThreeDotMenu, setThreeDotMenu] = useState(false)
-  var deleteDish = async (dish_id) => {
-    const supabase_client= await supabaseClient(session) 
-    
-    var delete_res=await supabase_client.from("dish").delete().match({ id: dish_id,owner_id: session.user.id });
-    setDishVisible(false)
-  }
+
 
   return (
     <Menu as="div" className="relative text-left">
@@ -45,7 +40,8 @@ export default function ThreeDotsMenu({ dish,setDishVisible }) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10  origin-top-right rounded-md bg-white shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="origin-bottom-left absolute bottom-10 left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+
           <div className="pt-1">
 
             <Menu.Item>
@@ -58,8 +54,7 @@ export default function ThreeDotsMenu({ dish,setDishVisible }) {
                 <div className='inline-block m-2'>
                   <button
                     onClick={() => {
-                      setThreeDotMenu(false)
-                      deleteDish(dish.id)
+                      handleDelete(dish.id)
                     }}
                     className='text-gray-700 w-full block px-4 py-2 text-sm'
                   >
@@ -69,24 +64,7 @@ export default function ThreeDotsMenu({ dish,setDishVisible }) {
               </a>
                 
               </Menu.Item>
-            <Menu.Item>
-
-              {/* delete dish */}
-              <a
-                href="#"
-                className='text-gray-700 w-full block  text-sm'
-              >
-                <Link href={"/dish/"+dish.id+"/edit"} className='inline-block m-2'>
-                  <button
-                   
-                    className='text-gray-700 w-full block px-4 py-2 text-sm'
-                  >
-                    Edit
-                  </button>
-                </Link>
-              </a>
-                
-              </Menu.Item>
+      
   
             </div>
           </Menu.Items>

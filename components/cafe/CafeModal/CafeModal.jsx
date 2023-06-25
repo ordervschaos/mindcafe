@@ -6,6 +6,7 @@ import { getNextMealIndex, getPrevMealIndex } from 'utils/meal_utils'
 import MealCompletionStatusSteps from './MealCompletionStatusSteps'
 import ThreeDotsMealsMenu from './ThreeDotsMealsMenu'
 import CloseButton from 'components/design-base/CloseButton'
+import BackButton from 'components/design-base/BackButton'
 import NewNoteWidget from 'components/NewNoteWidget'
 import Link from 'next/link'
 import {
@@ -143,8 +144,10 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                 >
                   <Dialog.Panel className="h-full relative transform   bg-white text-left shadow-xl transition-all w-full">
                     <div className='flex h-full flex-col'>
-                      <div className="flex w-full justify-between p-2">
-                        <ShowPrevMealButton showPrevMeal={showPrevMeal} />
+                      <div className='flex w-full items-center space-x-1  bg-gray-100'>
+                        <MealCompletionStatusSteps completed={eatenMealsCount} total={mealsList.length} />
+                      </div>
+                      <div className="flex w-full justify-end p-2">
                         <CloseButton onClick={handleClose} />
                       </div>
                       <div className=" pb-20 flex-grow overflow-y-scroll bg-white px-4 pt-5  sm:p-6 sm:pb-4">
@@ -172,10 +175,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                               }
 
 
-                              <span className="float-right inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
-                                <Square2StackIcon className='h-5 w-5 text-gray-400' />{printCurrentDishIndex(meal)}/{meal.num_of_dishes}
-                              </span>
-
+                              
                               <Link href={`/meal/${meal.id}/edit`} id="cafe_modal_meal_title">
                                 <h5 className="font-Merriweather h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
                               </Link>
@@ -204,14 +204,20 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
 
 
                       <div className="bottom_controls justify-self-end w-full bottom-0">
+                        
 
                         <div className="meal_controls flex w-full items-center space-x-1 pt-1  px-3 pb-2">
                           <ShowPrevDishButton showPrevDish={showPrevDish} />
                           <div className='flex-grow'></div>
+                          <span className="float-right inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
+                            <Square2StackIcon className='h-5 w-5 text-gray-400' />{printCurrentDishIndex(meal)}/{meal.num_of_dishes}
+                          </span>
+                          <div className='flex-grow'></div>
+                              
                           <ShowNextDishButton showNextDish={showNextDish} />
                         </div>
+                        
                         <div className="meal_controls flex w-full items-center space-x-1 p-3   px-3 bg-gray-100">
-
                           <ShowNextMealButton showNextMeal={showNextMeal} />
                           <div className='flex-grow'></div>
                           <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenMealsCount={eatenMealsCount} setEatenMealsCount={setEatenMealsCount} />
@@ -221,9 +227,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
 
 
                         </div>
-                        <div className='flex w-full items-center space-x-1 p-3   px-3 bg-gray-100'>
-                          <MealCompletionStatusSteps completed={eatenMealsCount} total={mealsList.length} />
-                        </div>
+                        
                       </div>
                     </div>
                   </Dialog.Panel>

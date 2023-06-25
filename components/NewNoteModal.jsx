@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import { useSession } from "@clerk/nextjs";
 import { Dialog, Transition } from '@headlessui/react'
-
+import ThreeDotsMenu from "components/dish/DishCard/ThreeDotsMenu";
 import CloseButton from 'components/design-base/CloseButton'
 import Link from 'next/link'
 
@@ -11,7 +11,7 @@ import { supabaseClient } from 'utils/supabaseClient'
 
 import { useRef, useCallback } from 'react';
 
-import  CKEditor  from 'components/CKEditor';
+import CKEditor from 'components/CKEditor';
 
 
 
@@ -23,10 +23,14 @@ export default function NewNoteModal({ openModal, setOpenModal, meal, addDishToM
   const [editorData, setEditorData] = useState(dish.content)
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
   var dishId = dish ? dish.id : null
-  
 
-  
 
+
+  const handleDelete = async () => {
+    deleteDish(dishId)
+    clearEditor()
+    setOpenModal(false)
+  }
   const handleKeyPress = (event) => {
     if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') {
       event.preventDefault()
@@ -34,7 +38,7 @@ export default function NewNoteModal({ openModal, setOpenModal, meal, addDishToM
     }
   };
 
-  
+
   useEffect(() => {
     // attach the event listener
     document.addEventListener('keydown', handleKeyPress);
@@ -51,10 +55,10 @@ export default function NewNoteModal({ openModal, setOpenModal, meal, addDishToM
   const saveDish = useCallback(async (editorData) => {
 
 
-    if (!editorData || !dishId) 
+    if (!editorData || !dishId)
       return
     const supabase_client = await supabaseClient(session)
-    var dishCreated=await supabase_client
+    var dishCreated = await supabase_client
       .from("dish")
       .update({ content: editorData, owner_id: session.user.id }).match({ id: dishId });
     setShowSuccessMessage(true)
@@ -63,17 +67,17 @@ export default function NewNoteModal({ openModal, setOpenModal, meal, addDishToM
     setTimeout(() => {
       setShowSuccessMessage(false)
     }, 2000);
-    
+
 
 
   }, [session, meal.id])
 
-  
 
 
-  
 
-// save dish every 5 seconds
+
+
+  // save dish every 5 seconds
   // useEffect(() => {
   //   const interval = setInterval(() => {
   //     saveDish(editorData)
@@ -83,10 +87,11 @@ export default function NewNoteModal({ openModal, setOpenModal, meal, addDishToM
 
 
   const deleteDish = async (dishId) => {
+    console.log("deleting dish", dishId)
     const supabase_client = await supabaseClient(session)
-    await supabase_client
-      .from("dish")
-      .delete().match({ id: dishId });
+    //archive dish
+    var archived_dish=await supabase_client.from('dish').update({ archived: true }).match({ id: dishId })
+    console.log("archived_dish",archived_dish)
   }
 
   const clearEditor = () => {
@@ -103,7 +108,7 @@ export default function NewNoteModal({ openModal, setOpenModal, meal, addDishToM
 
   return (
     <div>
-      {meal && 
+      {meal &&
         <Transition.Root show={openModal} as={Fragment}>
           <Dialog as="div" className="fixed z-10" onClose={setOpenModal}>
             <Transition.Child
@@ -140,50 +145,53 @@ export default function NewNoteModal({ openModal, setOpenModal, meal, addDishToM
 
                           <div className="p-3 pl-5">
                             <div className="">
-                            
+
                               <Link href={`/meal/${meal.id}/edit`} id="cafe_modal_meal_title">
                                 <h5 className="font-Merriweather h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
                               </Link>
                             </div>
 
-                    
+
                           </div>
 
                           <div className="mb-auto ">
                             <div className=''>
-                            
-                              <CKEditor id={dish.id} editorData={editorData} setEditorData={setEditorData} saveDish={saveDish}/>
+
+                              <CKEditor id={dish.id} editorData={editorData} setEditorData={setEditorData} saveDish={saveDish} />
 
                               <div className="flex justify-end">
 
-                                
+
                               </div>
-                              
+
 
                             </div>
-                            
+
                           </div>
 
 
                         </div>
                       </div>
 
-                        
+
                       <div className="bottom_controls justify-self-end w-full bottom-0">
                         <div className="meal_controls flex w-full items-center space-x-1 p-3   px-3 bg-gray-100">
+                         <div className="float-right">
+                            < ThreeDotsMenu dish={dish} handleDelete={handleDelete} />
+                          </div>
                           <div className='flex-grow'></div>
                           <button onClick={handleClose}
-                                  type="button"
-                                  className="px-6 inline-flex  text-center items-center rounded border border-transparent bg-gray-900 px-2.5 py-1.5 text-xl font-medium text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                                >
-                                  Save & Close <span className="ml-2  text-xs text-gray-400">
-                                    {/* Command + enter */}
-                                    ⌘ + ⏎
-                                  </span>
-                                </button>
+                            type="button"
+                            className="px-6 inline-flex  text-center items-center rounded border border-transparent bg-gray-900 px-2.5 py-1.5 text-xl font-medium text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                          >
+                            Save & Close <span className="ml-2  text-xs text-gray-400">
+                              {/* Command + enter */}
+                              ⌘ + ⏎
+                            </span>
+                          </button>
 
                         </div>
-                       
+
                       </div>
                     </div>
                   </Dialog.Panel>
