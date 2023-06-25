@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, use, useEffect, useState } from 'react'
 import { useSession } from "@clerk/nextjs";
 import { Dialog, Transition } from '@headlessui/react'
 import ThreeDotsMenu from "components/dish/DishCard/ThreeDotsMenu";
@@ -25,7 +25,9 @@ export default function NewNoteModal({ openModal, setOpenModal, meal, addDishToM
   var dishId = dish ? dish.id : null
 
 
-
+  useEffect(() => {
+    setEditorData(dish.content)
+  }, [dish])
   const handleDelete = async () => {
     deleteDish(dishId)
     clearEditor()

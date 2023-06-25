@@ -35,7 +35,7 @@ export default function DishCard({ meal, dish }) {
 
   useEffect(() => {
     setDishToDisplay(dish)
-  }, [dish])
+  }, [dish,meal])
 
   const handleContentClick = (e) => {
     setOpenModal(true)
