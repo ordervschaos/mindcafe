@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-const App = ({ saveDish, editorData, setEditorData}) => {
+const App = ({ editorData, setEditorData}) => {
 
   const editorRef = useRef(null);
     const onReady = (editor) => {
@@ -24,14 +24,7 @@ const App = ({ saveDish, editorData, setEditorData}) => {
         console.log('Focus.', editor);
     };
 
-   
-    useEffect(() => {
-      const interval = setInterval(() => {
-        
-        saveDish(editorRef.current.editor.getData())
-      }, 5000);
-      return () => clearInterval(interval);
-    }, [saveDish]);
+
 
     return (
       <div style={{ height: '400px' }}>

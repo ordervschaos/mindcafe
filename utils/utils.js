@@ -30,7 +30,7 @@ export const getMealsForWidget = async (userId) => {
 export const getMeals = async (userId) => {
   var meals_res = await supabase.from("meal").select(`
   id, owner_id, name,schedule,next_dish_index,timing,expiresIn,weeklySchedule,
-  dish(content, id, meal_id, owner_id, created_at)
+  dish(content, id, meal_id, owner_id, created_at, accepts_responses)
   `).eq('owner_id', userId ).neq('archived',true).order('created_at', { ascending: false });
   var meals = meals_res.data || []
   meals.forEach(meal=>{

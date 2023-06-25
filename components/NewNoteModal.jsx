@@ -94,6 +94,16 @@ export default function NewNoteModal({ openModal, setOpenModal, meal, addDishToM
     console.log("archived_dish",archived_dish)
   }
 
+  const [isAcceptResponseChecked, setIsAcceptResponseChecked] = useState(false);
+
+  const handleCheckboxChange = async () => {
+    setIsAcceptResponseChecked(!isAcceptResponseChecked);
+    const supabase_client = await supabaseClient(session)
+    var acceptsResponseUpdate=await supabase_client.from('dish').update({ accepts_responses: !isAcceptResponseChecked }).match({ id: dishId })
+    console.log(acceptsResponseUpdate)
+
+  };
+
   const clearEditor = () => {
     setDish(null)
   }
@@ -180,6 +190,14 @@ export default function NewNoteModal({ openModal, setOpenModal, meal, addDishToM
                             < ThreeDotsMenu dish={dish} handleDelete={handleDelete} />
                           </div>
                           <div className='flex-grow'></div>
+                          <div className='pr-3'> 
+                          <input
+                            type="checkbox"
+                            checked={isAcceptResponseChecked}
+                            onChange={handleCheckboxChange}
+                            className="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+                          /> This dish accepts responses
+                          </div>
                           <button onClick={handleClose}
                             type="button"
                             className="px-6 inline-flex  text-center items-center rounded border border-transparent bg-gray-900 px-2.5 py-1.5 text-xl font-medium text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"

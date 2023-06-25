@@ -153,7 +153,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                       <div className="Content pb-20 flex-grow overflow-y-scroll bg-white pt-5  sm:pb-4">
 
 
-                          <div className="p-4 pl-6 ">
+                          <div className="p-4 ">
                             <div className="float-right">
                               <ThreeDotsMealsMenu setMeal={setMeal} meal={meal} />
                             </div>
