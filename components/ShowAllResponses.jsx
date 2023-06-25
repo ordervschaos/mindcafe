@@ -30,7 +30,7 @@ export default function ShowAllResponses({ dish, handleClickOnDisplayedResponse 
   return (
     <div className="w-full">
       {responses&&responses.map((response) => {
-        return <div className="my-2">
+        return <div className="my-2" key={response.id}>
           <DisplayResponse response={response} onClick={handleClickOnDisplayedResponse} />
         </div>
       })}
