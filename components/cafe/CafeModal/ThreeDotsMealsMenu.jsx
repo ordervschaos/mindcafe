@@ -30,7 +30,7 @@ export default function ThreeDotsMealsMenu({ meal, setMeal }) {
   return (
     <Menu as="div" className="relative text-left">
       <div>
-        <Menu.Button className="rounded-md p-2 hover:bg-gray-50 ">
+        <Menu.Button className="rounded-md hover:bg-gray-50 ">
 
           <EllipsisVerticalIcon onClick={showThreeDotMenu ? () => setThreeDotMenu(false) : () => setThreeDotMenu(true)} className="h-5 w-5 text-gray-400" aria-hidden="true" />
 
@@ -47,8 +47,6 @@ export default function ThreeDotsMealsMenu({ meal, setMeal }) {
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="absolute right-0 z-10  origin-top-right rounded-md bg-white shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="pt-1">
-
             <Menu.Item>
 
               {/* delete meal */}
@@ -72,26 +70,7 @@ export default function ThreeDotsMealsMenu({ meal, setMeal }) {
               </a>
                 
               </Menu.Item>
-            <Menu.Item>
-
-              {/* delete meal */}
-              <a
-                href="#"
-                className='text-gray-700 w-full block  text-sm'
-              >
-                <Link href={"/meal/"+meal.id+"/edit"} className='inline-block m-2'>
-                  <button
-                   
-                    className='text-gray-700 w-full block px-4 py-2 text-sm'
-                  >
-                    Edit
-                  </button>
-                </Link>
-              </a>
-                
-              </Menu.Item>
-  
-            </div>
+           
           </Menu.Items>
         </Transition>
       </Menu>

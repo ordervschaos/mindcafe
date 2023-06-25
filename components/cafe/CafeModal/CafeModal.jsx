@@ -78,7 +78,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
     var next_meal = mealsList[next_meal_index]
     setMealIndex(next_meal_index)
     setMeal(next_meal)
-    console.log('next_meal.next_dish',next_meal.next_dish)
+    console.log('next_meal.next_dish', next_meal.next_dish)
     setDishDisplayed(next_meal.next_dish)
   }
   function showPrevMeal() {
@@ -150,15 +150,14 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                       <div className="flex w-full justify-end p-2">
                         <CloseButton onClick={handleClose} />
                       </div>
-                      <div className=" pb-20 flex-grow overflow-y-scroll bg-white px-4 pt-5  sm:p-6 sm:pb-4">
-                        <div className=" bg-white-100 ">
+                      <div className="Content pb-20 flex-grow overflow-y-scroll bg-white pt-5  sm:pb-4">
 
 
-                          <div className="p-3 pl-5">
-
+                          <div className="p-4 pl-6 ">
                             <div className="float-right">
                               <ThreeDotsMealsMenu setMeal={setMeal} meal={meal} />
                             </div>
+
                             <div className="">
                               {/* tag when meal is archived */}
                               {meal.archived &&
@@ -175,10 +174,11 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                               }
 
 
-                              
-                              <Link href={`/meal/${meal.id}/edit`} id="cafe_modal_meal_title">
-                                <h5 className="font-Merriweather h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
-                              </Link>
+                              <div className='flex'>
+                                <Link href={`/meal/${meal.id}/edit`} id="cafe_modal_meal_title">
+                                  <h5 className="font-Merriweather h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
+                                </Link>
+                              </div>
                             </div>
 
                             {meal.link &&
@@ -199,12 +199,12 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
 
 
 
-                        </div>
+
                       </div>
 
 
                       <div className="bottom_controls justify-self-end w-full bottom-0">
-                        
+
 
                         <div className="meal_controls flex w-full items-center space-x-1 pt-1  px-3 pb-2">
                           <ShowPrevDishButton showPrevDish={showPrevDish} />
@@ -213,12 +213,16 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                             <Square2StackIcon className='h-5 w-5 text-gray-400' />{printCurrentDishIndex(meal)}/{meal.num_of_dishes}
                           </span>
                           <div className='flex-grow'></div>
-                              
+
                           <ShowNextDishButton showNextDish={showNextDish} />
                         </div>
-                        
+
                         <div className="meal_controls flex w-full items-center space-x-1 p-3   px-3 bg-gray-100">
-                          <ShowNextMealButton showNextMeal={showNextMeal} />
+                          <div className='mx-3'>
+                            <ShowPrevMealButton showPrevMeal={showPrevMeal} />
+                            <ShowNextMealButton showNextMeal={showNextMeal} />
+
+                          </div>
                           <div className='flex-grow'></div>
                           <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenMealsCount={eatenMealsCount} setEatenMealsCount={setEatenMealsCount} />
                           <div className='flex-grow'></div>
@@ -227,7 +231,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
 
 
                         </div>
-                        
+
                       </div>
                     </div>
                   </Dialog.Panel>

@@ -46,7 +46,7 @@ export default function DishCard({ meal, dish, isPartOfMeal }) {
   return (
     <div>
       {dishVisible && dishToDisplay &&
-        <div className='font-Merriweather my-3 '>
+        <div className='font-Merriweather my-3'>
           {/* <Link href={"/dish/"+dish.id  } className=" sm:flex py-8 " key={dish.id} > */}
           <div className={isPartOfMeal ? "" : "rounded-lg border border-gray-200" + " bg-white dark:bg-gray-800 dark:border-gray-700"}>
             {dishToDisplay &&
@@ -62,7 +62,7 @@ export default function DishCard({ meal, dish, isPartOfMeal }) {
 
 
             }
-            <div className="p-3 pl-5">
+            <div className="p-3 pl-6">
 
 
               {/*               
