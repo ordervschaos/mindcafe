@@ -123,8 +123,8 @@ export default function EditMeal({ meal, user }) {
                 <div className="mt-6 max-w-3xl flow-root">
                   <ul role="list" className="px-5">
                     {dishesList && dishesList.map((dish) => (
-                      <div className="border my-1 rounded">
-                        <DishCard key={dish.id} meal={meal} dish={dish} isPartOfMeal={false} />
+                      <div className="border my-1 rounded" key={dish.id}>
+                        <DishCard  meal={meal} dish={dish} isPartOfMeal={false} />
 
                       </div>
                     ))}
