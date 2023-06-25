@@ -68,7 +68,6 @@ export default function EditMeal({ meal, user }) {
   return (
     <div>
 
-      <FocusMenu user={user} />
       <div className="content-center	">
 
         <div className="md:grid md:grid-cols-1 md:gap-6 mx-auto	lg:w-[52rem]">
@@ -76,28 +75,34 @@ export default function EditMeal({ meal, user }) {
 
             <div className="">
               <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
-                <div className="mt-3">
-                  <input
-                    type="text"
-                    key="mealTitle1"
-                    name="mealTitle1"
-                    className="text-3xl lg:text-5xl md:text-3xl block w-full flex-1 border-none focus:border-transparent focus:ring-0 font-serif	  placeholder-gray-300  "
-                    placeholder="The title of your meal"
-                    onChange={(e) => saveTitle(meal, e)}
-                    value={mealTitle}
-                  />
+                <div className="flex justify-between">
+                  <div className="mt-3">
+                    <input
+                      type="text"
+                      key="mealTitle1"
+                      name="mealTitle1"
+                      className="text-3xl lg:text-5xl md:text-3xl block w-full flex-1 border-none focus:border-transparent focus:ring-0 font-serif	  placeholder-gray-300  "
+                      placeholder="The title of your meal"
+                      onChange={(e) => saveTitle(meal, e)}
+                      value={mealTitle}
+                    />
+                  </div>
+                  <div className="mt-3">
+                    <ThreeDotsMealsMenu meal={meal} />
+                  </div>
                 </div>
+                
                 {edited_meal.archived &&
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
                     Archived
                   </span>
                 }
+                
                 <AdvancedSettingsWidget meal={meal} toggleMealSettingsVisibility={toggleMealSettingsVisibility} isMealSettingsOpen={isMealSettingsOpen} toggleDangerousSettingsVisibility={toggleDangerousSettingsVisibility} isDangerousSettingsOpen={isDangerousSettingsOpen}
                   deleteAllDishes={deleteAllDishes}
                 />
-                <div className="float-right">
-                  <ThreeDotsMealsMenu setMeal={setMeal} meal={edited_meal} />
-                </div>
+                  
+              
 
 
 
