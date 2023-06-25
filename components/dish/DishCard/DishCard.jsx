@@ -14,57 +14,61 @@ export function formatDate(dateString) {
 }
 
 
-export default function DishCard({ meal, dish,isPartOfMeal }) {
+export default function DishCard({ meal, dish, isPartOfMeal }) {
   var { session } = useSession()
   const [dishVisible, setDishVisible] = useState(true)
 
   useEffect(() => {
     setDishVisible(true)
   }, [dish])
-  if(!dish.content)
-    dish={
-      content:null
+  if (!dish.content)
+    dish = {
+      content: null
     }
 
   const [openModal, setOpenModal] = useState(false);
 
   const [dishToDisplay, setDishToDisplay] = useState(dish)
 
-    const handleContentClick = (e) => {
-      setOpenModal(true)
-    }
+  useEffect(() => {
+    setDishToDisplay(dish)
+  }, [dish])
 
-    const handleContentChange = (updatedDish) => {
-      setDishToDisplay(updatedDish)
-    }
+  const handleContentClick = (e) => {
+    setOpenModal(true)
+  }
 
- 
+  const handleContentChange = (updatedDish) => {
+    setDishToDisplay(updatedDish)
+  }
+
+
   return (
     <div>
-      {dishVisible && dishToDisplay&&
+      {dishVisible && dishToDisplay &&
         <div className='font-Merriweather my-3 '>
           {/* <Link href={"/dish/"+dish.id  } className=" sm:flex py-8 " key={dish.id} > */}
-          <div className={isPartOfMeal?"":"rounded-lg border border-gray-200"+" bg-white dark:bg-gray-800 dark:border-gray-700"}>
+          <div className={isPartOfMeal ? "" : "rounded-lg border border-gray-200" + " bg-white dark:bg-gray-800 dark:border-gray-700"}>
             {dishToDisplay &&
-             
-                
+
+
               <div>
                 <div className="float-right">
-                  <ThreeDotsMenu  dish={dish} setDishVisible={setDishVisible} />
-                
-                </div>
-                <NewNoteModal openModal={openModal} setOpenModal ={setOpenModal} 
-                 meal ={meal} addDishToMeal ={handleContentChange} setDish={setDishToDisplay} dish={dishToDisplay} />
-              </div>
-                
+                  <ThreeDotsMenu dish={dish} setDishVisible={setDishVisible} />
 
-             
+                </div>
+                <NewNoteModal openModal={openModal} setOpenModal={setOpenModal}
+                  meal={meal} addDishToMeal={handleContentChange} setDish={setDishToDisplay} dish={dishToDisplay} />
+              </div>
+
+
+
 
             }
             <div className="p-3 pl-5">
-              
 
-{/*               
+
+              {/*               
               {dishToDisplay.link &&
                 <div className='mb-6  overflow-hidden	'>
                   <a href={dishToDisplay.link} target='_blank' rel='noreferrer' className='flex items-center space-x-2'>
@@ -76,8 +80,8 @@ export default function DishCard({ meal, dish,isPartOfMeal }) {
 
               <div onClick={handleContentClick}>
                 <p className="cursor-pointer mb-3 font-normal text-gray-700 dark:text-gray-400">
-                  {dishToDisplay.content && 
-                      <div dangerouslySetInnerHTML={{ __html: dishToDisplay.content }}></div>
+                  {dishToDisplay.content &&
+                    <div dangerouslySetInnerHTML={{ __html: dishToDisplay.content }}></div>
 
                   }
                 </p>

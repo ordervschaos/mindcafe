@@ -43,16 +43,16 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
     const supabase_client = await supabaseClient(session)
     showNextMeal()
 
-    
-    var eaten_meal={
-      eater_id:session.user.id,
-      meal_id:meal.id,
-      dish_id:meal.next_dish.id,
-      
+
+    var eaten_meal = {
+      eater_id: session.user.id,
+      meal_id: meal.id,
+      dish_id: meal.next_dish.id,
+
     }
     await supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index + 1 }).match({ id: meal.id });
     var eaten_meal_res = await supabase_client.from("eaten_meal").insert([eaten_meal])
-    
+
 
   }
   async function showNextDish() {
@@ -65,7 +65,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
     const supabase_client = await supabaseClient(session)
 
     meal.next_dish_index = getPrevDishIndex(meal)
-    
+
     setDishDisplayed(meal.dish[meal.next_dish_index])
     supabase_client.from("meal").update({ next_dish_index: meal.next_dish_index }).match({ id: meal.id });
 
@@ -77,11 +77,12 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
     var next_meal = mealsList[next_meal_index]
     setMealIndex(next_meal_index)
     setMeal(next_meal)
+    console.log('next_meal.next_dish',next_meal.next_dish)
     setDishDisplayed(next_meal.next_dish)
   }
   function showPrevMeal() {
     var prev_meal_index = getPrevMealIndex(cafe)
-    
+
     setMealIndex(prev_meal_index)
     var prev_meal = mealsList[prev_meal_index]
     setMeal(prev_meal)
@@ -99,7 +100,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
 
     setTimeout(() => {
       setDishAdded(null)
-    },5000)
+    }, 5000)
 
 
   }
@@ -166,15 +167,15 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                               {/* flash a success message here */}
                               {dishAdded &&
                                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                  Dish Added.  <Link href={`/dish/${dishAdded}/edit`}> View it here</Link>
+                                  Dish Added.  <Link href={`/dish/${dishAdded}`}> View it here</Link>
                                 </span>
                               }
-                            
+
 
                               <span className="float-right inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
                                 <Square2StackIcon className='h-5 w-5 text-gray-400' />{printCurrentDishIndex(meal)}/{meal.num_of_dishes}
                               </span>
-                            
+
                               <Link href={`/meal/${meal.id}/edit`} id="cafe_modal_meal_title">
                                 <h5 className="font-Merriweather h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
                               </Link>
@@ -190,20 +191,20 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                             }
                           </div>
 
-                            {dishDisplayed &&
-                          <div className="mb-auto" >
+                          {dishDisplayed &&
+                            <div className="mb-auto" >
                               <DishCard meal={meal} dish={dishDisplayed} isPartOfMeal={true} />
-                          </div>
-                            }
-                            
+                            </div>
+                          }
+
 
 
                         </div>
                       </div>
 
-                        
+
                       <div className="bottom_controls justify-self-end w-full bottom-0">
-                        
+
                         <div className="meal_controls flex w-full items-center space-x-1 pt-1  px-3 pb-2">
                           <ShowPrevDishButton showPrevDish={showPrevDish} />
                           <div className='flex-grow'></div>
@@ -213,15 +214,15 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
 
                           <ShowNextMealButton showNextMeal={showNextMeal} />
                           <div className='flex-grow'></div>
-                          <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenMealsCount={eatenMealsCount} setEatenMealsCount={setEatenMealsCount} />                          
+                          <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenMealsCount={eatenMealsCount} setEatenMealsCount={setEatenMealsCount} />
                           <div className='flex-grow'></div>
                           <NewNoteWidget meal={meal} addDishToMeal={addDishToMeal} />
 
-                          
+
 
                         </div>
                         <div className='flex w-full items-center space-x-1 p-3   px-3 bg-gray-100'>
-                          <MealCompletionStatusSteps completed={eatenMealsCount} total={mealsList.length}/>
+                          <MealCompletionStatusSteps completed={eatenMealsCount} total={mealsList.length} />
                         </div>
                       </div>
                     </div>
