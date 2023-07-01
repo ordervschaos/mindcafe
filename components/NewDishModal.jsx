@@ -98,7 +98,7 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
   };
 
   const clearEditor = () => {
-    setEditorData(null)
+    setEditorData({})
     setDraftDish(null)
     setCreatedDish(null)
     setShowEditor(true)
