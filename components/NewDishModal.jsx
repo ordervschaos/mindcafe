@@ -22,13 +22,17 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
   const [editorData, setEditorData] = useState()
   const [draftDish, setDraftDish] = useState({})
 
-  const editorId='new_dish_of_meal_'+meal.id
+  const editorId='new_dish_of_meal_'+meal?.id
 
 
   useEffect(() => {
     if (meal) {
       setDraftDish({ owner_id: session.user.id, meal_id: meal.id, content: null, accepts_responses: false })
     }
+    setShowEditor(true)
+    setShowCreatedDish(false)
+
+
   }, [meal])
 
   const handleDelete = async () => {
@@ -63,7 +67,7 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
     setShowEditor(false)
   }
 
-  const displayCreatedDish = (createdDish) => {
+  const displayCreatedDish = () => {
     setShowCreatedDish(true)
   }
 
@@ -87,6 +91,7 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
     console.log("dishCreated", dishCreated)
 
     clearEditor()
+    displayCreatedDish()
 
     return dishCreated.data[0]
 
@@ -115,13 +120,13 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
     localStorage.removeItem(editorId)
     setEditorData({})
     setDraftDish({})
-    setCreatedDish(null)
-    setShowEditor(true)
-    setShowCreatedDish(false)
     setIsAcceptResponseChecked(false)
   }
   async function handleClose() {
     // clearEditor()
+    setShowEditor(true)
+    setShowCreatedDish(false)
+    setCreatedDish(null)
     setOpenModal(false)
   }
 
