@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useSession } from "@clerk/nextjs";
 
 import Link from 'next/link'
@@ -26,6 +26,16 @@ export default function ResponseCatcher({ dish, onSave }) {
   const [showAllResponses, setShowAllResponses] = useState(false)
 
   const [response, setResponse] = useState(null)
+  var editorId = 'response_of_dish_' + dish?.id
+  useEffect(() => {
+      setShowEditor(dish.accepts_responses)
+  }, [dish.accepts_responses])
+
+  useEffect(() => {
+    editorId = 'response_of_dish_' + dish?.id
+  }, [dish?.id])
+
+
 
   const handleToggleShowAllResponsesClick = () => {
     setShowAllResponses(!showAllResponses)
@@ -86,7 +96,7 @@ export default function ResponseCatcher({ dish, onSave }) {
         <div className='flex flex-col'>
           <div className="">
             <div className=''>
-              <CKEditor id={dish.id} editorData={editorData} setEditorData={setEditorData} />
+              <CKEditor editorId={editorId} editorData={editorData} setEditorData={setEditorData} />
             </div>
           </div>
           <div className="meal_controls flex justify-end">

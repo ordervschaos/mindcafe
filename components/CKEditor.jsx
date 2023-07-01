@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState, useRef, use } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const App = ({ editorData, setEditorData, editorId}) => {
 
   console.log("editorData", editorId)
+
+
 
   const editorRef = useRef(null);
     const onReady = (editor) => {
@@ -28,11 +30,12 @@ const App = ({ editorData, setEditorData, editorId}) => {
 
     const loadEditorData = () => {
       const savedData = localStorage.getItem(editorId);
-      
-        setEditorData(savedData||editorData||{});
-      
-
+      setEditorData(savedData||editorData||{});
     };
+
+    useEffect(() => {
+      loadEditorData()
+    }, [editorId])
 
     useEffect(() => {
       // Editor initialization code...
