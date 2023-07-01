@@ -22,6 +22,8 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
   const [editorData, setEditorData] = useState()
   const [draftDish, setDraftDish] = useState({})
 
+  const editorId='new_dish_of_meal_'+meal.id
+
 
   useEffect(() => {
     if (meal) {
@@ -110,6 +112,7 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
   };
 
   const clearEditor = () => {
+    localStorage.removeItem(editorId)
     setEditorData({})
     setDraftDish({})
     setCreatedDish(null)
@@ -180,7 +183,7 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
                             {showEditor &&
                               <div className=''>
 
-                                <CKEditor editorId={'new_dish_of_meal_'+meal.id} editorData={editorData} setEditorData={setEditorData} saveDish={saveDish} />
+                                <CKEditor editorId={editorId} editorData={editorData} setEditorData={setEditorData} saveDish={saveDish} />
 
                                 <div className="flex justify-end">
 
