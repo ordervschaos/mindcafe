@@ -2,7 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-const App = ({ editorData, setEditorData}) => {
+const App = ({ editorData, setEditorData, editorId}) => {
+
+  console.log("editorData", editorId)
 
   const editorRef = useRef(null);
     const onReady = (editor) => {
@@ -13,7 +15,7 @@ const App = ({ editorData, setEditorData}) => {
     const onChange = (event, editor) => {
         const data = editor.getData();
         setEditorData(data)
-
+        localStorage.setItem(editorId, data);
     };
 
     const onBlur = (event, editor) => {
@@ -24,12 +26,27 @@ const App = ({ editorData, setEditorData}) => {
         console.log('Focus.', editor);
     };
 
+    const loadEditorData = () => {
+      const savedData = localStorage.getItem(editorId);
+      
+        setEditorData(savedData||{});
+      
+
+    };
+
+    useEffect(() => {
+      // Editor initialization code...
+    
+      loadEditorData(); // Load saved data
+    }, []);
+
 
 
     return (
       <div style={{ height: '400px' }}>
       <CKEditor
                 ref={editorRef}
+                id={editorId}
                 editor={ClassicEditor}
                 data={editorData}
                 onReady={onReady}

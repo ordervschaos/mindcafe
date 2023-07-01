@@ -118,7 +118,7 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
     setIsAcceptResponseChecked(false)
   }
   async function handleClose() {
-    clearEditor()
+    // clearEditor()
     setOpenModal(false)
   }
 
@@ -180,7 +180,7 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
                             {showEditor &&
                               <div className=''>
 
-                                <CKEditor id={'new_dish_of_meal_'+meal.id} editorData={editorData} setEditorData={setEditorData} saveDish={saveDish} />
+                                <CKEditor editorId={'new_dish_of_meal_'+meal.id} editorData={editorData} setEditorData={setEditorData} saveDish={saveDish} />
 
                                 <div className="flex justify-end">
 
