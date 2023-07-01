@@ -5,11 +5,10 @@ import ThreeDotsMenu from "components/dish/DishCard/ThreeDotsMenu";
 import CloseButton from 'components/design-base/CloseButton'
 import Link from 'next/link'
 
-
+import  DishCard from 'components/dish/DishCard/DishCard'
 
 import { supabaseClient } from 'utils/supabaseClient'
 
-import { useRef, useCallback } from 'react';
 
 import CKEditor from 'components/CKEditor';
 
@@ -18,18 +17,14 @@ import CKEditor from 'components/CKEditor';
 
 // 
 
-export default function NewDishModal({ openModal, setOpenModal, meal, addDishToMeal, setDish, dish }) {
+export default function NewDishModal({ openModal, setOpenModal, meal, addDishToMeal }) {
   const { session } = useSession();
-  const [editorData, setEditorData] = useState(dish.content)
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
-  var dishId = dish ? dish.id : null
+  const [editorData, setEditorData] = useState()
+  const [draftDish, setDraftDish] = useState(null)
 
 
-  useEffect(() => {
-    setEditorData(dish.content)
-  }, [dish])
   const handleDelete = async () => {
-    deleteDish(dishId)
+    deleteDish(createdDish.id)
     clearEditor()
     setOpenModal(false)
   }
@@ -52,40 +47,38 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
   }, [handleKeyPress]);
 
 
+  const [showEditor, setShowEditor] = useState(true)
+  const [createdDish, setCreatedDish] = useState(null)
+  const [showCreatedDish, setShowCreatedDish] = useState(false)
+
+  const hideEditor = () => {
+    setShowEditor(false)
+  }
+
+  const displayCreatedDish = (createdDish) => {
+    setShowCreatedDish(true)
+  }
 
 
-  const saveDish = useCallback(async (editorData) => {
+
+  const saveDish = async (editorData) => {
 
 
-    if (!editorData || !dishId)
+    if (!editorData)
       return
     const supabase_client = await supabaseClient(session)
     var dishCreated = await supabase_client
       .from("dish")
-      .update({ content: editorData, owner_id: session.user.id }).match({ id: dishId });
-    setShowSuccessMessage(true)
+      .insert([{ content: editorData, owner_id: session.user.id, meal_id: meal.id }])
     addDishToMeal(dishCreated.data[0])
+    setCreatedDish(dishCreated.data[0])
+    console.log("dishCreated", dishCreated)
 
-    setTimeout(() => {
-      setShowSuccessMessage(false)
-    }, 2000);
+    return dishCreated.data[0]
 
-
-
-  }, [session, meal.id])
+  }
 
 
-
-
-
-
-  // save dish every 5 seconds
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     saveDish(editorData)
-  //   }, 5000);
-  //   return () => clearInterval(interval);
-  // }, [saveDish]);
 
 
   const deleteDish = async (dishId) => {
@@ -100,22 +93,26 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
 
   const handleCheckboxChange = async () => {
     setIsAcceptResponseChecked(!isAcceptResponseChecked);
-    const supabase_client = await supabaseClient(session)
-    var acceptsResponseUpdate=await supabase_client.from('dish').update({ accepts_responses: !isAcceptResponseChecked }).match({ id: dishId })
-    console.log(acceptsResponseUpdate)
+    setDraftDish({ ...draftDish, accepts_responses: !isAcceptResponseChecked })
 
   };
 
   const clearEditor = () => {
-    setDish(null)
+    setEditorData(null)
+    setDraftDish(null)
+    setCreatedDish(null)
+    setShowEditor(true)
+    setShowCreatedDish(false)
   }
   async function handleClose() {
-    // if(!editorData)
-    //   deleteDish()
-    // else
-    saveDish(editorData)
     clearEditor()
     setOpenModal(false)
+  }
+
+  async function handleSave() {
+    await saveDish(editorData)
+    hideEditor()
+    displayCreatedDish()
   }
 
   return (
@@ -167,17 +164,25 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
                           </div>
 
                           <div className="mb-auto ">
-                            <div className=''>
+                            {showEditor &&
+                              <div className=''>
 
-                              <CKEditor id={dish.id} editorData={editorData} setEditorData={setEditorData} saveDish={saveDish} />
+                                <CKEditor id={'new_dish_of_meal_'+meal.id} editorData={editorData} setEditorData={setEditorData} saveDish={saveDish} />
 
-                              <div className="flex justify-end">
+                                <div className="flex justify-end">
+
+
+                                </div>
 
 
                               </div>
+                            }
 
-
-                            </div>
+                            {showCreatedDish && createdDish &&
+                              <div className=''>
+                                <DishCard dish={createdDish} />
+                                </div>
+                            }
 
                           </div>
 
@@ -189,7 +194,9 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
                       <div className="bottom_controls justify-self-end w-full bottom-0">
                         <div className="meal_controls flex w-full items-center space-x-1 p-3   px-3 bg-gray-100">
                          <div className="float-right">
-                            < ThreeDotsMenu dish={dish} handleDelete={handleDelete} />
+                            {createdDish && showCreatedDish &&
+                            < ThreeDotsMenu dish={createdDish} handleDelete={handleDelete} />
+                            }
                           </div>
                           <div className='flex-grow'></div>
                           <div className='pr-3'> 
@@ -200,11 +207,11 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
                             className="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
                           /> This dish accepts responses
                           </div>
-                          <button onClick={handleClose}
+                          <button onClick={handleSave}
                             type="button"
-                            className="px-6 inline-flex  text-center items-center rounded border border-transparent bg-gray-900 px-2.5 py-1.5 text-xl font-medium text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="px-2.5 inline-flex  text-center items-center rounded border border-transparent bg-gray-900   text-s font-medium text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                           >
-                            Save & Close <span className="ml-2  text-xs text-gray-400">
+                            Save <span className="ml-2  text-xs text-gray-400">
                               {/* Command + enter */}
                               ⌘ + ⏎
                             </span>
