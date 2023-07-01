@@ -1,6 +1,6 @@
 import { useSession } from "@clerk/nextjs";
 import { useState } from 'react'
-import NewNoteWidget from "components/NewNoteWidget";
+import NewDishWidget from "components/NewDishWidget";
 
 
 
@@ -117,7 +117,7 @@ export default function EditMeal({ meal, user }) {
                 </div>
                 {/* centered widget */}
                 <div className="flex justify-center items-center ">
-                  <NewNoteWidget meal={meal} addDishToMeal={addDishToMeal} />
+                  <NewDishWidget meal={meal} addDishToMeal={addDishToMeal} />
                 </div>
 
                 <div className="mt-6 max-w-3xl flow-root">

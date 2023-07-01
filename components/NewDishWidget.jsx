@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import NewNoteButton from 'components/design-base/NewNoteButton'
 import { supabaseClient } from 'utils/supabaseClient'
 import { useSession } from "@clerk/nextjs";
 
 
 import dynamic from "next/dynamic";
-const NewNoteModal = dynamic(() => import("components/NewNoteModal"), { ssr: false });
+const NewDishModal = dynamic(() => import("components/NewDishModal"), { ssr: false });
 
-export default function NewNoteWidget({ meal, addDishToMeal }) {
+export default function NewDishWidget({ meal, addDishToMeal }) {
   const { session } = useSession();
 
   const createNewDish = async () => {
@@ -34,17 +34,23 @@ export default function NewNoteWidget({ meal, addDishToMeal }) {
   }, [dish])
 
   const [openModal, setOpenModal] = useState(false);
-  const openNewNoteModal = () => {
+  const openNewDishModal = () => {
     setOpenModal(true);
   };
   return (
     <div>
-      
-        <div className="text-gray-400 cursor-pointer p-2">
-          <NewNoteButton onClick={openNewNoteModal} />
-        </div>
-      {dish && 
-        <NewNoteModal dish={dish} setDish={setDish} openModal={openModal} setOpenModal={setOpenModal} meal={meal} addDishToMeal={addDishToMeal}/>
+      <div className="text-gray-400 cursor-pointer p-2">
+        <NewNoteButton onClick={openNewDishModal} />
+      </div>
+      {dish &&
+        <NewDishModal 
+          dish={dish}
+          setDish={setDish}
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          meal={meal}
+          addDishToMeal={addDishToMeal} 
+        />
       }
     </div>
   );

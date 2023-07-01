@@ -39,11 +39,17 @@ export default function Home({ user, meals, count_meals_eaten_today }) {
     <Layout user={user}>
       <div className="mt-6 ma  x-w-3xl flow-root">
 
-        <EatenDishesCount eatenMealsCount={eatenMealsCount} handleOpenModal={handleOpenModal} total={mealsList.length}/>
+        <EatenDishesCount eatenMealsCount={eatenMealsCount} handleOpenModal={handleOpenModal} total={mealsList.length} />
 
         <ul role="list" className="lg:px-5">
-          {mealsList && mealsList.length > 0 && eatenMealsCount!=mealsList.length &&
-            <CafeModal mealIndex={mealIndex} setMealIndex={setMealIndex} openModal={openModal} setOpenModal={setOpenModal} mealsList={mealsList} setEatenMealsCount={setEatenMealsCount} eatenMealsCount={eatenMealsCount} />
+          {mealsList && mealsList.length > 0 && eatenMealsCount != mealsList.length &&
+            <CafeModal mealIndex={mealIndex} 
+            setMealIndex={setMealIndex} 
+            openModal={openModal} 
+            setOpenModal={setOpenModal} 
+            mealsList={mealsList} 
+            setEatenMealsCount={setEatenMealsCount} 
+            eatenMealsCount={eatenMealsCount} />
           }
           {mealsList && mealsList.map((meal) => (
             <div key={meal.id}>
@@ -62,14 +68,14 @@ export const getServerSideProps = withServerSideAuth(async ({ req }) => {
 
   var meals_eaten_today_ids = await getMealsEatenTodayIds(userId)
 
-  
+
   var todays_meals = getTodaysMealsList(meals, meals_eaten_today_ids)
 
 
 
 
-  
- 
+
+
 
   return {
     props: {

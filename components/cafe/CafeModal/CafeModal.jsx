@@ -6,8 +6,7 @@ import { getNextMealIndex, getPrevMealIndex } from 'utils/meal_utils'
 import MealCompletionStatusSteps from './MealCompletionStatusSteps'
 import ThreeDotsMealsMenu from './ThreeDotsMealsMenu'
 import CloseButton from 'components/design-base/CloseButton'
-import BackButton from 'components/design-base/BackButton'
-import NewNoteWidget from 'components/NewNoteWidget'
+import NewDishWidget from 'components/NewDishWidget'
 import Link from 'next/link'
 import {
   Square2StackIcon,
@@ -226,7 +225,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                           <div className='flex-grow'></div>
                           <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenMealsCount={eatenMealsCount} setEatenMealsCount={setEatenMealsCount} />
                           <div className='flex-grow'></div>
-                          <NewNoteWidget meal={meal} addDishToMeal={addDishToMeal} />
+                          <NewDishWidget meal={meal} addDishToMeal={addDishToMeal} />
 
 
 

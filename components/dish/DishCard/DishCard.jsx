@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 const ResponseCatcher = dynamic(() => import("components/ResponseCatcher"), { ssr: false });
 
-const NewNoteModal = dynamic(() => import("components/NewNoteModal"), { ssr: false });
+const NewDishModal = dynamic(() => import("components/NewDishModal"), { ssr: false });
 
 export function formatDate(dateString) {
   return new Date(`${dateString}T00:00:00Z`).toLocaleDateString('en-US', {
@@ -67,7 +67,7 @@ export default function DishCard({ meal, dish }) {
           <div className={ " bg-white dark:bg-gray-800 dark:border-gray-700"}>
             {dishToDisplay &&
               <div>
-                <NewNoteModal openModal={openModal} setOpenModal={setOpenModal}
+                <NewDishModal openModal={openModal} setOpenModal={setOpenModal}
                   meal={meal} addDishToMeal={handleContentChange} setDish={setDishToDisplay} dish={dishToDisplay} />
               </div>
             }
