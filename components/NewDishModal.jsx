@@ -100,13 +100,7 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
 
 
 
-  const deleteDish = async (dishId) => {
-    console.log("deleting dish", dishId)
-    const supabase_client = await supabaseClient(session)
-    //archive dish
-    var archived_dish=await supabase_client.from('dish').update({ archived: true }).match({ id: dishId })
-    console.log("archived_dish",archived_dish)
-  }
+ 
 
   const [isAcceptResponseChecked, setIsAcceptResponseChecked] = useState(false);
 

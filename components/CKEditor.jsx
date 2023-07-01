@@ -29,7 +29,7 @@ const App = ({ editorData, setEditorData, editorId}) => {
     const loadEditorData = () => {
       const savedData = localStorage.getItem(editorId);
       
-        setEditorData(savedData||{});
+        setEditorData(savedData||editorData||{});
       
 
     };
@@ -43,7 +43,7 @@ const App = ({ editorData, setEditorData, editorId}) => {
 
 
     return (
-      <div style={{ height: '400px' }}>
+      <div style={{width:'100%', padding:'4px'}}>
       <CKEditor
                 ref={editorRef}
                 id={editorId}
