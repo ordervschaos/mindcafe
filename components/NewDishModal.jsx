@@ -20,8 +20,14 @@ import CKEditor from 'components/CKEditor';
 export default function NewDishModal({ openModal, setOpenModal, meal, addDishToMeal }) {
   const { session } = useSession();
   const [editorData, setEditorData] = useState()
-  const [draftDish, setDraftDish] = useState(null)
+  const [draftDish, setDraftDish] = useState({})
 
+
+  useEffect(() => {
+    if (meal) {
+      setDraftDish({ owner_id: session.user.id, meal_id: meal.id, content: null, accepts_responses: false })
+    }
+  }, [meal])
 
   const handleDelete = async () => {
     deleteDish(createdDish.id)
@@ -66,13 +72,19 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
 
     if (!editorData)
       return
+
+    draftDish.content=editorData
+    setDraftDish({...draftDish, content:editorData})
+
     const supabase_client = await supabaseClient(session)
     var dishCreated = await supabase_client
       .from("dish")
-      .insert([{ content: editorData, owner_id: session.user.id, meal_id: meal.id }])
+      .insert([draftDish])
     addDishToMeal(dishCreated.data[0])
     setCreatedDish(dishCreated.data[0])
     console.log("dishCreated", dishCreated)
+
+    clearEditor()
 
     return dishCreated.data[0]
 
@@ -99,10 +111,11 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
 
   const clearEditor = () => {
     setEditorData({})
-    setDraftDish(null)
+    setDraftDish({})
     setCreatedDish(null)
     setShowEditor(true)
     setShowCreatedDish(false)
+    setIsAcceptResponseChecked(false)
   }
   async function handleClose() {
     clearEditor()
