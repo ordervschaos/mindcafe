@@ -28,11 +28,12 @@ export default function ResponseCatcher({ dish, onSave }) {
   const [response, setResponse] = useState(null)
   var editorId = 'response_of_dish_' + dish?.id
   useEffect(() => {
-      setShowEditor(dish.accepts_responses)
-  }, [dish.accepts_responses])
-
-  useEffect(() => {
     editorId = 'response_of_dish_' + dish?.id
+    setDisplayResponse(false)
+    setShowAllResponses(false)
+    setResponse(null)
+    setShowEditor(dish.accepts_responses)
+
   }, [dish?.id])
 
 
@@ -61,11 +62,12 @@ export default function ResponseCatcher({ dish, onSave }) {
           { owner_id: session.user.id, dish_id: dish.id, content: editorData },
         ]);
 
-      console.log("responseCreated", responseCreated)
 
       setResponse(responseCreated.data[0])
     }
 
+    localStorage.removeItem(editorId, editorData)
+    setEditorData(null)
 
 
 
