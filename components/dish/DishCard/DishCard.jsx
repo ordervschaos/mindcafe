@@ -65,7 +65,7 @@ export default function DishCard({ meal, dish }) {
     <div>
       {dishVisible && dishToDisplay &&
         <div className='font-Merriweather my-3'>
-          <div className={ " bg-white dark:bg-gray-800 dark:border-gray-700"}>
+          <div className={ "bg-paper dark:bg-gray-800 dark:border-gray-700"}>
             {dishToDisplay && 
 
               <div>
