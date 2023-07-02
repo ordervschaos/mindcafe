@@ -152,7 +152,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                       <div className="Content pb-20 flex-grow overflow-y-scroll pt-5  sm:pb-4">
 
 
-                          <div className="p-4 ">
+                          <div className="p-4 pr-2 ">
                             <div className="float-right">
                               <ThreeDotsMealsMenu setMeal={setMeal} meal={meal} />
                             </div>
@@ -202,10 +202,10 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                       </div>
 
 
-                      <div className="bottom_controls  border  justify-self-end w-full bottom-0">
+                      <div className="bottom_controls   justify-self-end w-full bottom-0">
 
 
-                        <div className="meal_controls flex w-full items-center space-x-1 pt-1  px-3 pb-2">
+                        <div className="dish_controls flex w-full items-center space-x-1 pt-1  px-3 pb-2">
                           <ShowPrevDishButton showPrevDish={showPrevDish} />
                           <div className='flex-grow'></div>
                           <span className="float-right inline-flex drop-shadow-none items-center rounded-full  px-2.5 py-0.5 text-xs font-medium text-dark-brown">
