@@ -68,3 +68,14 @@
   z-index: 10000 !important;
 
 }
+
+:root {
+  --dark-brown:'#5C4438',
+    --paper-burnt: '#F5ECE1'
+
+}
+
+.ck-editor {
+    color: var(--dark-brown);
+    background-color: var(--paper-burnt) !important;
+}

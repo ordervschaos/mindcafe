@@ -13,6 +13,7 @@ import CKEditor from 'components/CKEditor';
 import ShowAllResponses from 'components/ShowAllResponses';
 
 import DisplayResponse from 'components/DisplayResponse';
+import Divider from 'components/design-base/Divider';
 
 
 // 
@@ -94,6 +95,8 @@ export default function ResponseCatcher({ dish, onSave }) {
   return (
     <div>
 
+      <Divider />
+
       {dish && showEditor &&
         <div className='flex flex-col'>
           <div className="">
@@ -119,7 +122,7 @@ export default function ResponseCatcher({ dish, onSave }) {
       {dish && dish.accepts_responses &&
       <div>
         
-        <div className="flex justify-start text-smallest text-gray-400 font-sans" >
+        <div className="flex justify-start text-smallest text-light-brown font-sans" >
           <div  className='cursor-pointer' onClick={handleToggleShowAllResponsesClick}> <FiMessageCircle className='inline'/>  {showAllResponses?'hide':'show all'} responses </div>
         </div>
         <div>

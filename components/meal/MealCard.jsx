@@ -27,7 +27,7 @@ export default function MealCard({ meal }) {
             <Link className="" href={"/meal/" + meal.id + "/edit"}>
               <div className="flex">
                 <h5 className="cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
-                <div className=" mr-1 text-gray-400 ml-2 py-1 px-2 inline-block float-right border rounded ">x{meal.num_of_dishes}
+                <div className=" mr-1 text-light-brown ml-2 py-1 px-2 inline-block float-right border rounded ">x{meal.num_of_dishes}
                 </div>
               </div>
             </Link>

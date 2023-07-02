@@ -85,7 +85,7 @@ export default function Main() {
             <h1 className="mb-8 text-6xl Avenir font-semibold text-gray-900">
               Internet is a sea of mediocrity.
             </h1>
-            <h1 className="mb-8 text-6xl Avenir font-semibold text-gray-400">
+            <h1 className="mb-8 text-6xl Avenir font-semibold text-light-brown">
             More is not more anymore. Look at the sheer amount of stuff we have:
           </h1>
             
@@ -113,7 +113,7 @@ export default function Main() {
             <h1 className="mb-8 mt-48 text-6xl Avenir font-semibold text-gray-900">
               But, every now and then, we come across <b>gold</b>
             </h1>
-            <h1 className="mb-8 text-6xl Avenir font-semibold text-gray-400">
+            <h1 className="mb-8 text-6xl Avenir font-semibold text-light-brown">
             ⎯something which is worthwhile our ephemeral life here.
             </h1>
             <h1 className="mb-8 text-2xl Avenir font-semibold text-gray-600">
@@ -123,7 +123,7 @@ export default function Main() {
               <b>When you do, come here and rave about it.</b>
             </h1>
 
-            <h1 className="mb-8 text-2xl Avenir font-semibold text-gray-400">
+            <h1 className="mb-8 text-2xl Avenir font-semibold text-light-brown">
               And let like minded people find about it. 
             </h1>
           </div>
@@ -214,7 +214,7 @@ export default function Main() {
               name="email"
               type="email"
               autoComplete="email"
-              className="border border-gray-600 w-1/4 pr-2 pl-2 py-3 mt-2 rounded-md text-gray-800 font-semibold hover:border-gray-900"
+              className="border border-gray-600 w-1/4 pr-2 pl-2 py-3 mt-2 rounded-md text-dark-brown font-semibold hover:border-gray-900"
             ></input>{" "}
             <div
               className="inline-flex items-center px-14 py-3 mt-2 ml-2 font-medium text-white transition duration-500 ease-in-out transform bg-transparent border rounded-lg bg-gray-800"

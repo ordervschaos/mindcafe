@@ -9,7 +9,7 @@ export default function AdvancedSettingsWidget({meal,isMealSettingsOpen,isDanger
   return (
     <div className="mt-3 bg-gray-100 p-3 border rounded-md">
 
-    <div className="text-gray-400 cursor-pointer" onClick={toggleMealSettingsVisibility}>
+    <div className="text-light-brown cursor-pointer" onClick={toggleMealSettingsVisibility}>
     <Cog6ToothIcon className="w-5 h-5 inline-block"/> 
     <span className="ml-2 mr-1" >Advanced Settings</span>
     {isMealSettingsOpen&&
@@ -35,7 +35,7 @@ export default function AdvancedSettingsWidget({meal,isMealSettingsOpen,isDanger
                       <div className="row col-span-4"></div>
                       <div className="row col-span-2">
 
-                        <div className="text-gray-400 cursor-pointer" onClick={toggleDangerousSettingsVisibility}>
+                        <div className="text-light-brown cursor-pointer" onClick={toggleDangerousSettingsVisibility}>
                           <ExclamationTriangleIcon className="w-5 h-5 inline-block"/> 
                           <span className="ml-2 mr-1" >Dangerous Settings</span>
                           {isDangerousSettingsOpen&&

@@ -183,8 +183,8 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                             {meal.link &&
                               <div className='mb-6  overflow-hidden	'>
                                 <a href={meal.link} target='_blank' rel='noreferrer' className='flex items-center space-x-2'>
-                                  <LinkIcon className='h-5 w-5 text-gray-400' />
-                                  <span className='text-gray-400 font-light'>{meal.link}</span>
+                                  <LinkIcon className='h-5 w-5 text-light-brown' />
+                                  <span className='text-light-brown font-light'>{meal.link}</span>
                                 </a>
                               </div>
                             }
@@ -208,8 +208,8 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                         <div className="meal_controls flex w-full items-center space-x-1 pt-1  px-3 pb-2">
                           <ShowPrevDishButton showPrevDish={showPrevDish} />
                           <div className='flex-grow'></div>
-                          <span className="float-right inline-flex drop-shadow-none items-center rounded-full  px-2.5 py-0.5 text-xs font-medium text-gray-800">
-                            <Square2StackIcon className='h-5 w-5 text-gray-400' />{printCurrentDishIndex(meal)}/{meal.num_of_dishes}
+                          <span className="float-right inline-flex drop-shadow-none items-center rounded-full  px-2.5 py-0.5 text-xs font-medium text-dark-brown">
+                            <Square2StackIcon className='h-5 w-5 text-light-brown' />{printCurrentDishIndex(meal)}/{meal.num_of_dishes}
                           </span>
                           <div className='flex-grow'></div>
 

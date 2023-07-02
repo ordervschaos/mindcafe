@@ -95,7 +95,7 @@ export default function FocusMenu({user}) {
                         >
                           <item.icon
                             className={classNames(
-                              item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
+                              item.current ? 'text-gray-500' : 'text-light-brown group-hover:text-gray-500',
                               'mr-4 flex-shrink-0 h-6 w-6'
                             )}
                             aria-hidden="true"

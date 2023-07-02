@@ -15,7 +15,7 @@ export default function NewDishWidget({ meal, addDishToMeal }) {
   };
   return (
     <div>
-      <div className="text-gray-400 cursor-pointer p-2">
+      <div className="text-light-brown cursor-pointer p-2">
         <NewNoteButton onClick={openNewDishModal} />
       </div>
  

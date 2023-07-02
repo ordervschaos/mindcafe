@@ -68,8 +68,8 @@ export default function CafeMealCard({ meal, setEatenMealsCount, eatenMealsCount
                 <Link className="" href={"/meal/" + meal.id + "/edit"}>
                   <div className="">
                     {meal.num_of_dishes > 1 &&
-                      <span className="float-right inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
-                        <Square2StackIcon className='h-5 w-5 text-gray-400' />{meal.num_of_dishes}
+                      <span className="float-right inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-dark-brown">
+                        <Square2StackIcon className='h-5 w-5 text-light-brown' />{meal.num_of_dishes}
                       </span>
                     }
                     <h5 className="h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
@@ -78,8 +78,8 @@ export default function CafeMealCard({ meal, setEatenMealsCount, eatenMealsCount
                 {meal.link &&
                   <div className='mb-6  overflow-hidden	'>
                     <a href={meal.link} target='_blank' rel='noreferrer' className='flex items-center space-x-2'>
-                      <LinkIcon className='h-5 w-5 text-gray-400' />
-                      <span className='text-gray-400 font-light'>{meal.link}</span>
+                      <LinkIcon className='h-5 w-5 text-light-brown' />
+                      <span className='text-light-brown font-light'>{meal.link}</span>
                     </a>
                   </div>
                 }

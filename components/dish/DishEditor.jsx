@@ -75,7 +75,7 @@ export default function DishEditor({ dish }) {
         type="button"
         className="px-6 inline-flex  text-center items-center rounded border border-transparent bg-gray-900 px-2.5 py-1.5 text-xl font-medium text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
       >
-        Save  <span className="ml-2  text-xs text-gray-400">
+        Save  <span className="ml-2  text-xs text-light-brown">
           {/* Command + enter */}
           ⌘ + ⏎
         </span>

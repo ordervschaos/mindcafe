@@ -91,8 +91,8 @@ export default function CafeMealCard({ meal, setEatenMealsCount, eatenMealsCount
               {meal.link &&
                 <div className='mb-6  overflow-hidden	'>
                   <a href={meal.link} target='_blank' rel='noreferrer' className='flex items-center space-x-2'>
-                    <LinkIcon className='h-5 w-5 text-gray-400' />
-                    <span className='text-gray-400 font-light'>{meal.link}</span>
+                    <LinkIcon className='h-5 w-5 text-light-brown' />
+                    <span className='text-light-brown font-light'>{meal.link}</span>
                   </a>
                 </div>
 

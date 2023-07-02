@@ -69,7 +69,7 @@
                             type="button"
                             className="px-2.5 inline-flex  text-center items-center rounded border border-transparent bg-gray-900   text-s font-medium text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                           >
-                            Save <span className="ml-2  text-xs text-gray-400">
+                            Save <span className="ml-2  text-xs text-light-brown">
                               {/* Command + enter */}
                               ⌘ + ⏎
                             </span>

@@ -27,9 +27,9 @@ export default function ShowNextDishButton({  showNextDish }) {
 
 
     <div>
-      <button onClick={showNextDish} className="w-12 h-12 flex justify-center py-4 cursor-pointer text-gray-400 rounded-full hover:shadow-lg">
+      <button onClick={showNextDish} className="w-12 h-12 flex justify-center py-4 cursor-pointer text-light-brown rounded-full hover:shadow-lg">
 
-          <FiArrowRight  className="h-15 w-15 text-gray-400" />
+          <FiArrowRight  className="h-15 w-15 text-light-brown" />
 
       </button>
     </div>

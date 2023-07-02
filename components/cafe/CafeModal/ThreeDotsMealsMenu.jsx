@@ -32,7 +32,7 @@ export default function ThreeDotsMealsMenu({ meal, setMeal }) {
       <div>
         <Menu.Button className="rounded-md hover:bg-gray-50 ">
 
-          <EllipsisVerticalIcon onClick={showThreeDotMenu ? () => setThreeDotMenu(false) : () => setThreeDotMenu(true)} className="h-5 w-5 text-gray-400" aria-hidden="true" />
+          <EllipsisVerticalIcon onClick={showThreeDotMenu ? () => setThreeDotMenu(false) : () => setThreeDotMenu(true)} className="h-5 w-5 text-light-brown" aria-hidden="true" />
 
         </Menu.Button>
       </div>

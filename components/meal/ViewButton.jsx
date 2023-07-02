@@ -4,7 +4,7 @@ export default function ViewButton({handleMealPreviewClick}) {
     <div onClick={handleMealPreviewClick}>
       <button className="flex items-center justify-center cursor-pointer w-12 h-12 rounded-full
                   bg-white border border-gray-400 hover:bg-red-500 text-white cursor-pointer">
-          <FiMaximize  className="text-gray-400 hover:text-white" />
+          <FiMaximize  className="text-light-brown hover:text-white" />
       </button>
     </div>
 

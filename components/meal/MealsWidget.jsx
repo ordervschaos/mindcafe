@@ -36,7 +36,7 @@ export default function MealsWidget() {
       </div>
       <a
           href={"/meal/create"}
-          className={classNames('pl-4','text-gray-400 hover:bg-gray-50 hover:text-gray-900',
+          className={classNames('pl-4','text-light-brown hover:bg-gray-50 hover:text-gray-900',
             'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
           )}
           >
