@@ -1,7 +1,7 @@
 import { useSession } from "@clerk/nextjs";
 
 import { useEffect, useState } from "react";
-
+import CKPreview from "components/CKPreview";
 
 
 import dynamic from "next/dynamic";
@@ -79,7 +79,8 @@ export default function DishCard({ meal, dish }) {
                     <div onClick={handleContentClick}>
                       <p className="cursor-pointer mb-3 font-normal text-gray-700 dark:text-gray-400">
                         {dishToDisplay.content &&
-                          <div dangerouslySetInnerHTML={{ __html: dishToDisplay.content }}></div>
+                          <CKPreview content={dishToDisplay.content} />
+
                         }
                       </p>
                     </div>
