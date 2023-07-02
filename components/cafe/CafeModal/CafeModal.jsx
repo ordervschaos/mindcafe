@@ -216,7 +216,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                           <ShowNextDishButton showNextDish={showNextDish} />
                         </div>
 
-                        <div className="meal_controls  flex w-full items-center space-x-1 p-3 px-3">
+                        <div className="meal_controls bg-paper-burnt drop-shadow flex w-full items-center space-x-1 p-3 px-3">
                           <div className='mx-3'>
 
                           </div>

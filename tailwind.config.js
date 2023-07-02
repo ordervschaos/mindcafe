@@ -21,6 +21,7 @@ module.exports = {
       },
       colors: {
         'paper': '#FFFBF6',
+        'paper-burnt': '#F5ECE1',
       },
       fontFamily: {
         Merriweather: ["Merriweather", "cursive"],
