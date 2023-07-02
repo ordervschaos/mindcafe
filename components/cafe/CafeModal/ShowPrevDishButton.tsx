@@ -4,8 +4,7 @@ import { FiArrowLeft } from 'react-icons/fi'
 export default function ShowPrevDishButton({  showPrevDish }) {
   return (
     <div>
-      <button  onClick={showPrevDish} className="flex items-center justify-center cursor-pointer w-12 h-12 rounded-full content-center	 justify-center items-center
-                  bg-white  hover:bg-red-500 text-white">
+      <button  onClick={showPrevDish} className="w-12 h-12 py-4  flex justify-center cursor-pointer text-gray-400 rounded-full hover:shadow-lg">
           <FiArrowLeft  className="h-15 w-15  text-gray-400" aria-hidden="true" />
       </button>
     </div>

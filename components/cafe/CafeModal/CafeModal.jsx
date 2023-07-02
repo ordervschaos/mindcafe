@@ -142,14 +142,14 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                   leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
                   <Dialog.Panel className="h-full relative transform   bg-white text-left shadow-xl transition-all w-full">
-                    <div className='flex h-full flex-col'>
-                      <div className='flex w-full items-center space-x-1  bg-gray-100'>
+                    <div className='bg-paper flex h-full flex-col'>
+                      <div className='flex w-full items-center space-x-1  '>
                         <MealCompletionStatusSteps completed={eatenMealsCount} total={mealsList.length} />
                       </div>
                       <div className="flex w-full justify-end p-2">
                         <CloseButton onClick={handleClose} />
                       </div>
-                      <div className="Content pb-20 flex-grow overflow-y-scroll bg-white pt-5  sm:pb-4">
+                      <div className="Content pb-20 flex-grow overflow-y-scroll pt-5  sm:pb-4">
 
 
                           <div className="p-4 ">
@@ -202,13 +202,13 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                       </div>
 
 
-                      <div className="bottom_controls justify-self-end w-full bottom-0">
+                      <div className="bottom_controls  border  justify-self-end w-full bottom-0">
 
 
                         <div className="meal_controls flex w-full items-center space-x-1 pt-1  px-3 pb-2">
                           <ShowPrevDishButton showPrevDish={showPrevDish} />
                           <div className='flex-grow'></div>
-                          <span className="float-right inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
+                          <span className="float-right inline-flex drop-shadow-none items-center rounded-full  px-2.5 py-0.5 text-xs font-medium text-gray-800">
                             <Square2StackIcon className='h-5 w-5 text-gray-400' />{printCurrentDishIndex(meal)}/{meal.num_of_dishes}
                           </span>
                           <div className='flex-grow'></div>
@@ -216,14 +216,14 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                           <ShowNextDishButton showNextDish={showNextDish} />
                         </div>
 
-                        <div className="meal_controls flex w-full items-center space-x-1 p-3   px-3 bg-gray-100">
+                        <div className="meal_controls  flex w-full items-center space-x-1 p-3 px-3">
                           <div className='mx-3'>
-                            <ShowPrevMealButton showPrevMeal={showPrevMeal} />
-                            <ShowNextMealButton showNextMeal={showNextMeal} />
 
                           </div>
                           <div className='flex-grow'></div>
+                            <ShowPrevMealButton showPrevMeal={showPrevMeal} />
                           <DoneButton meal={meal} markDone={markDone} setIsDone={setIsDone} isDone={isDone} eatenMealsCount={eatenMealsCount} setEatenMealsCount={setEatenMealsCount} />
+                            <ShowNextMealButton showNextMeal={showNextMeal} />
                           <div className='flex-grow'></div>
                           <NewDishWidget meal={meal} addDishToMeal={addDishToMeal} />
 
