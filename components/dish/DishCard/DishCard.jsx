@@ -64,7 +64,7 @@ export default function DishCard({ meal, dish }) {
   return (
     <div>
       {dishVisible && dishToDisplay &&
-        <div className='font-Merriweather my-3 text-dark-brown'>
+        <div className='font-Merriweather my-3 text-gray-800'>
           <div className={ "bg-paper dark:bg-gray-800 dark:border-gray-700"}>
             {dishToDisplay && 
 
@@ -77,7 +77,7 @@ export default function DishCard({ meal, dish }) {
                   <div className="p-4">
 
                     <div onClick={handleContentClick}>
-                      <p className="cursor-pointer mb-3 font-normal text-dark-brown dark:text-light-brown">
+                      <p className="cursor-pointer mb-3 font-normal text-gray-800 dark:text-light-brown">
                         {dishToDisplay.content &&
                           <CKPreview content={dishToDisplay.content} />
 

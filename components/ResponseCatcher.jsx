@@ -95,24 +95,26 @@ export default function ResponseCatcher({ dish, onSave }) {
   return (
     <div>
 
-      <Divider />
 
       {dish && showEditor &&
-        <div className='flex flex-col'>
-          <div className="">
-            <div className=''>
-              <CKEditor editorId={editorId} editorData={editorData} setEditorData={setEditorData} />
+        <div>
+          <Divider />
+          <div className='flex flex-col'>
+            <div className="">
+              <div className=''>
+                <CKEditor editorId={editorId} editorData={editorData} setEditorData={setEditorData} />
+              </div>
+            </div>
+            <div className="meal_controls flex justify-end">
+              <button onClick={handleSave}
+                type="button"
+                className="mt-4 px-3 inline-flex   text-center items-center rounded border border-transparent bg-paper-burnt px-2.5 py-1.5   text-gray-800 shadow-sm hover:drop-shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              >
+                Save response
+              </button>
             </div>
           </div>
-          <div className="meal_controls flex justify-end">
-            <button onClick={handleSave}
-              type="button"
-              className="mt-4 px-3 inline-flex   text-center items-center rounded border border-transparent bg-paper-burnt px-2.5 py-1.5   text-dark-brown shadow-sm hover:drop-shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            >
-              Save response
-            </button>
-          </div>
-        </div>
+      </div>
       }
 
       {dish && displayResponse && response &&

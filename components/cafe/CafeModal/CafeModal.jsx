@@ -175,7 +175,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
 
                               <div className='flex'>
                                 <Link href={`/meal/${meal.id}/edit`} id="cafe_modal_meal_title">
-                                  <h5 className="font-Merriweather h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-dark-brown dark:text-white">{meal.name}</h5>
+                                  <h5 className="font-Merriweather h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-800 dark:text-white">{meal.name}</h5>
                                 </Link>
                               </div>
                             </div>
@@ -208,7 +208,7 @@ export default function CafeModal({ openModal, setOpenModal, mealsList, mealInde
                         <div className="dish_controls flex w-full items-center space-x-1 pt-1  px-3 pb-2">
                           <ShowPrevDishButton showPrevDish={showPrevDish} />
                           <div className='flex-grow'></div>
-                          <span className="float-right inline-flex drop-shadow-none items-center rounded-full  px-2.5 py-0.5 text-xs font-medium text-dark-brown">
+                          <span className="float-right inline-flex drop-shadow-none items-center rounded-full  px-2.5 py-0.5 text-xs font-medium text-gray-800">
                             <Square2StackIcon className='h-5 w-5 text-light-brown' />{printCurrentDishIndex(meal)}/{meal.num_of_dishes}
                           </span>
                           <div className='flex-grow'></div>

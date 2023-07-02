@@ -68,11 +68,11 @@ export default function CafeMealCard({ meal, setEatenMealsCount, eatenMealsCount
                 <Link className="" href={"/meal/" + meal.id + "/edit"}>
                   <div className="">
                     {meal.num_of_dishes > 1 &&
-                      <span className="float-right inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-dark-brown">
+                      <span className="float-right inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
                         <Square2StackIcon className='h-5 w-5 text-light-brown' />{meal.num_of_dishes}
                       </span>
                     }
-                    <h5 className="h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-dark-brown dark:text-white">{meal.name}</h5>
+                    <h5 className="h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-800 dark:text-white">{meal.name}</h5>
                   </div>
                 </Link>
                 {meal.link &&

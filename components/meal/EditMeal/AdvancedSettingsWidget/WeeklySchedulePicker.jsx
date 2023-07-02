@@ -51,7 +51,7 @@ export default function WeeklySchedulePicker({ meal }) {
 
     <fieldset className="space-y-5">
       <legend className="sr-only">Notifications</legend>
-      <ul className="items-center w-full text-sm font-medium text-dark-brown bg-white rounded-lg border border-gray-200 sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+      <ul className="items-center w-full text-sm font-medium text-gray-800 bg-white rounded-lg border border-gray-200 sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
 
       {weeksDays.map((day, index) => {
         return (
@@ -70,7 +70,7 @@ export default function WeeklySchedulePicker({ meal }) {
               />
             </div>
             <div className="ml-3 text-sm">
-              <label htmlFor={day.label} className="font-medium text-dark-brown">
+              <label htmlFor={day.label} className="font-medium text-gray-800">
                 {day.label}
               </label>
             </div>

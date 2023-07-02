@@ -79,7 +79,7 @@ export default function CafeMealCard({ meal, setEatenMealsCount, eatenMealsCount
               <div className="flex justify-between items-center">
                 <div className="">
                   <Link href={"/meal/"+meal.id + "/edit"  } className=" sm:flex py-8 " key={meal.id} >
-                    <h5 className="cursor-pointer mb-2 text-xl text-dark-brown font-bold">{meal.name}</h5>
+                    <h5 className="cursor-pointer mb-2 text-xl text-gray-800 font-bold">{meal.name}</h5>
                   </Link>
                 </div>
                   {isDone &&

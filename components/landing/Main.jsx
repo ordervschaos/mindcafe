@@ -36,14 +36,14 @@ export default function Main() {
   };
 
   return (
-    <section className="text-dark-brown body-font">
+    <section className="text-gray-800 body-font">
       <section className=" flex max-w-6xl px-4 mx-auto md:items-center md:justify-between md:flex-row ">
         <div className="  pt-48 lg:py-24  md:py-20  flex    md:flex-row  items-justify">
           <div  className="mx-5 sm:mx-12 md:mx-12 text-center sm:w-full  lg:flex-grow md:w-full  pt-6 flex flex-col  mb-40 ">
-            <h1  className="mb-5 text-start sm:text-6xl text-5xl items-center Avenir xl:w-2/2 text-dark-brown">
+            <h1  className="mb-5 text-start sm:text-6xl text-5xl items-center Avenir xl:w-2/2 text-gray-800">
               A place for sharing and discovering <b>greatness</b>
             </h1>
-            {/* <p className="mb-4 xl:w-3/4 text-dark-brown text-lg">
+            {/* <p className="mb-4 xl:w-3/4 text-gray-800 text-lg">
               We are here to help you find the gems in it.
             </p> */}
             <div className="flex">
@@ -82,7 +82,7 @@ export default function Main() {
       <section className="mx-auto scroll-my-36	" ref={ref}   >
         <div className="container px-5 mx-auto  lg:px-24 ">
           <div className="flex flex-col w-full mb-4 text-left lg:text-center">
-            <h1 className="mb-8 text-6xl Avenir font-semibold text-dark-brown">
+            <h1 className="mb-8 text-6xl Avenir font-semibold text-gray-800">
               Internet is a sea of mediocrity.
             </h1>
             <h1 className="mb-8 text-6xl Avenir font-semibold text-light-brown">
@@ -97,29 +97,29 @@ export default function Main() {
                   <div className="block font-bold text-2xl">
                     {statistic.number}+
                   </div>
-                  <div className="block text-dark-brown text-lg font-medium">
+                  <div className="block text-gray-800 text-lg font-medium">
                     {statistic.description}
                   </div>
                 </div>
               ))}
             </div>
           </div>
-          <h1 className="mb-8 mt-12 text-2xl Avenir font-semibold text-dark-brown text-center">
+          <h1 className="mb-8 mt-12 text-2xl Avenir font-semibold text-gray-800 text-center">
              Bottom line: We have more content than what we can consume in <span className="text-red-900">20000</span> life-times.
           </h1>
         </div>
         <div className="container px-5 mx-auto lg:px-24 ">
           <div className="flex flex-col w-full mb-4 text-left lg:text-center">
-            <h1 className="mb-8 mt-48 text-6xl Avenir font-semibold text-dark-brown">
+            <h1 className="mb-8 mt-48 text-6xl Avenir font-semibold text-gray-800">
               But, every now and then, we come across <b>gold</b>
             </h1>
             <h1 className="mb-8 text-6xl Avenir font-semibold text-light-brown">
             ⎯something which is worthwhile our ephemeral life here.
             </h1>
-            <h1 className="mb-8 text-2xl Avenir font-semibold text-dark-brown">
+            <h1 className="mb-8 text-2xl Avenir font-semibold text-gray-800">
             
             </h1>
-            <h1 className="mb-8 mt-24 text-2xl Avenir font-semibold text-dark-brown">
+            <h1 className="mb-8 mt-24 text-2xl Avenir font-semibold text-gray-800">
               <b>When you do, come here and rave about it.</b>
             </h1>
 
@@ -130,36 +130,36 @@ export default function Main() {
         </div>
         {/* <div className="container px-5 mx-auto lg:px-24 ">
           <div ="flex flex-col w-full mb-4 text-left lg:text-center">
-            <h1 className="mb-8 text-6xl Avenir font-semibold text-dark-brown">
+            <h1 className="mb-8 text-6xl Avenir font-semibold text-gray-800">
               We have 4000 weeks to live
             </h1>
-            <h1 className="mb-8 text-2xl Avenir font-semibold text-dark-brown">
+            <h1 className="mb-8 text-2xl Avenir font-semibold text-gray-800">
               The limit of the internet is not the amount of content, but the amount of time we have to consume it.
             </h1>
           </div>
         </div>
         <div className="container px-5 mx-auto lg:px-24 ">
           <div className="flex flex-col w-full mb-4 text-left lg:text-center">
-            <h1 className="mb-8 text-6xl Avenir font-semibold text-dark-brown">
+            <h1 className="mb-8 text-6xl Avenir font-semibold text-gray-800">
               More is not more anymore
             </h1>
-            <h1 className="mb-8 text-2xl Avenir font-semibold text-dark-brown">
+            <h1 className="mb-8 text-2xl Avenir font-semibold text-gray-800">
               Stop looking for the new stuff--it's mostly going to be more of mediocrity.
             </h1>
-            <h1 className="mb-8 text-2xl Avenir font-semibold text-dark-brown">
+            <h1 className="mb-8 text-2xl Avenir font-semibold text-gray-800">
                It's time to start digging for gold.
             </h1>
           </div>
         </div> */}
         <div className="container mt-24 px-5 mx-auto lg:px-24 ">
           <div className="flex flex-col w-full mb-4 text-left lg:text-center">
-            <h1 className="mb-8 mt-14 text-6xl Avenir font-semibold text-dark-brown">
+            <h1 className="mb-8 mt-14 text-6xl Avenir font-semibold text-gray-800">
               So, what gold have you found recently?
             </h1>
             <button className="bg-gray-800 m-auto p-4 rounded text-white mt-12 mb-8  text-2xl Avenir font-semibold">
               <Link href="/cafe">Start sharing here</Link>
             </button>
-            <h1 className="text-center mt-12 mx-auto mb-8 text-2xl Avenir font-semibold text-dark-brown">
+            <h1 className="text-center mt-12 mx-auto mb-8 text-2xl Avenir font-semibold text-gray-800">
 
               And, checkout the
 
@@ -182,13 +182,13 @@ export default function Main() {
 
         {/* <div className="container px-5 mt-72 mx-auto lg:px-24 ">
           <div className="flex flex-col w-full mb-4 text-left lg:text-center">
-            <h1 className="mb-8 mt-14 text-6xl Avenir font-semibold text-dark-brown">
+            <h1 className="mb-8 mt-14 text-6xl Avenir font-semibold text-gray-800">
               So, you are asking why not go for the most popular stuff?
             </h1>
-            <h1 className="mb-8 text-2xl Avenir font-semibold text-dark-brown">
+            <h1 className="mb-8 text-2xl Avenir font-semibold text-gray-800">
               You know the answer deep down. Try looking for the most popular books, most viewed Youtube videos, most listened to songs. Now, think about your favourite books, songs, videos.
             </h1>
-            <h1 className="mb-8 text-2xl Avenir font-semibold text-dark-brown">
+            <h1 className="mb-8 text-2xl Avenir font-semibold text-gray-800">
             Short answer:
               <div className="underline">
                 <Link href="https://hbr.org/2002/11/the-flaw-of-averages">
@@ -203,10 +203,10 @@ export default function Main() {
       <section className="relative">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
           {/* <div className="py-24 md:py-36">
-            <h1 className="mb-5 text-6xl Avenir font-semibold text-dark-brown">
+            <h1 className="mb-5 text-6xl Avenir font-semibold text-gray-800">
               Subscribe to our newsletter
             </h1>
-            <h1 className="mb-9 text-2xl font-semibold text-dark-brown">
+            <h1 className="mb-9 text-2xl font-semibold text-gray-800">
               Enter your email address and we&apos;ll send you a curated list of greatness every week.
             </h1>
             <input
@@ -214,7 +214,7 @@ export default function Main() {
               name="email"
               type="email"
               autoComplete="email"
-              className="border border-gray-600 w-1/4 pr-2 pl-2 py-3 mt-2 rounded-md text-dark-brown font-semibold hover:border-gray-900"
+              className="border border-gray-600 w-1/4 pr-2 pl-2 py-3 mt-2 rounded-md text-gray-800 font-semibold hover:border-gray-900"
             ></input>{" "}
             <div
               className="inline-flex items-center px-14 py-3 mt-2 ml-2 font-medium text-white transition duration-500 ease-in-out transform bg-transparent border rounded-lg bg-gray-800"

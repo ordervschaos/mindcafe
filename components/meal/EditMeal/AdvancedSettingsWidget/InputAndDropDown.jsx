@@ -41,7 +41,7 @@ export default function ExpiryDropDown({ meal }) {
   }, [expiryUnit,expiryValue,updateExpiry])
   return (
     <div>
-      <label htmlFor="price" className="block text-sm font-medium text-dark-brown">
+      <label htmlFor="price" className="block text-sm font-medium text-gray-800">
         Expires in
       </label>
       <form className="relative mt-1 rounded-md shadow-sm" onChange={updateExpiry}>
