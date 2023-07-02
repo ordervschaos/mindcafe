@@ -95,8 +95,8 @@ export default function Layout({children,user}) {
                           href={item.href}
                           className={classNames(
                             item.current
-                              ? 'bg-gray-100 text-gray-900'
-                              : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                              ? 'bg-gray-100 text-dark-brown'
+                              : 'text-dark-brown hover:bg-gray-50 hover:text-dark-brown',
                             'group flex items-center px-2 py-2 text-base font-medium rounded-md'+item.additionalClasses
                           )}
                         >
@@ -145,7 +145,7 @@ export default function Layout({children,user}) {
                     key={item.name}
                     href={item.href}
                     className={classNames(
-                      item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                      item.current ? 'bg-gray-100 text-dark-brown' : 'text-dark-brown hover:bg-gray-50 hover:text-dark-brown',
                       'group flex items-center px-8  py-2 text-sm font-medium rounded-md' + item.additionalClasses
                     )}
                   >
@@ -182,7 +182,7 @@ export default function Layout({children,user}) {
           <div className="sticky top-0 z-10 bg-white pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden">
             <button
               type="button"
-              className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-500 hover:text-dark-brown focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
               onClick={() => setSidebarOpen(true)}
             >
               <span className="sr-only">Open sidebar</span>

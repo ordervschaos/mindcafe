@@ -77,7 +77,7 @@ export default function DishCard({ meal, dish }) {
                   <div className="p-4">
 
                     <div onClick={handleContentClick}>
-                      <p className="cursor-pointer mb-3 font-normal text-gray-700 dark:text-light-brown">
+                      <p className="cursor-pointer mb-3 font-normal text-dark-brown dark:text-light-brown">
                         {dishToDisplay.content &&
                           <CKPreview content={dishToDisplay.content} />
 

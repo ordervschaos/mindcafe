@@ -171,7 +171,7 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
                             <div className="">
 
                               <Link href={`/meal/${meal.id}/edit`} id="cafe_modal_meal_title">
-                                <h5 className="font-Merriweather h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
+                                <h5 className="font-Merriweather h-10  cursor-pointer mb-2 text-2xl font-bold tracking-tight text-dark-brown dark:text-white">{meal.name}</h5>
                               </Link>
                             </div>
 

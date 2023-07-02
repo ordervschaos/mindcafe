@@ -25,9 +25,9 @@ export default function MealsWidget() {
         {
           borderBottom: '1px solid #DDD',
         }}>
-        <a className='text-gray-900 font-bold	px-2'>Meals</a>
+        <a className='text-dark-brown font-bold	px-2'>Meals</a>
         {/* right floated link */}
-        <Link href="/meals" className='float-right text-gray-600 hover:bg-gray-50 hover:text-gray-900 px-2 text-sm font-medium rounded-md'>
+        <Link href="/meals" className='float-right text-dark-brown hover:bg-gray-50 hover:text-dark-brown px-2 text-sm font-medium rounded-md'>
           See all
         </Link>
       </div>
@@ -36,7 +36,7 @@ export default function MealsWidget() {
       </div>
       <a
           href={"/meal/create"}
-          className={classNames('pl-4','text-light-brown hover:bg-gray-50 hover:text-gray-900',
+          className={classNames('pl-4','text-light-brown hover:bg-gray-50 hover:text-dark-brown',
             'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
           )}
           >
@@ -51,8 +51,8 @@ export default function MealsWidget() {
           href={"/meal/" + item.id + "/edit"}
           className={classNames('pl-4',
             item.current
-              ? 'bg-gray-100 text-gray-900'
-              : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+              ? 'bg-gray-100 text-dark-brown'
+              : 'text-dark-brown hover:bg-gray-50 hover:text-dark-brown',
             'group flex items-center px-2 py-2 text-sm font-medium rounded-md' + item.additionalClasses
           )}
           >

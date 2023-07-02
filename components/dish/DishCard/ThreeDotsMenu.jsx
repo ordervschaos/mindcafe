@@ -49,14 +49,14 @@ export default function ThreeDotsMenu({ dish,handleDelete }) {
               {/* delete dish */}
               <a
                 href="#"
-                className='text-gray-700 w-full block  text-sm'
+                className='text-dark-brown w-full block  text-sm'
               >
                 <div className='inline-block m-2'>
                   <button
                     onClick={() => {
                       handleDelete(dish.id)
                     }}
-                    className='text-gray-700 w-full block px-4 py-2 text-sm'
+                    className='text-dark-brown w-full block px-4 py-2 text-sm'
                   >
                     Delete
                   </button>

@@ -52,7 +52,7 @@ export default function ThreeDotsMealsMenu({ meal, setMeal }) {
               {/* delete meal */}
               <a
                 href="#"
-                className='text-gray-700 w-full block  text-sm'
+                className='text-dark-brown w-full block  text-sm'
               >
                 <div className='inline-block m-2'>
                   
@@ -61,7 +61,7 @@ export default function ThreeDotsMealsMenu({ meal, setMeal }) {
                       setThreeDotMenu(false)
                       toggleArchiveMeal(meal.id)
                     }}
-                    className='text-gray-700 w-full block px-4 py-2 text-sm'
+                    className='text-dark-brown w-full block px-4 py-2 text-sm'
                   >
                     {meal.archived && <span>Unarchive</span>}
                     {!meal.archived && <span>Archive</span>}

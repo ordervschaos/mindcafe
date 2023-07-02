@@ -5,13 +5,13 @@ export default function Footer() {
       <div className="max-w-6xl xl:max-w-6xl mx-auto divide-y divide-gray-200 px-4 sm:px-6 md:px-8">
         <ul className="Footer_nav__2rFid text-sm font-medium  sm:pb-20 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-10">
           <li className="space-y-5 row-span-2">
-            <h2 className="text-sm tracking-wide text-gray-900 uppercase font-bold">
+            <h2 className="text-sm tracking-wide text-dark-brown uppercase font-bold">
               Company
             </h2>
             <ul className="space-y-4 text-md">
               <li>
                 <Link
-                  className="hover:text-gray-900 transition-colors duration-200 text-2xl"
+                  className="hover:text-dark-brown transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Jobs
@@ -19,7 +19,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  className="hover:text-gray-900 transition-colors duration-200 text-2xl"
+                  className="hover:text-dark-brown transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Merch
@@ -27,7 +27,7 @@ export default function Footer() {
               </li>{" "}
               <li>
                 <Link
-                  className="hover:text-gray-900 transition-colors duration-200 text-2xl"
+                  className="hover:text-dark-brown transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Brand
@@ -35,7 +35,7 @@ export default function Footer() {
               </li>{" "}
               <li>
                 <Link
-                  className="hover:text-gray-900 transition-colors duration-200 text-2xl"
+                  className="hover:text-dark-brown transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Meetups
@@ -44,13 +44,13 @@ export default function Footer() {
             </ul>
           </li>
           <li className="space-y-5 row-span-2">
-            <h2 className="text-sm tracking-wide text-gray-900 uppercase font-bold">
+            <h2 className="text-sm tracking-wide text-dark-brown uppercase font-bold">
               Newsroom
             </h2>
             <ul className="space-y-4">
               <li>
                 <Link
-                  className="hover:text-gray-900 transition-colors duration-200 text-2xl"
+                  className="hover:text-dark-brown transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   News
@@ -58,7 +58,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  className="hover:text-gray-900 transition-colors duration-200 text-2xl"
+                  className="hover:text-dark-brown transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Press
@@ -66,7 +66,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  className="hover:text-gray-900 transition-colors duration-200 text-2xl"
+                  className="hover:text-dark-brown transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Blog
@@ -75,13 +75,13 @@ export default function Footer() {
             </ul>
           </li>
           <li className="space-y-5 row-span-2">
-            <h2 className="text-sm tracking-wide text-gray-900 uppercase font-bold">
+            <h2 className="text-sm tracking-wide text-dark-brown uppercase font-bold">
               Products
             </h2>
             <ul className="space-y-4">
               <li>
                 <Link
-                  className="hover:text-gray-900 transition-colors duration-200 text-2xl"
+                  className="hover:text-dark-brown transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Hosting
@@ -89,7 +89,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  className="hover:text-gray-900 transition-colors duration-200 text-2xl"
+                  className="hover:text-dark-brown transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Domains
@@ -97,7 +97,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  className="hover:text-gray-900 transition-colors duration-200 text-2xl"
+                  className="hover:text-dark-brown transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Security
@@ -105,7 +105,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  className="hover:text-gray-900 transition-colors duration-200 text-2xl"
+                  className="hover:text-dark-brown transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   SSL
@@ -114,13 +114,13 @@ export default function Footer() {
             </ul>
           </li>
           <li className="space-y-5">
-            <h2 className="text-sm tracking-wide text-gray-900 uppercase font-bold">
+            <h2 className="text-sm tracking-wide text-dark-brown uppercase font-bold">
               Connect
             </h2>
             <ul className="space-y-4">
               <li>
                 <Link
-                  className="hover:text-gray-900 transition-colors duration-200 text-2xl"
+                  className="hover:text-dark-brown transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Twitter
@@ -128,7 +128,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  className="hover:text-gray-900 transition-colors duration-200 text-2xl"
+                  className="hover:text-dark-brown transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Facebook
@@ -136,7 +136,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  className="hover:text-gray-900 transition-colors duration-200 font-semibold text-2xl"
+                  className="hover:text-dark-brown transition-colors duration-200 font-semibold text-2xl"
                   href="/"
                 >
                   Instagram
@@ -150,7 +150,7 @@ export default function Footer() {
             <li>
               <Link
                 href="/"
-                className="text-md text-black transition-colors duration-300 hover:text-deep-purple-accent-400 font-semibold"
+                className="text-md text-dark-brown transition-colors duration-300 hover:text-deep-purple-accent-400 font-semibold"
               >
                 Terms of Service
               </Link>
@@ -158,7 +158,7 @@ export default function Footer() {
             <li>
               <Link
                 href="/"
-                className="text-md text-black transition-colors duration-300 hover:text-deep-purple-accent-400 font-semibold"
+                className="text-md text-dark-brown transition-colors duration-300 hover:text-deep-purple-accent-400 font-semibold"
               >
                 Privacy Policy
               </Link>
@@ -166,7 +166,7 @@ export default function Footer() {
             <li>
               <Link
                 href="/"
-                className="text-md text-black transition-colors duration-300 hover:text-deep-purple-accent-400 font-semibold"
+                className="text-md text-dark-brown transition-colors duration-300 hover:text-deep-purple-accent-400 font-semibold"
               >
                 Ad Choices
               </Link>
@@ -174,7 +174,7 @@ export default function Footer() {
             <li>
               <Link
                 href="/"
-                className="text-md text-black transition-colors duration-300 hover:text-deep-purple-accent-400 font-semibold"
+                className="text-md text-dark-brown transition-colors duration-300 hover:text-deep-purple-accent-400 font-semibold"
               >
                 Cookie Policy
               </Link>
@@ -182,7 +182,7 @@ export default function Footer() {
             <li>
               <Link
                 href="/"
-                className="text-md text-black transition-colors duration-300 hover:text-deep-purple-accent-400 font-semibold"
+                className="text-md text-dark-brown transition-colors duration-300 hover:text-deep-purple-accent-400 font-semibold"
               >
                 Partners
               </Link>
@@ -191,7 +191,7 @@ export default function Footer() {
           <ul className="flex flex-col mb-3 space-y-2 lg:mb-0 sm:space-y-0 sm:space-x-5 sm:flex-row">
             <Link
               href="/"
-              className="text-md text-black transition-colors duration-300 hover:text-deep-purple-accent-400 font-semibold tracking-tight"
+              className="text-md text-dark-brown transition-colors duration-300 hover:text-deep-purple-accent-400 font-semibold tracking-tight"
             >
               © 2021 Company Inc.
             </Link>

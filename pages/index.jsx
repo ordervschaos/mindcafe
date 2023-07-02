@@ -7,7 +7,7 @@ import { withServerSideAuth } from "@clerk/nextjs/ssr";
 
 export default function Home() {
   return (
-    <div className="text-black">
+    <div className="text-dark-brown">
       <NextSeo
         title="Home: nine4"
         description="Welcome to nine4 homepage."

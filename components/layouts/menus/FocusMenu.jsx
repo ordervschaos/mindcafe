@@ -88,8 +88,8 @@ export default function FocusMenu({user}) {
                           href={item.href}
                           className={classNames(
                             item.current
-                              ? 'bg-gray-100 text-gray-900'
-                              : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                              ? 'bg-gray-100 text-dark-brown'
+                              : 'text-dark-brown hover:bg-gray-50 hover:text-dark-brown',
                             'group flex items-center px-2 py-2 text-base font-medium',item.additionalClasses
                           )}
                         >
@@ -135,7 +135,7 @@ export default function FocusMenu({user}) {
         <div className="flex flex-1 items-center px-4">
           <div className="cursor-pointer flex flex-1">
             <Link href='/cafe'>
-              <HomeIcon className="mr-4 h-6 w-6 flex-shrink-0 text-gray-700" aria-hidden="true" />
+              <HomeIcon className="mr-4 h-6 w-6 flex-shrink-0 text-dark-brown" aria-hidden="true" />
             </Link>
           </div>
           <div className="ml-4 flex items-center md:ml-6">
