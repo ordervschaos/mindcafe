@@ -27,7 +27,8 @@ module.exports = {
         'rich-red':'#D1514E',
         'light-peach':'#F8EDD6',
         'cream':'#F5F1EC',
-        'dark-brown':'#5C4438'
+        'dark-brown':'#5C4438',
+        'light-brown':'#8C6D5B'
 
       },
       fontFamily: {

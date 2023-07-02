@@ -71,7 +71,7 @@ export default function CafeMealCard({ meal, setEatenMealsCount, eatenMealsCount
     <div className="overflow-x-clip	font-Merriweather meal_card" id={meal.id}>
         <div className='my-3 ' >
           
-          <div className= {`${isDone?'bg-gray-100':'bg-paper'} rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700`} >
+          <div className= {`${isDone?'bg-paper-burnt text-light-brown':'bg-paper'} rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700`} >
 
 
             <div className="p-3 pl-5">
@@ -79,7 +79,7 @@ export default function CafeMealCard({ meal, setEatenMealsCount, eatenMealsCount
               <div className="flex justify-between items-center">
                 <div className="">
                   <Link href={"/meal/"+meal.id + "/edit"  } className=" sm:flex py-8 " key={meal.id} >
-                    <h5 className="cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{meal.name}</h5>
+                    <h5 className="cursor-pointer mb-2 text-2xl font-bold tracking-tight">{meal.name}</h5>
                   </Link>
                 </div>
                   {isDone &&
