@@ -1,5 +1,6 @@
 import { WithUser, WithUserProp } from "@clerk/clerk-react";
 import { SignIn } from "@clerk/nextjs";
+import Overlay from 'components/Overlay';
 
 
 // type UserStripProps = {
@@ -70,7 +71,10 @@ function MyApp({ Component, pageProps }) {
           <SignedIn>
             <WithUser>
               {(user) => (
-                <Component {...pageProps} user={{...user,userButton,ShortUserButton}}/>  
+                <div>
+                  <Overlay />
+                  <Component {...pageProps} user={{...user,userButton,ShortUserButton}}/>  
+                </div>
               )}
             </WithUser>
           </SignedIn>

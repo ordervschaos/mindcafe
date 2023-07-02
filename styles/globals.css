@@ -81,3 +81,15 @@
 }
 
 
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  pointer-events: none;
+
+  /* background-color: rgba(255, 229, 204, 0.2); Adjust the color and opacity as desired */
+  background-color: rgb(255, 218, 185, 0.3); /* Adjust the color and opacity as desired */
+}
