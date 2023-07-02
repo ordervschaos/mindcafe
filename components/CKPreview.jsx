@@ -1,4 +1,19 @@
 import React, { useEffect, useRef } from 'react';
+import YouTube from 'react-youtube';
+const getYouTubeVideoId = (url) => {
+  const pattern = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:embed\/|v\/|watch\?(?:\w+=\w+&)*v=|watch\?v=)|youtu\.be\/)([\w-]+)(?:\S+)?$/;
+  const match = url.match(pattern);
+  
+  if (match && match[1]) {
+    return match[1];
+  } else {
+    // Handle invalid or unsupported YouTube URL
+    return null;
+  }
+};
+
+import ReactDOMServer from 'react-dom/server';
+
 
 const Preview = ({ content }) => {
   const previewRef = useRef(null);
@@ -23,11 +38,13 @@ const Preview = ({ content }) => {
         const oembedElement = figureElement.querySelector('oembed');
         const url = oembedElement.getAttribute('url');
         const videoWrapper = document.createElement('div');
-        const videoEmbed = document.createElement('iframe');
-        videoEmbed.setAttribute('src', url);
-        videoEmbed.setAttribute('frameborder', '0');
-        videoEmbed.setAttribute('allowfullscreen', 'true');
-        videoWrapper.appendChild(videoEmbed);
+        const videoEmbed = (
+          <div>
+            <YouTube videoId={getYouTubeVideoId(url)} /> {/* Implement a function to extract the video ID from the YouTube URL */}
+          </div>
+        );
+        const videoHtml = ReactDOMServer.renderToString(videoEmbed);
+        videoWrapper.innerHTML = videoHtml;
         element.appendChild(videoWrapper);
       });
 
