@@ -163,7 +163,7 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
                       <div className="flex w-full justify-end p-2">
                         <CloseButton onClick={handleClose} />
                       </div>
-                      <div className=" pb-20 flex-grow overflow-y-scroll bg-white px-4 pt-5  sm:p-6 sm:pb-4">
+                      <div className=" pb-20 flex-grow overflow-y-scroll bg-paper px-4 pt-5  sm:p-6 sm:pb-4">
                         <div className=" bg-white-100 ">
 
 

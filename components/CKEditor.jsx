@@ -46,7 +46,7 @@ const App = ({ editorData, setEditorData, editorId}) => {
 
 
     return (
-      <div style={{width:'100%', padding:'4px'}}>
+      <div style={{width:'100%', padding:'4px'}} className='drop-shadow'>
       <CKEditor
                 ref={editorRef}
                 id={editorId}

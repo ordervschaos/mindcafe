@@ -45,3 +45,26 @@
    min-height: 300px;
 
 }
+
+.ck.ck-editor__editable {
+  border: none !important;
+  border-bottom-left-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
+  box-shadow: none !important;
+
+}
+
+.ck.ck-editor__editable.ck-focused {
+  box-shadow: none !important;
+
+}
+
+
+.ck.ck-toolbar {
+  border: none !important;
+  box-shadow: none !important;
+  border-top-left-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+  z-index: 10000 !important;
+
+}

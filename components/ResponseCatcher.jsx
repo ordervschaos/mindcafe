@@ -104,7 +104,7 @@ export default function ResponseCatcher({ dish, onSave }) {
           <div className="meal_controls flex justify-end">
             <button onClick={handleSave}
               type="button"
-              className="px-3 inline-flex   text-center items-center rounded border border-transparent bg-gray-300 px-2.5 py-1.5   text-gray-700 shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="mt-4 px-3 inline-flex   text-center items-center rounded border border-transparent bg-paper-burnt px-2.5 py-1.5   text-dark-brown shadow-sm hover:drop-shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               Save response
             </button>
