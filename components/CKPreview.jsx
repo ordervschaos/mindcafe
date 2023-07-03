@@ -28,7 +28,14 @@ const Preview = ({ content }) => {
         videoEmbed.setAttribute('frameborder', '0');
         videoEmbed.setAttribute('allowfullscreen', 'true');
         videoWrapper.appendChild(videoEmbed);
+        
+        // Apply CSS styles to center the video element
+        videoWrapper.style.display = 'flex';
+        videoWrapper.style.justifyContent = 'center';
+        videoWrapper.style.alignItems = 'center';
+        
         figureElement.parentNode.replaceChild(videoWrapper, figureElement);
+        
       });
 
 
