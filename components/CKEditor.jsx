@@ -4,7 +4,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const App = ({ editorData, setEditorData, editorId}) => {
 
-  console.log("editorData", editorId)
+  const savedData = localStorage.getItem(editorId)
+  const initData = savedData ? savedData : editorData
 
 
 
@@ -29,9 +30,7 @@ const App = ({ editorData, setEditorData, editorId}) => {
     };
 
     const loadEditorData = () => {
-      const savedData = localStorage.getItem(editorId);
-      if (savedData)
-        setEditorData(savedData);
+        setEditorData(initData);
     };
 
     useEffect(() => {
@@ -52,7 +51,7 @@ const App = ({ editorData, setEditorData, editorId}) => {
                 ref={editorRef}
                 id={editorId}
                 editor={ClassicEditor}
-                data={editorData}
+                data={initData}
                 onReady={onReady}
                 onChange={onChange}
                 onBlur={onBlur}
