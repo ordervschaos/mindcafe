@@ -16,7 +16,7 @@ const Preview = ({ content }) => {
       const tempContainer = document.createElement('div');
       tempContainer.innerHTML = content;
 
-      // Traverse through the temporary container to handle media embeds
+      // Handle media embeds
       const figureElements = tempContainer.querySelectorAll('figure.media');
 
       figureElements.forEach((figureElement) => {
@@ -28,15 +28,22 @@ const Preview = ({ content }) => {
         videoEmbed.setAttribute('frameborder', '0');
         videoEmbed.setAttribute('allowfullscreen', 'true');
         videoWrapper.appendChild(videoEmbed);
-        element.appendChild(videoWrapper);
+        figureElement.parentNode.replaceChild(videoWrapper, figureElement);
       });
 
+
+      for (const child of tempContainer.childNodes) {
+        element.appendChild(child.cloneNode(true));
+      }
+
+
       // Append the modified content to the actual preview element
-      element.appendChild(tempContainer.firstChild);
+      // element.appendChild(tempContainer.firstChild);
     }
   }, [content]);
 
-  return <div ref={previewRef} />;
+  return <div ref={previewRef} className="prose"/>;
+
 };
 
 export default Preview;

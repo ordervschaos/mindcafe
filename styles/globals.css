@@ -93,3 +93,41 @@
   /* background-color: rgba(255, 229, 204, 0.2); Adjust the color and opacity as desired */
   background-color: rgb(255, 218, 185, 0.3); /* Adjust the color and opacity as desired */
 }
+
+/* Default styling for unordered lists */
+ul {
+  list-style-type: disc;
+  margin-left: 1.5em;
+}
+
+/* Default styling for ordered lists */
+ol {
+  list-style-type: decimal;
+  margin-left: 1.5em;
+}
+
+/* Default styling for list items at the first level */
+li {
+  margin-bottom: 0.5em;
+}
+
+/* Default styling for list items at the second level */
+ul ul li,
+ol ol li {
+  list-style-type: circle;
+  margin-left: 1.5em;
+}
+
+/* Default styling for list items at the third level */
+ul ul ul li,
+ol ol ol li {
+  list-style-type: square;
+  margin-left: 1.5em;
+}
+
+/* Default styling for list items at the fourth level */
+ul ul ul ul li,
+ol ol ol ol li {
+  list-style-type: disc;
+  margin-left: 1.5em;
+}
