@@ -30,7 +30,8 @@ const App = ({ editorData, setEditorData, editorId}) => {
 
     const loadEditorData = () => {
       const savedData = localStorage.getItem(editorId);
-      setEditorData(savedData||{});
+      if (savedData)
+        setEditorData(savedData);
     };
 
     useEffect(() => {
