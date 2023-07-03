@@ -28,7 +28,7 @@ export async function getServerSideProps({ params }) {
   // Call an external API endpoint to get meals
   var meal = await supabase.from("meal").select(`
   id, owner_id, name,schedule,next_dish_index,timing,expiresIn,weeklySchedule,
-  dish(content, id, meal_id, owner_id, created_at, archived)
+  dish(content, id, meal_id, owner_id, created_at,accepts_responses, archived)
   `).eq('id', params.id);
   
   meal = meal.data[0]
