@@ -68,7 +68,7 @@ export default function ResponseCatcher({ dish, onSave }) {
     }
 
     localStorage.removeItem(editorId, editorData)
-    setEditorData(null)
+    setEditorData('')
 
 
 
@@ -87,7 +87,7 @@ export default function ResponseCatcher({ dish, onSave }) {
 
   async function handleSave() {
     saveResponse(editorData)
-    setShowEditor(false)
+    // setShowEditor(false)
     setDisplayResponse(true)
 
   }

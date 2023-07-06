@@ -43,6 +43,19 @@ const App = ({ editorData, setEditorData, editorId}) => {
       loadEditorData(); // Load saved data
     }, []);
 
+    // const handleClearEditor = () => {
+    //   const editorInstance = editorRef.current.editor;
+    //   editorInstance.setData('')
+    //   // editorInstance.data.setData(''); // Clear the editor content
+    // };
+    // useEffect(() => {
+    //   if(editorData==null)
+    //     handleClearEditor()
+    // }, [editorData])
+
+
+
+
 
 
     return (
