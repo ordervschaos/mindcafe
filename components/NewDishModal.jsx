@@ -112,7 +112,7 @@ export default function NewDishModal({ openModal, setOpenModal, meal, addDishToM
 
   const clearEditor = () => {
     localStorage.removeItem(editorId)
-    setEditorData({})
+    setEditorData('')
     setDraftDish({})
     setIsAcceptResponseChecked(false)
   }

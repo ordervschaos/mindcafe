@@ -113,7 +113,7 @@ export default function EditMeal({ meal, user }) {
 
                 {/* Dishes title*/}
                 <div className="mt-24">
-                  <h2 className="text-2xl text-center font-bold">Rotating Dishes Queue</h2>
+                  <h2 className="text-2xl text-center font-bold">Pages</h2>
                 </div>
                 {/* centered widget */}
                 <div className="flex justify-center items-center ">

@@ -38,20 +38,10 @@ const App = ({ editorData, setEditorData, editorId}) => {
     }, [editorId])
 
     useEffect(() => {
-      // Editor initialization code...
-    
+      // Editor initialization code...    
       loadEditorData(); // Load saved data
     }, []);
 
-    // const handleClearEditor = () => {
-    //   const editorInstance = editorRef.current.editor;
-    //   editorInstance.setData('')
-    //   // editorInstance.data.setData(''); // Clear the editor content
-    // };
-    // useEffect(() => {
-    //   if(editorData==null)
-    //     handleClearEditor()
-    // }, [editorData])
 
 
 
