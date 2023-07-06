@@ -11,7 +11,7 @@ export default function Home({ user, meals, count_meals_eaten_today }) {
 
   const [mealsList, setMealsList] = useState(meals);
   const [eatenMealsCount, setEatenMealsCount] = useState(count_meals_eaten_today)
-  const [openModal, setOpenModal] = useState(true)
+  const [openModal, setOpenModal] = useState(false)
   const [mealIndex, setMealIndex] = useState(0)
 
   function showMealPreview(meal_id) {
