@@ -74,17 +74,17 @@ export default function DishCard({ meal, dish }) {
                 <EditDishWidget
                   meal={meal} updateDisplayedDish={updateDisplayedDish} setDish={setDishToDisplay} dish={dishToDisplay} />
                 ):(
-                  <div className="p-4">
+                  <div>
 
                     <div onClick={handleContentClick}>
-                      <p className="cursor-pointer mb-3 font-normal text-gray-800 dark:text-light-brown">
+                      <p className="p-4 cursor-pointer mb-3 font-normal text-gray-800 dark:text-light-brown">
                         {dishToDisplay.content &&
                           <CKPreview content={dishToDisplay.content} />
 
                         }
                       </p>
                     </div>
-                    <div>
+                    <div className="p-2">
                       <ResponseCatcher dish={dishToDisplay} onSave={onSave} />
                     </div>
                   </div>
